@@ -2,13 +2,17 @@ import 'dart:convert';
 import 'package:araci/app/data/model/model.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
+import 'package:get_storage/get_storage.dart';
 
 const baseUrl = 'http://gerador-nomes.herokuapp.com/nomes/10';
 
 class MyApiClient {
   final http.Client httpClient;
 
-  MyApiClient({@required this.httpClient});
+  MyApiClient(
+      {@required this.httpClient}
+
+  );
 
   final Map<String, String> _defaultHeaders = {
     'Content-Type': 'application/json'

@@ -1,20 +1,16 @@
 import 'package:get_storage/get_storage.dart';
 
-class GlobalApiClient {
+class GlobalInformationApi {
+  final storage = GetStorage();
 
-  GlobalApiClient();
+  GlobalInformationApi();
 
-  Future<bool> getLoginStatus() async {
-    //TODO: implemete get storage
-    return true;
-  }
-
-  Future saveGlobalInformation(dynamic key, dynamic value) async {
+  Future setGlobalInformation(String key, dynamic value) async {
     //TODO: Implement save info
   }
 
-  Future<dynamic> getGlobalInformation(dynamic key){
-    //TODO: implement getInfo
+  dynamic getGlobalInformation(String key){
+    return storage.read(key);
   }
   //
   // Future add(obj) async {

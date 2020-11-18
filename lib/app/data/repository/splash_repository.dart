@@ -3,12 +3,12 @@ import 'package:araci/app/data/provider/global_information.dart';
 import 'package:meta/meta.dart';
 
 class SplashRepository {
-  final GlobalApiClient globalApiClient;
+  final GlobalInformationApi globalApiClient;
 
   SplashRepository({@required this.globalApiClient}) : assert(globalApiClient != null);
 
-  getLoginStatus(){
-    return globalApiClient.getLoginStatus();
+  dynamic getLoginStatus(){
+    return globalApiClient.getGlobalInformation("isLogged");
   }
   // getAll() {
   //   return apiClient.getAll();

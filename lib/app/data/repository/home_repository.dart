@@ -1,10 +1,10 @@
 import 'package:araci/app/data/provider/api.dart';
 import 'package:meta/meta.dart';
 
-class VideoRepository {
+class HomeRepository {
   final MyApiClient apiClient;
 
-  VideoRepository({@required this.apiClient}) : assert(apiClient != null);
+  HomeRepository({@required this.apiClient}) : assert(apiClient != null);
 
   getAll() {
     return apiClient.getAll();

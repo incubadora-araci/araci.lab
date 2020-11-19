@@ -6,6 +6,10 @@ class HomeRepository {
 
   HomeRepository({@required this.apiClient}) : assert(apiClient != null);
 
+
+  getAllVids(){
+    return apiClient.getAllVids();
+  }
   getAll() {
     return apiClient.getAll();
   }

@@ -8,7 +8,6 @@
 //   @override
 //   Widget build(BuildContext context) {
 //     return AnimatedSplashScreen(
-//       splash: "assets/images/logo_araci.png",
 //       nextScreen: HomePage(),
 //       splashTransition: SplashTransition.scaleTransition,
 //       pageTransitionType: PageTransitionType.fade,
@@ -39,7 +38,7 @@ import 'package:page_transition/page_transition.dart';
    Widget build(BuildContext context) {
       return Scaffold(
         body:AnimatedSplashScreen.withScreenFunction(
-            splash: "assets/images/logo_araci.png",
+            splash: "assets/images/regia_araci.png",
             splashIconSize: 200,
             screenFunction: controller.getLoginStatus,
             splashTransition: SplashTransition.fadeTransition,
@@ -60,7 +59,6 @@ import 'package:page_transition/page_transition.dart';
 //         child: GetX<SplashController>(
 //             builder: (_) {
 //               return AnimatedSplashScreen.withScreenFunction(
-//                 splash: "assets/images/logo_araci.png",
 //                 screenFunction: _.getLoginStatus,
 //                 splashTransition: SplashTransition.scaleTransition,
 //                 animationDuration: Duration(seconds: 2),

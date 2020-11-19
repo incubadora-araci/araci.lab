@@ -10,18 +10,26 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(title: Text('Home Page')),
       body: Container(
         child: Center(
-          child: Text("HOME PAGE HERE!!!"),
+          child: Text("Home Page"),
         ),
-//        child: GetX<HomeController>(
-//            init: HomeController(),
-//            builder: (_) {
-//              return Container(
-//                child: Center(
-//                  child: Text("HOME PAGE"),
-//                ),
-//              );
-//            }),
       ),
+      // body: RefreshIndicator(
+      //   child: ListView(
+      //     children: [
+      //       Container(child: Center(child: Text("List Videos"),),)
+      //     ],
+      //   ),
+      //   onRefresh: () { null;},
+      // ),
+      // body: Container(
+        // child: Column(
+        //   crossAxisAlignment: CrossAxisAlignment.center,
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        //     Text("Home Page here"),
+        //     RaisedButton(onPressed: ()=> print("pressed"),child: Text("Change theme"),)
+        //   ],
+        // ),
     );
   }
 }

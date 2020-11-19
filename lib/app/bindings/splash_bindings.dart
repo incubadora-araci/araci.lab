@@ -15,7 +15,7 @@ class SplashBinding implements Bindings {
     Get.putAsync<GetStorage>(() async {
       await GetStorage.init();
       final storage = GetStorage();
-      storage.write("isLogged", false);
+      storage.write("isLogged", true);
       return storage;
     },
       permanent: true

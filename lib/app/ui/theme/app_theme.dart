@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 
 final ThemeData appThemeData = ThemeData(
-  primarySwatch: Colors.lightGreen,
   primaryColor: Colors.lightGreen,
-  buttonColor: Colors.lightGreen,
+  buttonColor: Colors.purple[400],
   brightness: Brightness.light,
-  accentColor: Colors.cyan[600],
+  accentColor: Colors.purple[400],
+  dialogBackgroundColor: Colors.purple[200],
   appBarTheme: AppBarTheme(
     color: Colors.lightGreen,
   ),
@@ -14,10 +14,11 @@ final ThemeData appThemeData = ThemeData(
 
 final ThemeData appThemeDataDark = ThemeData(
   primaryColor: Colors.black,
-  buttonColor: Colors.black,
+  buttonColor: Colors.purple[400],
   brightness: Brightness.dark,
-  accentColor: Colors.cyan[600],
+  accentColor: Colors.purple[400],
+  dialogBackgroundColor: Colors.purple[200],
   appBarTheme: AppBarTheme(
-    color: Colors.black,
+    color: Colors.lightGreen,
   ),
 );

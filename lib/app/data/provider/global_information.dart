@@ -6,7 +6,12 @@ class GlobalInformationApi {
   GlobalInformationApi();
 
   Future setGlobalInformation(String key, dynamic value) async {
-    //TODO: Implement save info
+    try{
+      storage.write(key, value);
+    }
+    catch(e){
+
+    }
   }
 
   dynamic getGlobalInformation(String key){

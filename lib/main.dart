@@ -16,7 +16,7 @@ void main() {
 //        debugShowCheckedModeBanner: false,
         initialRoute: Routes.SPLASH, //Rota inicial
        initialBinding: SplashBinding(), // dependencias iniciais
-        theme: appThemeData, //Tema personalizado app
+        theme: appThemeDataDark, //Tema personalizado app
         defaultTransition: Transition.fade, // Transição de telas padrão
         getPages: AppPages.pages, // Seu array de navegação contendo as rotas e suas pages
 //        home: HomePage(), // Page inicial

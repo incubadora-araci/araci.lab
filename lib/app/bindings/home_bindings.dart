@@ -14,11 +14,5 @@ class HomeBinding implements Bindings {
           repository:
           HomeRepository(apiClient: MyApiClient(httpClient: http.Client())));
     });
-
-    Get.putAsync<GetStorage>(() async {
-      await GetStorage.init();
-      final storage = GetStorage();
-      return storage;
-    });
   }
 }

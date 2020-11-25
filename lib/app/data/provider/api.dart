@@ -18,7 +18,7 @@ class MyApiClient {
     'Content-Type': 'application/json'
   };
 
-  Future<List<String>> getAllVids() async {
+  Future<List<String>> updateVidsList() async {
     return ["https://www.youtube.com/watch?v=xqr9gV5E2Lg","https://www.youtube.com/watch?v=KxVb9Lcvry4","https://www.youtube.com/watch?v=EMru3oqZ66U","https://www.youtube.com/watch?v=eh2GCow3NY8","https://www.youtube.com/watch?v=iLprfJV41W4"];
   }
 

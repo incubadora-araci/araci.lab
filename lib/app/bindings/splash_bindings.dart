@@ -26,10 +26,15 @@ class SplashBinding implements Bindings {
       permanent: true
     );
 
-    Get.lazyPut<HomeController>(() {
-      return HomeController(
-          repository:
-          HomeRepository(apiClient: MyApiClient(httpClient: http.Client())));
-    });
+    Get.put<HomeController>(
+        HomeController(
+            repository: HomeRepository(apiClient: MyApiClient(httpClient: http.Client())))
+    );
+
+    // Get.lazyPut<HomeController>(() {
+    //   return HomeController(
+    //       repository:
+    //       HomeRepository(apiClient: MyApiClient(httpClient: http.Client())));
+    // });
   }
 }

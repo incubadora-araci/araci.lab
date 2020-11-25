@@ -7,8 +7,8 @@ class HomeRepository {
   HomeRepository({@required this.apiClient}) : assert(apiClient != null);
 
 
-  getAllVids(){
-    return apiClient.getAllVids();
+  updateVidsList(){
+    return apiClient.updateVidsList();
   }
   getAll() {
     return apiClient.getAll();

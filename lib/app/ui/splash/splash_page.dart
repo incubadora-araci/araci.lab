@@ -33,7 +33,7 @@ import 'package:page_transition/page_transition.dart';
    /// if you need you can pass the tag for
    /// Get.find<AwesomeController>(tag:"myTag");
    SplashPage({Key key}):super(key:key);
-
+   
    @override
    Widget build(BuildContext context) {
       return Scaffold(

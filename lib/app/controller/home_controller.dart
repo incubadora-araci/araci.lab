@@ -20,7 +20,7 @@ class HomeController extends GetxController {
   void onInit() async {
     await updateVidsList();
     initYoutubeController();
-    super.onInit();
+    addArticle();
   }
 
   Future updateVidsList() async {
@@ -35,7 +35,7 @@ class HomeController extends GetxController {
 
   Future addArticle() async {
     Article newArticle = Article();
-    newArticle.article = 1;
+    newArticle.id = 1;
     newArticle.title = "# Bem-vindo ao Araci!";
     newArticle.content = "\nEste é um exemplo de texto em Markdown.  "+
         "\nTexto em **negrito**, texto em *itálico*"+
@@ -43,6 +43,7 @@ class HomeController extends GetxController {
         "\n - Tópico 2  ";
 
     await repository.addArticle(newArticle);
+    print("Article added");
   }
 
   initYoutubeController(){

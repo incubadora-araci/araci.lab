@@ -5,10 +5,9 @@ import 'package:meta/meta.dart';
 
 class HomeRepository {
   final MyApiClient apiClient;
-  AppDatabase database;
+  AppDatabase database = AppDatabase();
 
   HomeRepository({@required this.apiClient}) : assert(apiClient != null);
-
 
   updateVidsList(){
     return apiClient.updateVidsList();
@@ -34,12 +33,12 @@ class HomeRepository {
   }
 
   Future<List<Article>> getArticles() async {
-    await database.init();
+    database = await database.init();
     return database.getAll(Article().TABLE_NAME, Article().makeModels);
   }
 
   Future addArticle(Article article) async {
-    await database.init();
+    database = await database.init();
     await database.insert(article);
   }
 }

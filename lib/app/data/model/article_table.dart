@@ -1,7 +1,7 @@
 import 'package:araci/app/data/model/model_table.dart';
 
 class Article extends Model{
-  int article; // PK "node"	integer NOT NULL,
+  int id; // PK "node"	integer NOT NULL,
   String title;// "title"	varchar(255) DEFAULT NULL,
   String content; // "content"	text,
 
@@ -16,15 +16,15 @@ class Article extends Model{
       "title": title,
       "content": content,
     };
-    if (article != null) {
-      map["article"] = article;
+    if (id != null) {
+      map["id"] = id;
     }
     return map;
   }
 
   @override
   Model fromMap(Map<String, dynamic> map) {
-    article = map["article"];
+    id = map["id"];
     title = map["title"];
     content = map["content"];
 }

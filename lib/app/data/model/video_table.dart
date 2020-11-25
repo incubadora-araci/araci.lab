@@ -1,10 +1,10 @@
 import 'package:araci/app/data/model/model_table.dart';
 
 class Video extends Model{
-  int video;
+  int id;
   String url;
   String title;
-  int nodeId;
+  int articleId;
 
   @override
   String TABLE_NAME = "Video";
@@ -16,20 +16,20 @@ class Video extends Model{
     var map = <String, dynamic>{
       "url": url,
       "title": title,
-      "node_id": nodeId
+      "article_id": articleId
     };
-    if (video != null) {
-      map["video"] = video;
+    if (id != null) {
+      map["video"] = id;
     }
     return map;
   }
 
   @override
   Model fromMap(Map<String, dynamic> map) {
-    video = map["video"];
+    id = map["id"];
     url = map["url"];
     title = map["title"];
-    nodeId = map["node_id"];
+    articleId = map["article_id"];
   }
 
   @override

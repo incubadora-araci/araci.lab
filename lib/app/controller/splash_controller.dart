@@ -1,3 +1,4 @@
+import 'package:araci/app/data/model/article_table.dart';
 import 'package:araci/app/data/provider/global_information.dart';
 import 'package:araci/app/data/repository/splash_repository.dart';
 import 'package:araci/app/data/repository/home_repository.dart';
@@ -17,5 +18,7 @@ class SplashController extends GetxController {
   Future<Widget>getLoginStatus() async {
     return await repository.getLoginStatus() ? HomePage() : LoginPage();
   }
+
+
 
 }

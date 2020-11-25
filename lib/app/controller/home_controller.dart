@@ -1,5 +1,6 @@
 import 'package:araci/app/data/repository/home_repository.dart';
 import 'package:get/get.dart';
+import 'package:araci/app/data/model/article_table.dart';
 import 'package:meta/meta.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
@@ -9,6 +10,7 @@ class HomeController extends GetxController {
   HomeController({@required this.repository}) : assert(repository != null);
 
   List<String> vidsList = [];
+  List<Article> articleList = [];
   YoutubePlayerController ytController;
   // final _obj = ''.obs;
   // set obj(value) => _obj.value = value;
@@ -26,6 +28,23 @@ class HomeController extends GetxController {
     update();
   }
 
+  Future getArticles() async {
+    articleList = await repository.getArticles();
+    update();
+  }
+
+  Future addArticle() async {
+    Article newArticle = Article();
+    newArticle.article = 1;
+    newArticle.title = "# Bem-vindo ao Araci!";
+    newArticle.content = "\nEste é um exemplo de texto em Markdown.  "+
+        "\nTexto em **negrito**, texto em *itálico*"+
+        "\n - Tópico 1  "+
+        "\n - Tópico 2  ";
+
+    await repository.addArticle(newArticle);
+  }
+
   initYoutubeController(){
     ytController = YoutubePlayerController(
       initialVideoId: YoutubePlayerController.convertUrlToId(vidsList[0]),
@@ -39,6 +58,7 @@ class HomeController extends GetxController {
       ),
     );
   }
+
 
 
 }

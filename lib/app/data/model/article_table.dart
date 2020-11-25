@@ -1,14 +1,14 @@
 import 'package:araci/app/data/model/model_table.dart';
 
-class Node extends Model{
-  int node; // PK "node"	integer NOT NULL,
-  int title;// "title"	varchar(255) DEFAULT NULL,
-  int content; // "content"	text,
+class Article extends Model{
+  int article; // PK "node"	integer NOT NULL,
+  String title;// "title"	varchar(255) DEFAULT NULL,
+  String content; // "content"	text,
 
   @override
-  String TABLE_NAME = "Node";
+  String TABLE_NAME = "Article";
 
-  Node();
+  Article();
 
   @override
   Map<String, dynamic> toMap() {
@@ -16,24 +16,24 @@ class Node extends Model{
       "title": title,
       "content": content,
     };
-    if (node != null) {
-      map["node"] = node;
+    if (article != null) {
+      map["article"] = article;
     }
     return map;
   }
 
   @override
   Model fromMap(Map<String, dynamic> map) {
-    node = map["node"];
+    article = map["article"];
     title = map["title"];
     content = map["content"];
 }
 
   @override
   List<Model> makeModels(List<Map> maps) {
-    List<Node> fData = [];
+    List<Article> fData = [];
     maps.forEach((map){
-      fData.add(Node().fromMap(map));
+      fData.add(Article().fromMap(map));
     });
     return fData;
   }

@@ -1,5 +1,6 @@
 import 'package:araci/app/controller/home_controller.dart';
 import 'package:araci/app/controller/splash_controller.dart';
+import 'package:araci/app/data/database/database.dart';
 import 'package:araci/app/data/provider/api.dart';
 import 'package:araci/app/data/provider/global_information.dart';
 import 'package:araci/app/data/repository/home_repository.dart';
@@ -28,7 +29,7 @@ class SplashBinding implements Bindings {
 
     Get.put<HomeController>(
         HomeController(
-            repository: HomeRepository(apiClient: MyApiClient(httpClient: http.Client())))
+            repository: HomeRepository(database: AppDatabase(), apiClient: MyApiClient(httpClient: http.Client())))
     );
 
     // Get.lazyPut<HomeController>(() {

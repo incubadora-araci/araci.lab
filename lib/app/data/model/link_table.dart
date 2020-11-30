@@ -1,9 +1,9 @@
 import 'package:araci/app/data/model/model_table.dart';
 
 class Link extends Model{
-  int link;
+  int id;
   String url;
-  int nodeId;
+  int articleId;
 
   @override
   String TABLE_NAME = "Link";
@@ -14,19 +14,19 @@ class Link extends Model{
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
       "url": url,
-      "node_id": nodeId
+      "node_id": articleId
     };
-    if (link != null) {
-      map["link"] = link;
+    if (id != null) {
+      map["id"] = id;
     }
     return map;
   }
 
   @override
   Model fromMap(Map<String, dynamic> map) {
-    link = map["link"];
+    id = map["id"];
     url = map["url"];
-    nodeId = map["node_id"];
+    articleId = map["article_id"];
   }
 
   @override

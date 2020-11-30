@@ -1,5 +1,6 @@
 import 'package:araci/app/data/repository/home_repository.dart';
 import 'package:get/get.dart';
+import 'package:araci/app/data/model/article_table.dart';
 import 'package:meta/meta.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
@@ -9,6 +10,7 @@ class HomeController extends GetxController {
   HomeController({@required this.repository}) : assert(repository != null);
 
   List<String> vidsList = [];
+  List<Article> articleList = [];
   YoutubePlayerController ytController;
   // final _obj = ''.obs;
   // set obj(value) => _obj.value = value;
@@ -18,12 +20,30 @@ class HomeController extends GetxController {
   void onInit() async {
     await updateVidsList();
     initYoutubeController();
-    super.onInit();
+    addArticle();
   }
 
   Future updateVidsList() async {
     vidsList = await repository.updateVidsList();
     update();
+  }
+
+  Future getArticles() async {
+    articleList = await repository.getArticles();
+    update();
+  }
+
+  Future addArticle() async {
+    Article newArticle = Article();
+    newArticle.id = 1;
+    newArticle.title = "# Bem-vindo ao Araci!";
+    newArticle.content = "\nEste é um exemplo de texto em Markdown.  "+
+        "\nTexto em **negrito**, texto em *itálico*"+
+        "\n - Tópico 1  "+
+        "\n - Tópico 2  ";
+
+    await repository.addArticle(newArticle);
+    print("Article added");
   }
 
   initYoutubeController(){
@@ -39,6 +59,7 @@ class HomeController extends GetxController {
       ),
     );
   }
+
 
 
 }

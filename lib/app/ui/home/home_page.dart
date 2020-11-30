@@ -1,4 +1,5 @@
 import 'package:araci/app/controller/home_controller.dart';
+import 'package:araci/app/data/repository/home_repository.dart';
 import 'package:araci/app/ui/home/widgets/markdown_widget.dart';
 import 'package:araci/app/ui/home/widgets/video_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,14 +15,11 @@ class HomePage extends StatelessWidget {
         builder:(_) => RefreshIndicator(
           child: Column(
             children: [
+              ytWidget(),
               Flexible(
-                child: markdownWidget("# Bem-vindo ao Araci!"+
-                "\nEste é um exemplo de texto em Markdown.  "+
-                "\nTexto em **negrito**, texto em *itálico*"+
-                "\n - Tópico 1  "+
-                "\n - Tópico 2  ")
+                  child: markdownWidget(HomeController().articleList[0].title,
+                      HomeController().articleList[0].content)
               ),
-              ytWidget()
             ],
           ),
           onRefresh: _.updateVidsList,

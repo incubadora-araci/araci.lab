@@ -3,9 +3,9 @@ import 'package:araci/app/data/model/model_table.dart';
 import 'dart:html';
 
 class Image extends Model{
-  int image; // PK "image"	integer NOT NULL,
+  int id; // PK "image"	integer NOT NULL,
   Blob file;// "file"	blob,
-  int nodeId;
+  int articleId;
 
   @override
   String TABLE_NAME = "Image";
@@ -16,19 +16,19 @@ class Image extends Model{
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
       "file": file,
-      "node_id": nodeId
+      "article_id": articleId
     };
-    if (image != null) {
-      map["image"] = image;
+    if (id != null) {
+      map["id"] = id;
     }
     return map;
   }
 
   @override
   Model fromMap(Map<String, dynamic> map) {
-    image = map["image"];
+    id = map["id"];
     file = map["file"];
-    nodeId = map["node_id"];
+    articleId = map["article_id"];
   }
 
   @override

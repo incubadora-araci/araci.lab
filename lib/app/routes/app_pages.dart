@@ -10,6 +10,6 @@ abstract class AppPages {
   static final pages = [
     GetPage(name: Routes.SPLASH, page: ()=> SplashPage()),
     GetPage(name: Routes.LOGIN, page:()=> null),
-    GetPage(name: Routes.HOME, page:()=> HomePage(), binding: HomeBinding()),
+    GetPage(name: Routes.HOME, page:()=> HomePage()),
   ];
 }

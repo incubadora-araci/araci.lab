@@ -15,7 +15,6 @@ class HomeController extends GetxController {
   YoutubePlayerController ytController;
   String title;
   String content;
-  DatabaseApi _databaseApi;
   // final _obj = ''.obs;
   // set obj(value) => _obj.value = value;
   // get obj => _obj.value;
@@ -24,9 +23,6 @@ class HomeController extends GetxController {
   void onInit() async {
     await updateVidsList();
     initYoutubeController();
-    _databaseApi = await DatabaseApi().init();
-    addArticle(_databaseApi);
-    await getArticles(_databaseApi);
     print("article: " + articleList[0].title);
   }
 

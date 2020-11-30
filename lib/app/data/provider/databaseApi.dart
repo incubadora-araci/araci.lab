@@ -1,9 +1,36 @@
-import 'package:araci/app/data/database/database.dart';
+import 'package:araci/app/data/database/const.dart';
 import 'package:araci/app/data/model/model_table.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
+import 'package:path/path.dart';
 
 class DatabaseApi {
+  String path;
   static Database database;
+
+  Future<DatabaseApi> init() async {
+    var databasePath = await getDatabasesPath();
+    this.path = join(databasePath, DATABASE_NAME);
+    return open();
+  }
+
+  /// Opens the .db file and creates the tables, if needed.
+  Future<DatabaseApi> open() async {
+    database = await openDatabase(path, version: VERSION,
+        onCreate: (Database db, int version) {
+          TABLES_MODELS.forEach((query) async => await db.execute(query));
+        },
+        onUpgrade: (Database db, int oldVersion, int newVersion) {
+          // When upgrading the db, run upgrade code
+          for (oldVersion++; oldVersion <= newVersion; oldVersion++) {
+            TABLES_MODELS_UPDATES["$oldVersion"].forEach((query) {
+              db.execute(query);
+            });
+          }
+        }
+    );
+    return this;
+  }
 
   Future<int> insert(Model model) async {
     return database.insert(model.TABLE_NAME, model.toMap());

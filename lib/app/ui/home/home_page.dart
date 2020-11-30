@@ -17,8 +17,8 @@ class HomePage extends StatelessWidget {
             children: [
               ytWidget(),
               Flexible(
-                  child: markdownWidget(HomeController().articleList[0].title,
-                      HomeController().articleList[0].content)
+                  child: markdownWidget(_.articleList[0].title,
+                      _.articleList[0].content)
               ),
             ],
           ),

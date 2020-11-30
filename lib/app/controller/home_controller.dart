@@ -1,3 +1,4 @@
+import 'package:araci/app/data/provider/databaseApi.dart';
 import 'package:araci/app/data/repository/home_repository.dart';
 import 'package:get/get.dart';
 import 'package:araci/app/data/model/article_table.dart';
@@ -12,6 +13,9 @@ class HomeController extends GetxController {
   List<String> vidsList = [];
   List<Article> articleList = [];
   YoutubePlayerController ytController;
+  String title;
+  String content;
+  DatabaseApi _databaseApi;
   // final _obj = ''.obs;
   // set obj(value) => _obj.value = value;
   // get obj => _obj.value;
@@ -20,7 +24,10 @@ class HomeController extends GetxController {
   void onInit() async {
     await updateVidsList();
     initYoutubeController();
-    addArticle();
+    _databaseApi = await DatabaseApi().init();
+    addArticle(_databaseApi);
+    await getArticles(_databaseApi);
+    print("article: " + articleList[0].title);
   }
 
   Future updateVidsList() async {
@@ -28,12 +35,20 @@ class HomeController extends GetxController {
     update();
   }
 
-  Future getArticles() async {
-    articleList = await repository.getArticles();
+  Future getArticles(DatabaseApi _databaseApi) async {
+    articleList = await repository.getArticles(_databaseApi);
     update();
   }
 
-  Future addArticle() async {
+  Future getTitle() async {
+    title = await repository.getTitle();
+  }
+
+  Future getContent() async {
+    content = await repository.getContent();
+  }
+
+  Future addArticle(_databaseApi) async {
     Article newArticle = Article();
     newArticle.id = 1;
     newArticle.title = "# Bem-vindo ao Araci!";
@@ -42,7 +57,7 @@ class HomeController extends GetxController {
         "\n - Tópico 1  "+
         "\n - Tópico 2  ";
 
-    await repository.addArticle(newArticle);
+    await repository.addArticle(newArticle, _databaseApi);
     print("Article added");
   }
 

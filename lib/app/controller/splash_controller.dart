@@ -15,6 +15,11 @@ class SplashController extends GetxController {
   final SplashRepository repository;
   SplashController({@required this.repository}) : assert(repository != null);
 
+  @override
+  void onInit() async {
+
+  }
+
   Future<Widget>getLoginStatus() async {
     return await repository.getLoginStatus() ? HomePage() : LoginPage();
   }

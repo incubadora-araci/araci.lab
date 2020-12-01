@@ -75,14 +75,14 @@ class DatabaseApi {
     return await database.rawQuery("DELETE FROM $fromTable;");
   }
 
-  Future<List<List<Map<String,dynamic>>>> smartDump() async {
-    List<List<Map<String, dynamic>>> dbDump = List();
-    dbDump.add(await getAllMapFormat("doencas_cronicas_pacientes"));
-    dbDump.add(await getAllMapFormat("duvidas_epidemicas"));
-    dbDump.add(await getAllMapFormat("pesquisas"));
-    dbDump.add(await getAllMapFormat("pacientes_epidemias"));
-    return dbDump;
-  }
+  // Future<List<List<Map<String,dynamic>>>> smartDump() async {
+  //   List<List<Map<String, dynamic>>> dbDump = List();
+  //   dbDump.add(await getAllMapFormat("doencas_cronicas_pacientes"));
+  //   dbDump.add(await getAllMapFormat("duvidas_epidemicas"));
+  //   dbDump.add(await getAllMapFormat("pesquisas"));
+  //   dbDump.add(await getAllMapFormat("pacientes_epidemias"));
+  //   return dbDump;
+  // }
 
   String _assembleColumnString(List<String> columns){
     if(columns == null) return null;

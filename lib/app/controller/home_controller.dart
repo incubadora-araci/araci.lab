@@ -20,7 +20,7 @@ class HomeController extends GetxController {
   void onInit() async {
     await updateVidsList();
     initYoutubeController();
-    addArticle();
+    // addArticle();
   }
 
   Future updateVidsList() async {
@@ -28,23 +28,23 @@ class HomeController extends GetxController {
     update();
   }
 
-  Future getArticles() async {
-    articleList = await repository.getArticles();
-    update();
-  }
+  // Future getArticles() async {
+  //   articleList = await repository.getArticles();
+  //   update();
+  // }
 
-  Future addArticle() async {
-    Article newArticle = Article();
-    newArticle.id = 1;
-    newArticle.title = "# Bem-vindo ao Araci!";
-    newArticle.content = "\nEste é um exemplo de texto em Markdown.  "+
-        "\nTexto em **negrito**, texto em *itálico*"+
-        "\n - Tópico 1  "+
-        "\n - Tópico 2  ";
-
-    await repository.addArticle(newArticle);
-    print("Article added");
-  }
+  // Future addArticle() async {
+  //   Article newArticle = Article();
+  //   newArticle.id = 1;
+  //   newArticle.title = "# Bem-vindo ao Araci!";
+  //   newArticle.content = "\nEste é um exemplo de texto em Markdown.  "+
+  //       "\nTexto em **negrito**, texto em *itálico*"+
+  //       "\n - Tópico 1  "+
+  //       "\n - Tópico 2  ";
+  //
+  //   await repository.addArticle(newArticle);
+  //   print("Article added");
+  // }
 
   initYoutubeController(){
     ytController = YoutubePlayerController(

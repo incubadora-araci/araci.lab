@@ -1,13 +1,14 @@
 import 'package:araci/app/data/database/database.dart';
 import 'package:araci/app/data/provider/api.dart';
 import 'package:araci/app/data/model/article_table.dart';
+import 'package:araci/app/data/provider/databaseApi.dart';
 import 'package:meta/meta.dart';
 
 class HomeRepository {
   final MyApiClient apiClient;
-  AppDatabase database = AppDatabase();
+  final DatabaseApi databaseApi;
 
-  HomeRepository({@required this.apiClient}) : assert(apiClient != null);
+  HomeRepository({@required this.apiClient, @required this.databaseApi}) : assert(apiClient != null);
 
   updateVidsList(){
     return apiClient.updateVidsList();
@@ -31,15 +32,13 @@ class HomeRepository {
   add(obj) {
     return apiClient.add(obj);
   }
-
-  Future<List<Article>> getArticles() async {
-    database = await database.init();
-    return database.getAll(Article().TABLE_NAME, Article().makeModels);
-  }
-
-  Future addArticle(Article article) async {
-    database = await database.init();
-    await database.insert(article);
-  }
+  //
+  // Future<List<Article>> getArticles() async {
+  //   return database.getAll(Article().TABLE_NAME, Article().makeModels);
+  // }
+  //
+  // Future addArticle(Article article) async {
+  //   await database.insert(article);
+  // }
 }
 

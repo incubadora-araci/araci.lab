@@ -10,7 +10,7 @@ class DetailsBinding implements Bindings {
     Get.lazyPut<DetailsController>(() {
       return DetailsController(
           repository:
-          DetailsRepository(apiClient: DatabaseApi()));
+          DetailsRepository(databaseApi: DatabaseApi()));
     });
   }
 }

@@ -33,6 +33,7 @@ class SplashBinding implements Bindings {
             repository: HomeRepository(databaseApi: DatabaseApi(), apiClient: MyApiClient(httpClient: http.Client())))
     );
 
+
     // Get.lazyPut<HomeController>(() {
     //   return HomeController(
     //       repository:

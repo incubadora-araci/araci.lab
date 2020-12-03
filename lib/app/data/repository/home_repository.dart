@@ -6,10 +6,10 @@ import 'package:meta/meta.dart';
 
 class HomeRepository {
   final MyApiClient apiClient;
-  DatabaseApi database = DatabaseApi();
+  DatabaseApi databaseApi;
   List<Article> _articleList = [];
 
-  HomeRepository({@required this.apiClient}) : assert(apiClient != null);
+  HomeRepository({@required this.apiClient, @required this.databaseApi}) : assert(apiClient != null);
 
   updateVidsList(){
     return apiClient.updateVidsList();

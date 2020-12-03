@@ -1,5 +1,5 @@
 import 'package:araci/app/data/provider/databaseApi.dart';
-import 'package:araci/app/data/repository/home_repository.dart';
+import 'package:araci/app/data/repository/article_repository.dart';
 import 'package:get/get.dart';
 import 'package:araci/app/data/model/article_table.dart';
 import 'package:meta/meta.dart';
@@ -7,7 +7,7 @@ import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class HomeController extends GetxController {
 
-  final HomeRepository repository;
+  final ArticleRepository repository;
   HomeController({@required this.repository}) : assert(repository != null);
 
   List<String> vidsList = [];
@@ -30,19 +30,19 @@ class HomeController extends GetxController {
     vidsList = await repository.updateVidsList();
     update();
   }
-
-  Future getArticles(DatabaseApi _databaseApi) async {
-    articleList = await repository.getArticles(_databaseApi);
-    update();
-  }
-
-  Future getTitle() async {
-    title = await repository.getTitle();
-  }
-
-  Future getContent() async {
-    content = await repository.getContent();
-  }
+//
+//  Future getArticles(DatabaseApi _databaseApi) async {
+//    articleList = await repository.getArticles(_databaseApi);
+//    update();
+//  }
+//
+//  Future getTitle() async {
+//    title = await repository.getTitle();
+//  }
+//
+//  Future getContent() async {
+//    content = await repository.getContent();
+//  }
 
   Future addArticle(_databaseApi) async {
     Article newArticle = Article();
@@ -53,8 +53,8 @@ class HomeController extends GetxController {
         "\n - Tópico 1  "+
         "\n - Tópico 2  ";
 
-    await repository.addArticle(newArticle, _databaseApi);
-    print("Article added");
+//    await repository.addArticle(newArticle, _databaseApi);
+//    print("Article added");
   }
 
   initYoutubeController(){

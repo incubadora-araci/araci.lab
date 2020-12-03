@@ -1,6 +1,6 @@
 import 'package:araci/app/controller/home_controller.dart';
 import 'package:araci/app/data/provider/api.dart';
-import 'package:araci/app/data/repository/home_repository.dart';
+import 'package:araci/app/data/repository/article_repository.dart';
 import 'package:araci/app/ui/home/widgets/bottom_navigation_bar_widget.dart';
 import 'package:araci/app/ui/home/widgets/list_widget.dart';
 import 'package:flutter/material.dart';

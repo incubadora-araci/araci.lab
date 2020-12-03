@@ -6,6 +6,9 @@ class GlobalInformationRepository {
 
   GlobalInformationRepository({@required this.globalInformationApi}) : assert(globalInformationApi != null);
 
+  dynamic getLoginStatus(){
+    return globalInformationApi.getGlobalInformation("isLogged");
+  }
 
   //TODO: Implement get data
 }

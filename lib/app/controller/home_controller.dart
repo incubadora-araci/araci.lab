@@ -21,15 +21,15 @@ class HomeController extends GetxController {
 
   @override
   void onInit() async {
-    await updateVidsList();
+    // await updateVidsList();
     initYoutubeController();
     print("article: " + articleList[0].title);
   }
 
-  Future updateVidsList() async {
-    vidsList = await repository.updateVidsList();
-    update();
-  }
+  // Future updateVidsList() async {
+  //   vidsList = await repository.updateVidsList();
+  //   update();
+  // }
 //
 //  Future getArticles(DatabaseApi _databaseApi) async {
 //    articleList = await repository.getArticles(_databaseApi);

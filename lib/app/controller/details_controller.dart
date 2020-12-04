@@ -13,22 +13,24 @@ class DetailsController extends GetxController {
 
   @override
   void onInit() async {
-    initYoutubeController();
+    // initYoutubeController();
     super.onInit();
     // addArticle();
   }
 
-  initYoutubeController(){
-    ytController = YoutubePlayerController(
-      initialVideoId: YoutubePlayerController.convertUrlToId("https://www.youtube.com/watch?v=xqr9gV5E2Lg"),
-      params: YoutubePlayerParams(
-        autoPlay: true,
-        // color: 'black',
-        // playlist: ['nPt8bK2gbaU', 'gQDByCdjUXw'], // Defining custom playlist
-        // startAt: Duration(seconds: 30),
-        showControls: true,
-        showFullscreenButton: true,
-      ),
-    );
-  }
+  //TODO: Implement the getter for title, body and links
+
+  // initYoutubeController(){
+  //   ytController = YoutubePlayerController(
+  //     initialVideoId: YoutubePlayerController.convertUrlToId("https://www.youtube.com/watch?v=xqr9gV5E2Lg"),
+  //     params: YoutubePlayerParams(
+  //       autoPlay: true,
+  //       // color: 'black',
+  //       // playlist: ['nPt8bK2gbaU', 'gQDByCdjUXw'], // Defining custom playlist
+  //       // startAt: Duration(seconds: 30),
+  //       showControls: true,
+  //       showFullscreenButton: true,
+  //     ),
+  //   );
+  // }
 }

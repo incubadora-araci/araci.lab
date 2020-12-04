@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:araci/app/data/database/const.dart';
 import 'package:araci/app/data/model/model_table.dart';
 import 'package:sqflite/sqflite.dart';
@@ -7,10 +9,15 @@ import 'package:path/path.dart';
 class DatabaseApi {
   String path;
   static Database database;
+  List<Map<String ,dynamic>> articleMap;
 
   Future<DatabaseApi> init() async {
     var databasePath = await getDatabasesPath();
     this.path = join(databasePath, DATABASE_NAME);
+    articleMap = [{"id": 1,"title":"**Cosme Corrêa**","body":"**Cosme** Nasceu em Volta Redonda e Jogava ~~Atari~~.","videoURL":null, "imgPath":"assets/testImages/CosmeCoffee.png","imgURL":null, "externalURL":null},
+                  {"id": 2,"title":"**Volta Redonda**","body":"É uma linda cidade onde nasceu o ~~Cosme~~","videoURL":null, "imgPath":null,"imgURL":null,"externalURL":"https://pt.wikipedia.org/wiki/Volta_Redonda"},
+                  {"id": 3,"title":"**Atari**","body":"Foi um Video game muito popular em ~~Volta Redonda~~","videoURL":"https://www.youtube.com/watch?v=txuTq1AD1hU", "imgPath":null,"imgURL":null,"externalURL":null}
+    ];
     return open();
   }
 
@@ -30,6 +37,18 @@ class DatabaseApi {
         }
     );
     return this;
+  }
+
+  FutureOr<Map<String, dynamic>> findArticleById(int id){
+    //TODO: Check if forEach is the better option here
+    articleMap.forEach((map) {
+      if(map["id"] == id) return map;
+    });
+    return null;
+  }
+
+  FutureOr<List<Map<String, dynamic>>> getAllArticles(){
+    return articleMap;
   }
 
   Future<int> insert(Model model) async {

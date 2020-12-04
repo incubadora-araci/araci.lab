@@ -17,6 +17,7 @@ class DetailsPage extends StatelessWidget {
                   ytWidget(),
                   markdownTitleWidget("title"),
                   markdownBodyWidget("body")
+                  //TODO: Implement mini widgets for the related session
                 ],
               );
             }),

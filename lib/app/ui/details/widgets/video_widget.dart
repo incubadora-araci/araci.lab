@@ -1,3 +1,4 @@
+import 'package:araci/app/controller/details_controller.dart';
 import 'package:araci/app/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -6,9 +6,11 @@ import 'package:araci/app/data/provider/databaseApi.dart';
 import 'package:araci/app/data/provider/global_information.dart';
 import 'package:araci/app/data/repository/article_repository.dart';
 import 'package:araci/app/data/repository/globalInformation_repository.dart';
+import 'package:araci/app/ui/size_config.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+
 
 
 class SplashBinding implements Bindings {
@@ -18,6 +20,8 @@ class SplashBinding implements Bindings {
       SplashController(
           repository: GlobalInformationRepository(globalInformationApi: GlobalInformationApi()))
     );
+
+    Get.put<SizeConfig>(SizeConfig());
 
     Get.putAsync<GetStorage>(() async {
       await GetStorage.init();

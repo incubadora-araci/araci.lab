@@ -1,3 +1,4 @@
+import 'package:araci/app/data/provider/databaseApi.dart';
 import 'package:araci/app/data/repository/article_repository.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
@@ -19,6 +20,10 @@ class DetailsController extends GetxController {
   }
 
   //TODO: Implement the getter for title, body and links
+  Future<String> getStuff(int id, String field) {
+    return repository.findArticleById(id)[field];
+  }
+
 
   // initYoutubeController(){
   //   ytController = YoutubePlayerController(

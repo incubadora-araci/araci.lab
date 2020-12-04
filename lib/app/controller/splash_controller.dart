@@ -2,6 +2,7 @@ import 'package:araci/app/data/model/article_table.dart';
 import 'package:araci/app/data/provider/global_information.dart';
 import 'package:araci/app/data/repository/globalInformation_repository.dart';
 import 'package:araci/app/routes/app_pages.dart';
+import 'package:araci/app/ui/details/details_page.dart';
 import 'package:araci/app/ui/home/home_page.dart';
 import 'package:araci/app/ui/login/login_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,7 +21,7 @@ class SplashController extends GetxController {
   }
 
   Future<Widget>getLoginStatus() async {
-    return await repository.getLoginStatus() ? HomePage() : LoginPage();
+    return await repository.getLoginStatus() ? DetailsPage() : LoginPage();
   }
 
 

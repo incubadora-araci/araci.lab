@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
               buildList(context: context),
             ],
           ),
-          onRefresh: _.updateVidsList,
+          onRefresh: null,
         ),
       ),
 //      bottomNavigationBar: bottomNavigationBar([Icons.home, Icons.list, Icons.person],

@@ -17,12 +17,12 @@ class DetailsPage extends StatelessWidget {
               ///TODO: Implement the logic to get data from the maps
               return Column(
                 children: [
-                  imageCard("assets/testImages/CosmeCoffee.png"),
+                  imageCard(_.imgPath??""),
                   Expanded(
                     child: ListView(shrinkWrap: true,
                       children: [
-                        Container(height: 40, child: markdownTitleWidget("# Cosme Corrêa")),
-                        Container(height: 100, child: markdownBodyWidget("**Cosme** nasceu em ~~Volta Redonda~~ e jogava ~~Atari~~."))
+                        Container(height: 40, child: markdownTitleWidget(_.articleTitle??"")),
+                        Container(height: 100, child: markdownBodyWidget(_.articleBody??""))
                       ],
                     ),
                   )

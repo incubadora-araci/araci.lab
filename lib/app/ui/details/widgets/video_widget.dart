@@ -6,7 +6,7 @@ import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 Widget ytWidget(){
   return YoutubePlayerIFrame(
-      controller: Get.find<HomeController>().ytController,
+      controller: Get.find<DetailsController>().ytController,
       aspectRatio: 16 / 9,
     );
 }

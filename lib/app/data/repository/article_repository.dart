@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:araci/app/data/provider/databaseApi.dart';
 import 'package:meta/meta.dart';
 
@@ -6,11 +8,11 @@ class ArticleRepository {
 
   ArticleRepository({@required this.databaseApi}) : assert(databaseApi != null);
 
-  findArticleById(int id){
+  FutureOr<dynamic> findArticleById(int id){
     return databaseApi.findArticleById(id);
   }
 
-  getAllArticles(){
+  FutureOr<dynamic> getAllArticles(){
     return databaseApi.getAllArticles();
   }
   // Future<List<String>> updateVidsList() async {

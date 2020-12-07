@@ -14,9 +14,9 @@ class DatabaseApi {
   Future<DatabaseApi> init() async {
     var databasePath = await getDatabasesPath();
     this.path = join(databasePath, DATABASE_NAME);
-    articleMap = [{"id": 1,"title":"**Cosme Corrêa**","body":"**Cosme** Nasceu em Volta Redonda e Jogava ~~Atari~~.","videoURL":null, "imgPath":"assets/testImages/CosmeCoffee.png","imgURL":null, "externalURL":null},
-                  {"id": 2,"title":"**Volta Redonda**","body":"É uma linda cidade onde nasceu o ~~Cosme~~","videoURL":null, "imgPath":null,"imgURL":null,"externalURL":"https://pt.wikipedia.org/wiki/Volta_Redonda"},
-                  {"id": 3,"title":"**Atari**","body":"Foi um Video game muito popular em ~~Volta Redonda~~","videoURL":"https://www.youtube.com/watch?v=txuTq1AD1hU", "imgPath":null,"imgURL":null,"externalURL":null}
+    articleMap = [{"id": 1,"title":"**Cosme Corrêa**","body":"**Cosme** Nasceu em Volta Redonda e Jogava ~~Atari~~.","videoURL":null, "imgPath":"assets/testImages/CosmeCoffee.png","imgURL":null, "externalURL":null,"related":[2,3]},
+                  {"id": 2,"title":"**Volta Redonda**","body":"É uma linda cidade onde nasceu o ~~Cosme~~","videoURL":null, "imgPath":null,"imgURL":null,"externalURL":"https://pt.wikipedia.org/wiki/Volta_Redonda","related":[1]},
+                  {"id": 3,"title":"**Atari**","body":"Foi um Video game muito popular em ~~Volta Redonda~~","videoURL":"https://www.youtube.com/watch?v=txuTq1AD1hU", "imgPath":null,"imgURL":null,"externalURL":null,"related":[2]}
     ];
     return open();
   }

@@ -11,7 +11,7 @@ class AppBars {
             fit: BoxFit.contain,
             height: 32,
           ),
-          Text("  ARACI LABS", style: TextStyle(color: Colors.blueGrey[900], fontWeight: FontWeight.w300),)
+          Text("  ARACI.lab", style: TextStyle(color: Colors.blueGrey[900], fontWeight: FontWeight.w300),)
         ],
       ),
     );

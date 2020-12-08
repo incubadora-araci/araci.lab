@@ -1,27 +1,20 @@
+import 'package:araci/app/routes/app_pages.dart';
 import 'package:araci/app/ui/details/widgets/relatedcard_widget.dart';
-import 'package:araci/app/ui/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
 
 ///TODO widget
-Widget relatedArticles() {
-  return ListView(
-    children: [
-      ListTile(
-        leading: relatedCard("assets/testImages/VR.jpg"),
-        title: Text("Volta Redonda"),
-        trailing: Icon(Icons.arrow_forward_ios),
-        onTap: ()=> Get.snackbar("Peraí", "Função não implementada", snackPosition: SnackPosition.BOTTOM)
-      ),
-      Container(
-        height: 15
-      ),
-      ListTile(
-        leading: relatedCard("assets/images/regia_araci.png"),
-        title: Text("Atari"),
-        trailing: Icon(Icons.arrow_forward_ios),
-        onTap: ()=> Get.snackbar("Peraí", "Função não implementada", snackPosition: SnackPosition.BOTTOM)
-      )
-    ],
+Widget relatedArticles(List<Map<String, dynamic>> relatedList) {
+  return ListView.builder(
+    itemCount: relatedList.length,
+    itemBuilder: (BuildContext context, int index) {
+      return ListTile(
+          leading: relatedCard(relatedList[index]["imgPath"]),
+          title: Markdown(data: relatedList[index]["title"], shrinkWrap: true, physics: ScrollPhysics(),),
+          trailing: Icon(Icons.arrow_forward_ios),
+          onTap: ()=> Get.toNamed(Routes.DETAILS, arguments: relatedList[index]["id"])
+      );
+    }
   );
 }

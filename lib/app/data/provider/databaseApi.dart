@@ -40,10 +40,12 @@ class DatabaseApi {
   }
 
   FutureOr<Map<String, dynamic>> findArticleById(int id){
-    //TODO: Check if forEach is the better option here
-    articleMap.forEach((map) {
-      if(map["id"] == id) return map;
-    });
+    for (Map<String, dynamic> map in articleMap) {
+      if(map["id"] == id) {
+        print("Titulo dentro do databaseApi::::: ${map["title"]}");
+        return map;
+      }
+    }
     return null;
   }
 

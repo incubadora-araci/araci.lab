@@ -8,14 +8,15 @@ class DetailsController extends GetxController {
 
   final ArticleRepository repository;
   DetailsController({@required this.repository}) : assert(repository != null);
-  String articleTitle;
-  String articleBody;
-  String externalURL;
-  String imgPath;
-  String relatedImgPath;
-  String videoURL;
-  List<int> relatedIds;
-  List<Map<String,dynamic>> relatedArticlesInformation;
+  dynamic articleId;
+  dynamic articleTitle;
+  dynamic articleBody;
+  dynamic externalURL;
+  dynamic imgPath;
+  dynamic relatedImgPath;
+  dynamic videoURL;
+  List<int> relatedIds = [];
+  List<Map<String,dynamic>> relatedArticlesInformation = [];
   YoutubePlayerController ytController;
 
   // final _obj = ''.obs;
@@ -25,7 +26,8 @@ class DetailsController extends GetxController {
   @override
   void onInit() async {
     // initYoutubeController();
-    await getArticle(1);
+    await getArticle(Get.arguments??1);
+    print("Executando onInit details -----------------------");
     initYoutubeController();
     super.onInit();
     // addArticle();
@@ -34,12 +36,13 @@ class DetailsController extends GetxController {
   getRelatedArticles(List<int> ids) async {
     for (int id in ids){
       Map<String,dynamic> article = await repository.findArticleById(id);
-      relatedArticlesInformation.add({"title":article["title"],"imgPath":article["imgPath"]??""});
+      relatedArticlesInformation.add({"id": id,"title":article["title"],"imgPath":article["imgPath"]??"assets/images/regia_araci.png"});
     }
 
   }
   getArticle(int id) async {
     Map<String,dynamic> article = await repository.findArticleById(id);
+    articleId = article["id"]??"";
     articleTitle = article["title"]??"";
     articleBody = article["body"]??"";
     externalURL = article["externalURL"]; //TODO: probably a bug.

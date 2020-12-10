@@ -17,7 +17,7 @@ class DetailsController extends GetxController {
   dynamic videoURL;
   List<int> relatedIds = [];
   List<Map<String,dynamic>> relatedArticlesInformation = [];
-  YoutubePlayerController ytController;
+  var ytController;
 
   // final _obj = ''.obs;
   // set obj(value) => _obj.value = value;
@@ -25,8 +25,7 @@ class DetailsController extends GetxController {
 
   @override
   void onInit() async {
-    // initYoutubeController();
-    await getArticle(Get.arguments??1);
+    await getArticle(Get.arguments??3);
     print("Executando onInit details -----------------------");
     initYoutubeController();
     super.onInit();
@@ -42,6 +41,7 @@ class DetailsController extends GetxController {
   }
   getArticle(int id) async {
     Map<String,dynamic> article = await repository.findArticleById(id);
+    print("videoURL get article:::::::: ${article["videoURL"]}");
     articleId = article["id"]??"";
     articleTitle = article["title"]??"";
     articleBody = article["body"]??"";
@@ -55,7 +55,7 @@ class DetailsController extends GetxController {
 
   initYoutubeController(){
     ytController = YoutubePlayerController(
-      initialVideoId: YoutubePlayerController.convertUrlToId(videoURL??""), //TODO: If the video doesn't appear this is the problem
+      initialVideoId: YoutubePlayerController.convertUrlToId(videoURL??null), //TODO: If the video doesn't appear this is the problem
       params: YoutubePlayerParams(
         autoPlay: true,
         // color: 'black',

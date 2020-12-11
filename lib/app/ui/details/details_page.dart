@@ -14,6 +14,7 @@ class DetailsPage extends StatelessWidget {
       appBar: AppBars.mainAppBar(),
       body: Container(
         child: GetBuilder<DetailsController>(
+            initState: (_) => Get.find<DetailsController>().getArticle(Get.arguments??1),
 //            initState: Get.find<DetailsController>().getArticle(Get.arguments),
             builder: (_) {
               ///TODO: Implement the logic to get data from the maps
@@ -21,11 +22,11 @@ class DetailsPage extends StatelessWidget {
                 children: [
                   ConstrainedBox(
                     constraints:
-                    BoxConstraints(maxHeight: 450, minHeight: 56.0),
+                    BoxConstraints(maxHeight: Get.height*(2/4), minHeight: Get.height*(1/4)),
                     child: ListView(
                       children: [
                         imageCard(
-                            _.imgPath ?? "assets/testImages/CosmeCoffee.png"),
+                            _.imgPath ?? "assets/images/regia_araci.png"),
                         SizedBox(height: 40, child: markdownTitleWidget("# ${_
                             .articleTitle}" ?? "")),
                         SizedBox(child: markdownBodyWidget(_.articleBody ?? ""))

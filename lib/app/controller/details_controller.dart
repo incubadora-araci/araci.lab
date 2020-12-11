@@ -16,24 +16,25 @@ class DetailsController extends GetxController {
   dynamic relatedImgPath;
   dynamic videoURL;
   List<int> relatedIds = [];
-  List<Map<String,dynamic>> relatedArticlesInformation = [];
+  List<Map<String,dynamic>> relatedArticlesInformation;
   YoutubePlayerController ytController;
 
   // final _obj = ''.obs;
   // set obj(value) => _obj.value = value;
   // get obj => _obj.value;
 
-  @override
-  void onInit() async {
-    // initYoutubeController();
-    await getArticle(Get.arguments??1);
-    print("Executando onInit details -----------------------");
-    initYoutubeController();
-    super.onInit();
-    // addArticle();
-  }
+  // @override
+  // void onInit() async {
+  //   // initYoutubeController();
+  //   await getArticle(Get.arguments??1);
+  //   print("Executando onInit details -----------------------");
+  //   initYoutubeController();
+  //   super.onInit();
+  //   // addArticle();
+  // }
 
   getRelatedArticles(List<int> ids) async {
+    relatedArticlesInformation = [];
     for (int id in ids){
       Map<String,dynamic> article = await repository.findArticleById(id);
       relatedArticlesInformation.add({"id": id,"title":article["title"],"imgPath":article["imgPath"]??"assets/images/regia_araci.png"});

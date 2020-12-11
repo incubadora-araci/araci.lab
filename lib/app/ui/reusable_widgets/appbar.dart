@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppBars {
   static Widget mainAppBar() {
     return AppBar(
+
       title: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

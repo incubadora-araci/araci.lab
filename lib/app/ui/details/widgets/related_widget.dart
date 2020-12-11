@@ -7,13 +7,13 @@ import 'package:get/get.dart';
 ///TODO widget
 Widget relatedArticles(List<Map<String, dynamic>> relatedList) {
   return ListView.builder(
-    itemCount: relatedList.length,
+    itemCount: relatedList.length??0,
     itemBuilder: (BuildContext context, int index) {
       return ListTile(
           leading: relatedCard(relatedList[index]["imgPath"]),
           title: Markdown(data: relatedList[index]["title"], shrinkWrap: true, physics: ScrollPhysics(),),
           trailing: Icon(Icons.arrow_forward_ios),
-          onTap: ()=> Get.toNamed(Routes.DETAILS, arguments: relatedList[index]["id"])
+          onTap: () {print("ON TAP!!");Get.toNamed(Routes.DETAILS, arguments: relatedList[index]["id"], preventDuplicates: false);}
       );
     }
   );

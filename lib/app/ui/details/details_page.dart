@@ -14,23 +14,25 @@ class DetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBars.mainAppBar(),
-      body: Container(
-        child: GetBuilder<DetailsController>(
+      body: WillPopScope(
+        onWillPop: ()=>Get.find<DetailsController>().popRoute(),
+          child: GetBuilder<DetailsController>(
 //            initState: Get.find<DetailsController>().getArticle(Get.arguments),
-            builder: (_) {
-              return Column(
-                children: [
-                  article(_),
-                  Divider(),
-                  Container(child: Markdown(data: "# Relacionados",
-                    shrinkWrap: true,
-                    physics: ScrollPhysics(),), height: 70,),
-                  Expanded(
-                    child: relatedArticles(_.relatedArticlesInformation),
-                  )
-                ],
-              );
-            }),
+              builder: (_) {
+                return ListView(
+                  children: [
+                    article(_),
+                    Divider(),
+                    Container(child: Markdown(data: "# Relacionados",
+                      shrinkWrap: true,
+                      physics: ScrollPhysics(),), height: 70,),
+                    Container(
+                      child: relatedArticles(_.relatedArticlesInformation),
+                    )
+                  ],
+                );
+              }
+          ),
       ),
     );
   }

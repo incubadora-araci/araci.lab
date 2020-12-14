@@ -28,14 +28,15 @@ class DetailsController extends GetxController {
   @override
   void onInit() async {
     if (routingStack.isEmpty) routingStack.push(1);
-    await getArticle(Get.arguments??1);
+    await getArticle(routingStack.top());
     print("Executando onInit details -----------------------");
-    initYoutubeController();
+    // initYoutubeController();
     super.onInit();
     // addArticle();
   }
 
   getRelatedArticles(List<int> ids) async {
+    relatedArticlesInformation = [];
     for (int id in ids){
       Map<String,dynamic> article = await repository.findArticleById(id);
       relatedArticlesInformation.add({"id": id,"title":article["title"],"imgPath":article["imgPath"]??"assets/images/regia_araci.png"});
@@ -56,6 +57,19 @@ class DetailsController extends GetxController {
     update();
   }
 
+  pushRoute(int id) async{
+    print("TOP OF STACK BEFORE PUSH = ${routingStack.top()}");
+    routingStack.push(id);
+    print("TOP OF STACK AFTER PUSH = ${routingStack.top()}");
+    await getArticle(routingStack.top());
+  }
+  popRoute() async {
+    print("TOP OF STACK BEFORE POP = ${routingStack.top()}");
+    if (routingStack.length>1)routingStack.pop();
+    print("TOP OF STACK AFTER POP = ${routingStack.top()}");
+    await getArticle(routingStack.top());
+  }
+
   initYoutubeController(){
     ytController = YoutubePlayerController(
       initialVideoId: YoutubePlayerController.convertUrlToId(videoURL??null), //TODO: If the video doesn't appear this is the problem
@@ -68,6 +82,7 @@ class DetailsController extends GetxController {
         showFullscreenButton: true,
       ),
     );
+    update();
   }
 
 

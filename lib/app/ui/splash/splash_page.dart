@@ -20,18 +20,20 @@ import 'package:get/get.dart';
                    begin: Alignment.topRight,
                    end: Alignment.bottomLeft,
                    colors: [
-                     Color(0xFF76009A),
-                     Color(0xFFA501E1)
+                     Color(0xFFC335FF),
+                     Color(0xFF59FF4D)
                    ],
                  )
              ),
            ),
-           Container(
-             child: Image.asset(
-               "assets/images/regia_araci.png",
-               alignment: Alignment.center,
+           Center(
+             child: Container(
+               child: Image.asset(
+                 "assets/images/AraciLabLogo.png",
+                 alignment: Alignment.center,
+               ),
+               padding: EdgeInsets.all(80),
              ),
-             padding: EdgeInsets.all(120),
            ),
          ],
        ),

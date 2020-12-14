@@ -24,9 +24,11 @@ class SplashBinding implements Bindings {
     Get.put<SizeConfig>(SizeConfig());
 
     Get.putAsync<GetStorage>(() async {
+      print("inicializando get storage");
       await GetStorage.init();
       final storage = GetStorage();
       storage.write("isLogged", true);
+      print("Done initializing getstorage");
       return storage;
     },
       permanent: true
@@ -37,11 +39,11 @@ class SplashBinding implements Bindings {
     //         repository: ArticleRepository(databaseApi: DatabaseApi()))
     // );
 
-    Get.putAsync<DetailsController>(() async{
-      DatabaseApi databaseApi = DatabaseApi();
-      await databaseApi.init();
-      return DetailsController(repository: ArticleRepository( databaseApi: databaseApi));
-    });
+    // Get.putAsync<DetailsController>(() async{
+    //   DatabaseApi databaseApi = DatabaseApi();
+    //   await databaseApi.init();
+    //   return DetailsController(repository: ArticleRepository( databaseApi: databaseApi));
+    // });
 
     // Get.put<DetailsController>(
     //   DetailsController(repository: ArticleRepository( databaseApi: DatabaseApi())),

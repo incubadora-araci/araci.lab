@@ -3,6 +3,7 @@ import 'package:araci/app/data/repository/article_repository.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import 'package:stack/stack.dart';
 
 class DetailsController extends GetxController {
 
@@ -18,6 +19,7 @@ class DetailsController extends GetxController {
   List<int> relatedIds = [];
   List<Map<String,dynamic>> relatedArticlesInformation = [];
   var ytController;
+  Stack<int> routingStack = Stack();
 
   // final _obj = ''.obs;
   // set obj(value) => _obj.value = value;
@@ -25,7 +27,8 @@ class DetailsController extends GetxController {
 
   @override
   void onInit() async {
-    await getArticle(Get.arguments??3);
+    if (routingStack.isEmpty) routingStack.push(1);
+    await getArticle(Get.arguments??1);
     print("Executando onInit details -----------------------");
     initYoutubeController();
     super.onInit();

@@ -15,14 +15,25 @@ class SplashController extends GetxController {
   final GlobalInformationRepository repository;
   SplashController({@required this.repository}) : assert(repository != null);
 
+  bool isLogged;
+  // @override
+  // void onInit() async {
+  //   super.onInit();
+  // }
+
   @override
-  void onInit() async {
-
+  void onReady() async {
+    super.onReady();
+    print("INSIDE ON READY");
+    // await getLoginStatus();
+    Future.delayed(Duration(seconds: 3), () => Get.offNamed(Routes.DETAILS));
   }
 
-  Future<Widget>getLoginStatus() async {
-    return await repository.getLoginStatus() ? DetailsPage() : LoginPage();
-  }
+  //TODO: implement login verification
+  // getLoginStatus() async {
+  //   print("getting login info");
+  //   isLogged = await repository.getLoginStatus();
+  // }
 
 
 

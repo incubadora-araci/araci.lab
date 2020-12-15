@@ -1,35 +1,27 @@
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
-import 'const.dart';
+import 'dart:async';
+
+import 'package:araci/app/data/database/const.dart';
 import 'package:araci/app/data/model/model_table.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:sqflite/sqlite_api.dart';
+import 'package:path/path.dart';
 
-/// This class will handle all complications of manage database operations.
-/// Singleton Class
-/// Usage: Database db = new Database;
-///        db.init();
-///        db.method();
-///        db.close();
-///
-/// @author Lucas Lopes
-/// @since 23/11/2020
-/// @version 20201123
-///
-/// More info at: https://pub.dartlang.org/packages/sqflite
-
-
-class AppDatabase {
+class DatabaseApi {
   String path;
   static Database database;
+  List<Map<String ,dynamic>> articleMap = [{"id": 1,"title":"**Cosme Corrêa**","body":"**Cosme** Nasceu em Volta Redonda e Jogava ~~Atari~~. Este é um texto grande, Este é um texto grande, Este é um texto grande Este é um texto grande Este é um texto grande Este é um texto grande Este é um texto grande Este é um texto grande Este é um texto grande Este é um texto grande Este é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grande","videoURL":null, "imgPath":"assets/testImages/CosmeCoffee.png","imgURL":null, "externalURL":null,"related":[2,3]},
+    {"id": 2,"title":"**Volta Redonda**","body":"É uma linda cidade onde nasceu o ~~Cosme~~","videoURL":null, "imgPath":"assets/testImages/VR.jpg","imgURL":null,"externalURL":"https://pt.wikipedia.org/wiki/Volta_Redonda","related":[1]},
+    {"id": 3,"title":"**Atari**","body":"Foi um Video game muito popular em ~~Volta Redonda~~","videoURL":"https://www.youtube.com/watch?v=txuTq1AD1hU", "imgPath":null,"imgURL":null,"externalURL":null,"related":[2]}
+  ];
 
-  /// This method must be called before start using the database
-  Future<AppDatabase> init() async {
+  Future<DatabaseApi> init() async {
     var databasePath = await getDatabasesPath();
     this.path = join(databasePath, DATABASE_NAME);
     return open();
   }
 
   /// Opens the .db file and creates the tables, if needed.
-  Future<AppDatabase> open() async {
+  Future<DatabaseApi> open() async {
     database = await openDatabase(path, version: VERSION,
         onCreate: (Database db, int version) {
           TABLES_MODELS.forEach((query) async => await db.execute(query));
@@ -44,6 +36,20 @@ class AppDatabase {
         }
     );
     return this;
+  }
+
+  FutureOr<Map<String, dynamic>> findArticleById(int id){
+    for (Map<String, dynamic> map in articleMap) {
+      if(map["id"] == id) {
+        // print("Titulo dentro do databaseApi::::: ${map["title"]}");
+        return map;
+      }
+    }
+    return null;
+  }
+
+  FutureOr<List<Map<String, dynamic>>> getAllArticles(){
+    return articleMap;
   }
 
   Future<int> insert(Model model) async {
@@ -116,14 +122,14 @@ class AppDatabase {
     return await database.rawQuery("DELETE FROM $fromTable;");
   }
 
-  Future<List<List<Map<String,dynamic>>>> smartDump() async {
-    List<List<Map<String, dynamic>>> dbDump = List();
-    dbDump.add(await getAllMapFormat("doencas_cronicas_pacientes"));
-    dbDump.add(await getAllMapFormat("duvidas_epidemicas"));
-    dbDump.add(await getAllMapFormat("pesquisas"));
-    dbDump.add(await getAllMapFormat("pacientes_epidemias"));
-    return dbDump;
-  }
+  // Future<List<List<Map<String,dynamic>>>> smartDump() async {
+  //   List<List<Map<String, dynamic>>> dbDump = List();
+  //   dbDump.add(await getAllMapFormat("doencas_cronicas_pacientes"));
+  //   dbDump.add(await getAllMapFormat("duvidas_epidemicas"));
+  //   dbDump.add(await getAllMapFormat("pesquisas"));
+  //   dbDump.add(await getAllMapFormat("pacientes_epidemias"));
+  //   return dbDump;
+  // }
 
   String _assembleColumnString(List<String> columns){
     if(columns == null) return null;
@@ -139,6 +145,4 @@ class AppDatabase {
 //    Database db = await database;
 //    return await db.query(tableName);
 //  }
-
 }
-

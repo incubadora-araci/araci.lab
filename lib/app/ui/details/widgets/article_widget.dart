@@ -10,9 +10,11 @@ Widget article(DetailsController controller) {
       BoxConstraints(maxHeight: 350, minHeight: 26.0),
       child: ListView(
         children: [
-          controller.imgPath != null ? imageCard(
-              controller.imgPath) : Container(),
-          controller.videoURL != null ? ytWidget() : Container(),
+          if (controller.imgPath != null) imageCard(controller.imgPath),
+          if (controller.videoURL != null) ytWidget(),
+          // controller.imgPath != null ? imageCard(
+          //     controller.imgPath) : Container(),
+          // controller.videoURL != null ? ytWidget() : Container(),
           SizedBox(child: markdownTitleWidget("# ${controller
               .articleTitle}" ?? "")),
           SizedBox(child: markdownBodyWidget(controller.articleBody ?? ""))

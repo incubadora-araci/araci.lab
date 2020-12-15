@@ -32,7 +32,7 @@ import 'package:get/get.dart';
                  "assets/images/AraciLabLogo.png",
                  alignment: Alignment.center,
                ),
-               padding: EdgeInsets.all(80),
+               padding: EdgeInsets.all(100),
              ),
            ),
          ],

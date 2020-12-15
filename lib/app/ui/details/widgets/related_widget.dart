@@ -13,7 +13,7 @@ Widget relatedArticles(List<Map<String, dynamic>> relatedList) {
       itemCount: relatedList.length??0,
       itemBuilder: (BuildContext context, int index) {
         return ListTile(
-            leading: relatedCard(relatedList[index]["imgPath"]),
+            leading: relatedCard(relatedList[index]["imgPath"]??"assets/images/regia_araci.png"),
             title: Markdown(data: relatedList[index]["title"], shrinkWrap: true, physics: ScrollPhysics(),),
             trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {print("ON TAP!!");Get.find<DetailsController>().pushRoute(relatedList[index]["id"]);}

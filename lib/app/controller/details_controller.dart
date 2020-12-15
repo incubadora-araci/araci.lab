@@ -1,5 +1,6 @@
 import 'package:araci/app/data/provider/databaseApi.dart';
 import 'package:araci/app/data/repository/article_repository.dart';
+import 'package:flutter/material.dart' hide Stack;
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
@@ -13,7 +14,7 @@ class DetailsController extends GetxController {
   dynamic articleTitle;
   dynamic articleBody;
   dynamic externalURL;
-  dynamic imgPath;
+  dynamic _imgPath;
   dynamic relatedImgPath;
   dynamic videoURL;
   List<int> relatedIds = [];
@@ -24,6 +25,7 @@ class DetailsController extends GetxController {
   // final _obj = ''.obs;
   // set obj(value) => _obj.value = value;
   // get obj => _obj.value;
+  get imgPath => _imgPath??"assets/images/regia_araci.png";
 
   @override
   void onInit() async {
@@ -39,7 +41,7 @@ class DetailsController extends GetxController {
     relatedArticlesInformation = [];
     for (int id in ids){
       Map<String,dynamic> article = await repository.findArticleById(id);
-      relatedArticlesInformation.add({"id": id,"title":article["title"],"imgPath":article["imgPath"]??"assets/images/regia_araci.png"});
+      relatedArticlesInformation.add({"id": id,"title":article["title"],"imgPath":article["imgPath"]});
     }
 
   }
@@ -49,9 +51,9 @@ class DetailsController extends GetxController {
     articleId = article["id"]??"";
     articleTitle = article["title"]??"";
     articleBody = article["body"]??"";
-    externalURL = article["externalURL"]; //TODO: probably a bug.
-    imgPath = article["imgPath"];
-    videoURL = article["videoURL"]; //TODO: probably a bug.
+    externalURL = article["externalURL"];
+    _imgPath = article["imgPath"];
+    videoURL = article["videoURL"];
     relatedIds = article["related"];
     await getRelatedArticles(relatedIds);
     update();
@@ -85,18 +87,13 @@ class DetailsController extends GetxController {
     update();
   }
 
-
-  // initYoutubeController(){
-  //   ytController = YoutubePlayerController(
-  //     initialVideoId: YoutubePlayerController.convertUrlToId("https://www.youtube.com/watch?v=xqr9gV5E2Lg"),
-  //     params: YoutubePlayerParams(
-  //       autoPlay: true,
-  //       // color: 'black',
-  //       // playlist: ['nPt8bK2gbaU', 'gQDByCdjUXw'], // Defining custom playlist
-  //       // startAt: Duration(seconds: 30),
-  //       showControls: true,
-  //       showFullscreenButton: true,
-  //     ),
-  //   );
-  // }
+  handlePopMenuClick(String value){
+    Get.snackbar("Função em desenvolvimento","",backgroundColor: Colors.blueGrey[900]);
+    // switch (value) {
+    //   case 'Logout':
+    //     break;
+    //   case 'Settings':
+    //     break;
+    // }
+  }
 }

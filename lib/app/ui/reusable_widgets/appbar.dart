@@ -5,12 +5,26 @@ import 'package:get/get.dart';
 class AppBars {
   static Widget mainAppBar() {
     return AppBar(
-      centerTitle: true,
+      actions: [
+        PopupMenuButton<String>(
+          // color: Colors.blueGrey[900],
+          onSelected: Get.find<DetailsController>().handlePopMenuClick,
+          itemBuilder: (BuildContext context) {
+            return {'Sobre', 'Configurações', 'Deslogar'}.map((String choice) {
+              return PopupMenuItem<String>(
+                value: choice,
+                child: Text(choice),
+              );
+            }).toList();
+          },
+        ),
+      ],
       leading: IconButton(
-        icon: Icon(Icons.arrow_back_ios),
+        icon: Icon(Icons.arrow_back_ios, color: Colors.blueGrey[900],),
         onPressed: ()=> Get.find<DetailsController>().popRoute(),
       ),
       title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(

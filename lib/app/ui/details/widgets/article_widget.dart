@@ -13,7 +13,7 @@ Widget article(DetailsController controller) {
           controller.imgPath != null ? imageCard(
               controller.imgPath) : Container(),
           controller.videoURL != null ? ytWidget() : Container(),
-          SizedBox(height: 40, child: markdownTitleWidget("# ${controller
+          SizedBox(child: markdownTitleWidget("# ${controller
               .articleTitle}" ?? "")),
           SizedBox(child: markdownBodyWidget(controller.articleBody ?? ""))
         ],

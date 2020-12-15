@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 Widget article(DetailsController controller) {
     return ConstrainedBox(
       constraints:
-      BoxConstraints(maxHeight: 450, minHeight: 56.0),
+      BoxConstraints(maxHeight: 350, minHeight: 26.0),
       child: ListView(
         children: [
           controller.imgPath != null ? imageCard(

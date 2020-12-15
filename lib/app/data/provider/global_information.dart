@@ -10,11 +10,12 @@ class GlobalInformationApi {
       storage.write(key, value);
     }
     catch(e){
-
+      print("Error on setting global Information $e");
     }
   }
 
   dynamic getGlobalInformation(String key){
-    return storage.read(key);
+    print("information saved = ${storage.read(key)}");
+    return storage.read(key)??false;
   }
 }

@@ -9,15 +9,14 @@ import 'package:path/path.dart';
 class DatabaseApi {
   String path;
   static Database database;
-  List<Map<String ,dynamic>> articleMap;
+  List<Map<String ,dynamic>> articleMap = [{"id": 1,"title":"**Cosme Corrêa**","body":"**Cosme** Nasceu em Volta Redonda e Jogava ~~Atari~~. Este é um texto grande, Este é um texto grande, Este é um texto grande Este é um texto grande Este é um texto grande Este é um texto grande Este é um texto grande Este é um texto grande Este é um texto grande Este é um texto grande Este é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grandeEste é um texto grande Este é um texto grande Este é um texto grande","videoURL":null, "imgPath":"assets/testImages/CosmeCoffee.png","imgURL":null, "externalURL":null,"related":[2,3]},
+    {"id": 2,"title":"**Volta Redonda**","body":"É uma linda cidade onde nasceu o ~~Cosme~~","videoURL":null, "imgPath":"assets/testImages/VR.jpg","imgURL":null,"externalURL":"https://pt.wikipedia.org/wiki/Volta_Redonda","related":[1]},
+    {"id": 3,"title":"**Atari**","body":"Foi um Video game muito popular em ~~Volta Redonda~~","videoURL":"https://www.youtube.com/watch?v=txuTq1AD1hU", "imgPath":null,"imgURL":null,"externalURL":null,"related":[2]}
+  ];
 
   Future<DatabaseApi> init() async {
     var databasePath = await getDatabasesPath();
     this.path = join(databasePath, DATABASE_NAME);
-    articleMap = [{"id": 1,"title":"**Cosme Corrêa**","body":"**Cosme** Nasceu em Volta Redonda e Jogava ~~Atari~~.","videoURL":null, "imgPath":"assets/testImages/CosmeCoffee.png","imgURL":null, "externalURL":null,"related":[2,3]},
-                  {"id": 2,"title":"**Volta Redonda**","body":"É uma linda cidade onde nasceu o ~~Cosme~~","videoURL":null, "imgPath":null,"imgURL":null,"externalURL":"https://pt.wikipedia.org/wiki/Volta_Redonda","related":[1]},
-                  {"id": 3,"title":"**Atari**","body":"Foi um Video game muito popular em ~~Volta Redonda~~","videoURL":"https://www.youtube.com/watch?v=txuTq1AD1hU", "imgPath":null,"imgURL":null,"externalURL":null,"related":[2]}
-    ];
     return open();
   }
 
@@ -42,6 +41,7 @@ class DatabaseApi {
   FutureOr<Map<String, dynamic>> findArticleById(int id){
     for (Map<String, dynamic> map in articleMap) {
       if(map["id"] == id) {
+        // print("Titulo dentro do databaseApi::::: ${map["title"]}");
         return map;
       }
     }

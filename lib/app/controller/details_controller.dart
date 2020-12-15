@@ -14,7 +14,7 @@ class DetailsController extends GetxController {
   dynamic articleTitle;
   dynamic articleBody;
   dynamic externalURL;
-  dynamic _imgPath;
+  dynamic imgPath;
   dynamic relatedImgPath;
   dynamic videoURL;
   List<int> relatedIds = [];
@@ -25,7 +25,7 @@ class DetailsController extends GetxController {
   // final _obj = ''.obs;
   // set obj(value) => _obj.value = value;
   // get obj => _obj.value;
-  get imgPath => _imgPath??"assets/images/regia_araci.png";
+  // get imgPath => _imgPath??"assets/images/regia_araci.png";
 
   @override
   void onInit() async {
@@ -52,7 +52,7 @@ class DetailsController extends GetxController {
     articleTitle = article["title"]??"";
     articleBody = article["body"]??"";
     externalURL = article["externalURL"];
-    _imgPath = article["imgPath"];
+    imgPath = article["imgPath"];
     videoURL = article["videoURL"];
     relatedIds = article["related"];
     await getRelatedArticles(relatedIds);

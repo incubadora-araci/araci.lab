@@ -28,13 +28,13 @@ class DetailsPage extends StatelessWidget {
                     Container(child: Markdown(data: "# Relacionados",
                       shrinkWrap: true,
                       physics: ScrollPhysics(),), height: 70,),
-                    if (_.externalURL != null)
-                      ListTile(
-                        leading: relatedCard(_.imgPath??"assets/images/regia_araci.png"),
-                        title: Markdown(data: _.articleTitle, shrinkWrap: true, physics: ScrollPhysics(),),
-                        trailing: Icon(Icons.arrow_forward_ios),
-                        onTap: () {print("ON TAP!!");Get.toNamed(Routes.WEBVIEW, arguments: {"url":_.externalURL, "title":_.articleTitle});}
-                      ),
+                    // if (_.externalURL != null)
+                      // ListTile(
+                      //   leading: relatedCard(_.imgPath??"assets/images/regia_araci.png"),
+                      //   title: Markdown(data: _.articleTitle, shrinkWrap: true, physics: ScrollPhysics(),),
+                      //   trailing: Icon(Icons.arrow_forward_ios),
+                      //   onTap: () {print("ON TAP!!");Get.toNamed(Routes.WEBVIEW, arguments: {"url":_.externalURL, "title":_.articleTitle});}
+                      // ),
                     Container(
                       child: relatedArticles(_.relatedArticlesInformation),
                     )

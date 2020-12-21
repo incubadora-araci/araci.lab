@@ -12,7 +12,7 @@ import 'app/ui/theme/app_theme.dart';
 void main() {
   runApp(
       GetMaterialApp(
-        title: "Araci",
+        title: "ARACI.lab",
 //        debugShowCheckedModeBanner: false,
         initialRoute: Routes.SPLASH, //Rota inicial
         initialBinding: SplashBinding(), // dependencias iniciais

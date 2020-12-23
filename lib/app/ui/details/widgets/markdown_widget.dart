@@ -5,13 +5,12 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
 
 Widget markdownTitleWidget(String title) {
-  return MarkdownBody(data: title, shrinkWrap: true,);
+  return MarkdownBody(data: title);
 }
 
 Widget markdownBodyWidget(String body){
   return MarkdownBody(
     data: body,
-    shrinkWrap: true,
     onTapLink: (body,link,title) {
       Get.find<DetailsController>().launchUniversalLink(link);
       // Get.find<DetailsController>().navigateNamed(Routes.WEBVIEW, {"url":link, "title":body});

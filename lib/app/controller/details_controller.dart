@@ -27,6 +27,7 @@ class DetailsController extends GetxController {
   // get obj => _obj.value;
   // get imgPath => _imgPath??"assets/images/regia_araci.png";
 
+
   @override
   void onInit() async {
     if (routingStack.isEmpty) routingStack.push(1);
@@ -60,6 +61,7 @@ class DetailsController extends GetxController {
     update();
   }
 
+  //TODO: After popping or pushing a route restart the page position to top.
   pushRoute(int id) async{
     print("TOP OF STACK BEFORE PUSH = ${routingStack.top()}");
     routingStack.push(id);

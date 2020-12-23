@@ -11,7 +11,7 @@ Widget article(DetailsController controller) {
       child: ListView(
         children: [
           if (controller.imgPath != null) imageCard(controller.imgPath),
-          if (controller.videoURL != null) ytWidget(),
+          // if (controller.videoURL != null) ytWidget(),
           // controller.imgPath != null ? imageCard(
           //     controller.imgPath) : Container(),
           // controller.videoURL != null ? ytWidget() : Container(),

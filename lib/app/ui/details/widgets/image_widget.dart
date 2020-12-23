@@ -8,7 +8,7 @@ Widget imageCard(String fileName) {
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(fileName),
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.contain,
           alignment: Alignment.center,
         ),
       ),

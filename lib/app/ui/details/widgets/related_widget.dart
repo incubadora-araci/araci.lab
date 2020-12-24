@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
 
-///TODO widget
+///TODO Change from listview to SilverList
 Widget relatedArticles(List<Map<String, dynamic>> relatedList) {
   return Container(
     child: ListView.builder(
@@ -14,7 +14,7 @@ Widget relatedArticles(List<Map<String, dynamic>> relatedList) {
       itemBuilder: (BuildContext context, int index) {
         return ListTile(
             leading: relatedCard(relatedList[index]["imgPath"]??"assets/images/regia_araci.png"),
-            title: Markdown(data: relatedList[index]["title"], shrinkWrap: true, physics: ScrollPhysics(),),
+            title: Markdown(data: relatedList[index]["title"]??"", shrinkWrap: true, physics: ScrollPhysics(),),
             trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {print("ON TAP!!");Get.find<DetailsController>().pushRoute(relatedList[index]["id"]);}
         );

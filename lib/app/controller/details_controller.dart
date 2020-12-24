@@ -1,10 +1,10 @@
-import 'package:araci/app/data/provider/databaseApi.dart';
 import 'package:araci/app/data/repository/article_repository.dart';
 import 'package:flutter/material.dart' hide Stack;
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:stack/stack.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailsController extends GetxController {
 
@@ -27,6 +27,7 @@ class DetailsController extends GetxController {
   // get obj => _obj.value;
   // get imgPath => _imgPath??"assets/images/regia_araci.png";
 
+
   @override
   void onInit() async {
     if (routingStack.isEmpty) routingStack.push(1);
@@ -38,7 +39,7 @@ class DetailsController extends GetxController {
   }
 
   getRelatedArticles(List<int> ids) async {
-    relatedArticlesInformation = [];
+    // relatedArticlesInformation = [];
     for (int id in ids){
       Map<String,dynamic> article = await repository.findArticleById(id);
       relatedArticlesInformation.add({"id": id,"title":article["title"],"imgPath":article["imgPath"]});
@@ -46,8 +47,9 @@ class DetailsController extends GetxController {
 
   }
   getArticle(int id) async {
+    relatedArticlesInformation = [];
     Map<String,dynamic> article = await repository.findArticleById(id);
-    print("videoURL get article:::::::: ${article["videoURL"]}");
+    // print("videoURL get article:::::::: ${article["videoURL"]}");
     articleId = article["id"]??"";
     articleTitle = article["title"]??"";
     articleBody = article["body"]??"";
@@ -55,10 +57,11 @@ class DetailsController extends GetxController {
     imgPath = article["imgPath"];
     videoURL = article["videoURL"];
     relatedIds = article["related"];
-    await getRelatedArticles(relatedIds);
+    if (relatedIds!= null)await getRelatedArticles(relatedIds);
     update();
   }
 
+  //TODO: After popping or pushing a route restart the page position to top.
   pushRoute(int id) async{
     print("TOP OF STACK BEFORE PUSH = ${routingStack.top()}");
     routingStack.push(id);
@@ -70,6 +73,26 @@ class DetailsController extends GetxController {
     if (routingStack.length>1)routingStack.pop();
     print("TOP OF STACK AFTER POP = ${routingStack.top()}");
     await getArticle(routingStack.top());
+  }
+
+  Future<dynamic> navigateNamed(String route,dynamic arguments) async {
+    return await Get.toNamed(route,arguments: arguments);
+  }
+
+  Future<void> launchUniversalLink(String url) async {
+    if (await canLaunch(url)) {
+      final bool nativeAppLaunchSucceeded = await launch(
+        url,
+        forceSafariVC: false,
+        universalLinksOnly: true,
+      );
+      if (!nativeAppLaunchSucceeded) {
+        await launch(
+          url,
+          forceSafariVC: true,
+        );
+      }
+    }
   }
 
   initYoutubeController(){

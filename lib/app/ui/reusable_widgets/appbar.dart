@@ -2,6 +2,7 @@ import 'package:araci/app/controller/details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+//TODO: This appbar must be changed to Sliver or not used like a separed widget
 class AppBars {
   static Widget mainAppBar() {
     return AppBar(

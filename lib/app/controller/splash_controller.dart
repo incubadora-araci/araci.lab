@@ -26,7 +26,7 @@ class SplashController extends GetxController {
     super.onReady();
     print("INSIDE ON READY");
     // await getLoginStatus();
-    Future.delayed(Duration(seconds: 3), () => Get.offNamed(Routes.DETAILS));
+    Future.delayed(Duration(seconds: 3), () => Get.offNamed(Routes.LOGIN));
   }
 
   //TODO: implement login verification

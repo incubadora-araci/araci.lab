@@ -1,4 +1,5 @@
 import 'package:araci/app/bindings/details_bindings.dart';
+import 'package:araci/app/bindings/login_bindings.dart';
 import 'package:araci/app/ui/details/details_page.dart';
 import 'package:araci/app/ui/home/home_page.dart';
 import 'package:araci/app/ui/login/login_page.dart';
@@ -12,7 +13,7 @@ abstract class AppPages {
 
   static final pages = [
     GetPage(name: Routes.SPLASH, page: ()=> SplashPage()),
-    GetPage(name: Routes.LOGIN, page:()=> LoginPage()),
+    GetPage(name: Routes.LOGIN, page:()=> LoginPage(), binding: LoginBinding()),
     GetPage(name: Routes.HOME, page:()=> HomePage()),
     GetPage(name: Routes.DETAILS, page: ()=> DetailsPage(), binding: DetailsBinding()),
     GetPage(name: Routes.WEBVIEW, page:()=> WebviewPage()),

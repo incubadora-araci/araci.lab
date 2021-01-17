@@ -18,4 +18,17 @@ class GlobalInformationApi {
     print("information saved = ${storage.read(key)}");
     return storage.read(key)??false;
   }
+
+  getUrl(String name){
+    switch(name){
+      case "photo_url":{
+        return "https://sistemas.uff.br/static/identificacoes/oficial/";
+      }
+      break;
+      default: {
+        return "";
+      }
+    }
+
+  }
 }

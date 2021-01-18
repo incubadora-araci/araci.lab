@@ -27,6 +27,10 @@ class GlobalInformationRepository {
     return globalInformationApi.getUrl(name);
   }
 
+  eraseUserInformation() {
+    globalInformationApi.eraseUserInformation();
+  }
+
 }
 
 class APICredentials {
@@ -35,6 +39,7 @@ class APICredentials {
   String authUserInfo;
   String realmLink;
   String resource;
+  String secret;
 
   Future<void> loadApiCredentials(path) async {
     String jsonString = await rootBundle.loadString(path);
@@ -44,6 +49,7 @@ class APICredentials {
     this.authUserInfo = data["auth-server-user-info"];
     this.realmLink = data["realm-link"];
     this.resource = data["resource"];
+    this.secret = data["secret"];
 
   }
 }

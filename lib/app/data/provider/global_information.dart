@@ -31,4 +31,8 @@ class GlobalInformationApi {
     }
 
   }
+
+  eraseUserInformation() {
+    storage.erase();
+  }
 }

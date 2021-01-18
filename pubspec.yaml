@@ -65,6 +65,7 @@ flutter:
     - assets/testImages/CosmeCoffee.png
     - assets/testImages/VR.jpg
     - assets/images/
+    - assets/uffapi.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

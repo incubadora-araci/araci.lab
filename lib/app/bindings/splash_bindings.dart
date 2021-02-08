@@ -15,24 +15,33 @@ import 'package:http/http.dart' as http;
 
 class SplashBinding implements Bindings {
   @override
-  void dependencies() {
+  void dependencies() async {
     Get.put<SplashController>(
       SplashController(
           repository: GlobalInformationRepository(globalInformationApi: GlobalInformationApi()))
     );
 
     Get.put<SizeConfig>(SizeConfig());
+    await GetStorage.init();
+    GetStorage().write("isLogged", true);
 
-    Get.putAsync<GetStorage>(() async {
-      print("inicializando get storage");
-      await GetStorage.init();
-      final storage = GetStorage();
-      storage.write("isLogged", true);
-      print("Done initializing getstorage");
-      return storage;
-    },
-      permanent: true
-    );
+    Get.putAsync<APICredentials>(() async {
+      APICredentials apiCredentials = APICredentials();
+      await apiCredentials.loadApiCredentials("assets/uffapi.json");
+      return apiCredentials;
+    });
+
+    // Get.putAsync<GetStorage>(() async {
+    //   print("inicializando get storage");
+    //
+    //   final storage = GetStorage();
+    //   storage.write("isLogged", false);
+    //   print("Done initializing getstorage");
+    //   return storage;
+    // },
+    //   permanent: true
+    // );
+
 
     // Get.put<HomeController>(
     //     HomeController(

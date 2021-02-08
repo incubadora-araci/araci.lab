@@ -1,7 +1,6 @@
 import 'package:araci/app/controller/details_controller.dart';
 import 'package:araci/app/ui/details/widgets/image_widget.dart';
 import 'package:araci/app/ui/details/widgets/markdown_widget.dart';
-import 'package:araci/app/ui/details/widgets/video_widget.dart';
 import 'package:flutter/material.dart';
 
 Widget article(DetailsController controller) {

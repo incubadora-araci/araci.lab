@@ -28,11 +28,11 @@ class SplashController extends GetxController {
     // await getLoginStatus();
     Future.delayed(Duration(seconds: 2), () => Get.offNamed(repository.isLogged() ? Routes.DETAILS : Routes.LOGIN));
   }
-  ///Called right after bindings are done (but I don't know how to use it XD)
-  GetPageBuilder onPageBuildStart(GetPageBuilder page) {
-    print('bindings are ready');
-    return page;
-  }
+  ///Called right after bindings are done TODO:(Implement Get Middleware)
+  // GetPageBuilder onPageBuildStart(GetPageBuilder page) {
+  //   print('bindings are ready');
+  //   return page;
+  // }
 
   //TODO: implement login verification
   // getLoginStatus() async {

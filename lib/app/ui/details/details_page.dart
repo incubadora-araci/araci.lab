@@ -4,7 +4,6 @@ import 'package:araci/app/ui/details/widgets/article_widget.dart';
 import 'package:araci/app/ui/details/widgets/image_widget.dart';
 import 'package:araci/app/ui/details/widgets/markdown_widget.dart';
 import 'package:araci/app/ui/details/widgets/related_widget.dart';
-import 'package:araci/app/ui/details/widgets/video_widget.dart';
 import 'package:araci/app/ui/reusable_widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';

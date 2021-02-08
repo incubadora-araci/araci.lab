@@ -3,7 +3,6 @@ import 'package:araci/app/data/repository/article_repository.dart';
 import 'package:get/get.dart';
 import 'package:araci/app/data/model/article_table.dart';
 import 'package:meta/meta.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class HomeController extends GetxController {
 
@@ -12,7 +11,6 @@ class HomeController extends GetxController {
 
   List<String> vidsList = [];
   List<Article> articleList = [];
-  YoutubePlayerController ytController;
   String title;
   String content;
   // final _obj = ''.obs;
@@ -22,7 +20,6 @@ class HomeController extends GetxController {
   @override
   void onInit() async {
     // await updateVidsList();
-    initYoutubeController();
     print("article: " + articleList[0].title);
   }
 
@@ -56,21 +53,5 @@ class HomeController extends GetxController {
 //    await repository.addArticle(newArticle, _databaseApi);
 //    print("Article added");
   }
-
-  initYoutubeController(){
-    ytController = YoutubePlayerController(
-      initialVideoId: YoutubePlayerController.convertUrlToId(vidsList[0]),
-      params: YoutubePlayerParams(
-        autoPlay: true,
-        // color: 'black',
-        // playlist: ['nPt8bK2gbaU', 'gQDByCdjUXw'], // Defining custom playlist
-        // startAt: Duration(seconds: 30),
-        showControls: true,
-        showFullscreenButton: true,
-      ),
-    );
-  }
-
-
 
 }

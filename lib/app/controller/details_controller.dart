@@ -1,15 +1,17 @@
 import 'package:araci/app/data/repository/article_repository.dart';
+import 'package:araci/app/data/repository/globalInformation_repository.dart';
+import 'package:araci/app/routes/app_pages.dart';
 import 'package:flutter/material.dart' hide Stack;
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:stack/stack.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailsController extends GetxController {
 
-  final ArticleRepository repository;
-  DetailsController({@required this.repository}) : assert(repository != null);
+  final ArticleRepository articleRepository;
+  final GlobalInformationRepository globalInformationRepository;
+  DetailsController({@required this.articleRepository, this.globalInformationRepository}) : assert(articleRepository != null);
   dynamic articleId;
   dynamic articleTitle;
   dynamic articleBody;
@@ -41,14 +43,14 @@ class DetailsController extends GetxController {
   getRelatedArticles(List<int> ids) async {
     // relatedArticlesInformation = [];
     for (int id in ids){
-      Map<String,dynamic> article = await repository.findArticleById(id);
+      Map<String,dynamic> article = await articleRepository.findArticleById(id);
       relatedArticlesInformation.add({"id": id,"title":article["title"],"imgPath":article["imgPath"]});
     }
 
   }
   getArticle(int id) async {
     relatedArticlesInformation = [];
-    Map<String,dynamic> article = await repository.findArticleById(id);
+    Map<String,dynamic> article = await articleRepository.findArticleById(id);
     // print("videoURL get article:::::::: ${article["videoURL"]}");
     articleId = article["id"]??"";
     articleTitle = article["title"]??"";
@@ -95,28 +97,20 @@ class DetailsController extends GetxController {
     }
   }
 
-  initYoutubeController(){
-    ytController = YoutubePlayerController(
-      initialVideoId: YoutubePlayerController.convertUrlToId(videoURL??null), //TODO: If the video doesn't appear this is the problem
-      params: YoutubePlayerParams(
-        autoPlay: true,
-        // color: 'black',
-        // playlist: ['nPt8bK2gbaU', 'gQDByCdjUXw'], // Defining custom playlist
-        // startAt: Duration(seconds: 30),
-        showControls: true,
-        showFullscreenButton: true,
-      ),
-    );
-    update();
-  }
-
   handlePopMenuClick(String value){
-    Get.snackbar("Função em desenvolvimento","",backgroundColor: Colors.blueGrey[900]);
-    // switch (value) {
-    //   case 'Logout':
-    //     break;
-    //   case 'Settings':
-    //     break;
-    // }
+    // Get.snackbar("Função em desenvolvimento","",backgroundColor: Colors.blueGrey[900]);
+    switch (value) {
+      case 'Sair':
+        globalInformationRepository.eraseUserInformation();
+        //TODO: Delete database.
+        Get.offAllNamed(Routes.SPLASH);
+        break;
+      case 'Configurações':
+        Get.snackbar("Função em desenvolvimento","",backgroundColor: Colors.blueGrey[900]);
+        break;
+      case 'Sobre':
+        Get.snackbar("Função em desenvolvimento","",backgroundColor: Colors.blueGrey[900]);
+        break;
+    }
   }
 }

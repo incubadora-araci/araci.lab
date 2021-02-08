@@ -44,10 +44,13 @@ android {
 
     defaultConfig {
         applicationId "br.uff.araci"
-        minSdkVersion 20
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        manifestPlaceholders = [
+                'appAuthRedirectScheme': 'br.uff.araci'
+        ]
     }
 
     signingConfigs {

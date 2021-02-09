@@ -32,6 +32,7 @@ class DetailsController extends GetxController {
 
   @override
   void onInit() async {
+    articleRepository.getAll();
     if (routingStack.isEmpty) routingStack.push(1);
     await getArticle(routingStack.top());
     print("Executando onInit details -----------------------");

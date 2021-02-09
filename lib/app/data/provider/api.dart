@@ -1,10 +1,11 @@
 import 'dart:convert';
+import 'package:araci/app/data/model/article_table.dart';
 import 'package:araci/app/data/model/model.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 import 'package:get_storage/get_storage.dart';
 
-const baseUrl = 'http://gerador-nomes.herokuapp.com/nomes/10';
+const baseUrl = 'https://script.google.com/macros/s/AKfycbxNHIMDuJHlfGTvWK_gsnjRX_eng917MJNbZ6W0D8DbxT0AsAWJX1Xk3A/exec';
 
 class MyApiClient {
   final http.Client httpClient;
@@ -18,20 +19,35 @@ class MyApiClient {
     'Content-Type': 'application/json'
   };
 
-  Future<List<String>> updateVidsList() async {
-    return ["https://www.youtube.com/watch?v=xqr9gV5E2Lg","https://www.youtube.com/watch?v=KxVb9Lcvry4","https://www.youtube.com/watch?v=EMru3oqZ66U","https://www.youtube.com/watch?v=eh2GCow3NY8","https://www.youtube.com/watch?v=iLprfJV41W4"];
-  }
-
-  Future<List<ApiModel>> getAll() async {
+  getAll() async {
     try {
+      print("INSIDE TRY GET ALL");
       final response = await httpClient.get(baseUrl);
+      List<ArticleModel> articleList = List<ArticleModel>();
       if (response.statusCode == 200) {
-        Map<String, dynamic> jsonResponse = jsonDecode(response.body);
-        return jsonResponse['data']
-            .map((json) => ApiModel.fromJson(json))
-            .toList();
+        var jsonResponse = jsonDecode(response.body);
+        for (var jresp in jsonResponse){
+          print("ELEMENT $jresp");
+        }
+        // jsonResponse.forEach((element) {
+        //   print('$element THIS IS NEXT>>>>>>>');
+        //   ArticleModel articleModel = ArticleModel();
+        //   articleModel.id = element['id'];
+        //   articleModel.title = element['title'];
+        //   articleModel.body = element['body'];
+        //   articleModel.img = element['img'];
+        //   articleModel.imgPath = element["imgPath"];
+        //   articleModel.externalUrl = element["externalUrl"];
+        //   articleModel.relatedIds = element["relatedIds"];
+        //
+        //   articleList.add(articleModel);
+        // });
+        print("ALL LIST ==>> $articleList");
+        // return jsonResponse['data']
+        //     .map((json) => ArticleModel.fromJson(json))
+        //     .toList();
       } else {
-        print('Error -getAll');
+        print('Error in getAll CODE => ${response.statusCode}');
       }
     } catch (_) {}
     return null;

@@ -32,6 +32,7 @@ class DetailsController extends GetxController {
 
   @override
   void onInit() async {
+    await articleRepository.fetchData();
     if (routingStack.isEmpty) routingStack.push(1);
     await getArticle(routingStack.top());
     print("Executando onInit details -----------------------");
@@ -97,11 +98,11 @@ class DetailsController extends GetxController {
     }
   }
 
-  handlePopMenuClick(String value){
+  handlePopMenuClick(String value) async {
     // Get.snackbar("Função em desenvolvimento","",backgroundColor: Colors.blueGrey[900]);
     switch (value) {
       case 'Sair':
-        globalInformationRepository.eraseUserInformation();
+        await globalInformationRepository.eraseUserInformation();
         //TODO: Delete database.
         Get.offAllNamed(Routes.SPLASH);
         break;

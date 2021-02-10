@@ -27,8 +27,8 @@ class GlobalInformationRepository {
     return globalInformationApi.getUrl(name);
   }
 
-  eraseUserInformation() {
-    globalInformationApi.eraseUserInformation();
+  eraseUserInformation() async {
+    await globalInformationApi.eraseUserInformation();
   }
 
 }
@@ -38,7 +38,7 @@ class APICredentials {
   String authToken;
   String authUserInfo;
   String realmLink;
-  String resource;
+  String client;
   String secret;
 
   Future<void> loadApiCredentials(path) async {
@@ -48,7 +48,7 @@ class APICredentials {
     this.authToken = data["auth-server-token"];
     this.authUserInfo = data["auth-server-user-info"];
     this.realmLink = data["realm-link"];
-    this.resource = data["resource"];
+    this.client = data["client"];
     this.secret = data["secret"];
 
   }

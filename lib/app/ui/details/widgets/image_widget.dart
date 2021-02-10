@@ -1,9 +1,10 @@
 import 'package:araci/app/ui/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Widget imageCard(String fileName) {
   return Container(
-      width: SizeConfig.screenWidth,
+      width: Get.width,
       height: 200,
       decoration: BoxDecoration(
         image: DecorationImage(

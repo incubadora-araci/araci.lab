@@ -1,14 +1,33 @@
-class ApiModel {
+class ArticleModel {
 
   int id;
-  String name;
+  String title;
+  String body;
+  String externalUrl;
+  String img;
+  String imgPath;
+  String relatedIds;
 
-  ApiModel({ this.id, this.name });
+  ArticleModel({ this.id, this.title, this.body, this.externalUrl, this.img, this.imgPath, this.relatedIds });
 
-  ApiModel.fromJson(Map<String, dynamic> json){
+  ArticleModel.fromJson(Map<String, dynamic> json){
       this.id = json['id'];
-      this.name = json['name'];
+      this.title = json['name'];
+      this.body = json['body'];
+      this.externalUrl = json['externalUrl'];
+      this.img = json['img'];
+      this.imgPath = json['imgPath'];
+      this.relatedIds = json['relatedIds'];
   }
 
-  Map<String, dynamic> toJson() => {'id':id, 'name':name };
+  Map<String, dynamic> toJson() => {
+    'id':id,
+    'title':title,
+    'body':body,
+    'externalUrl':externalUrl,
+    'img': img,
+    'imgPath': imgPath,
+    'relatedIds':relatedIds
+
+  };
 }

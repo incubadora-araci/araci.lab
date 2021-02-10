@@ -18,9 +18,9 @@ class ArticleRepository {
     return databaseApi.getAllArticles();
   }
 
-  getAll(){
+  fetchData() async {
     print("INSIDE GET ALL ARTICLE REPO");
-    articleWebApi.getAll();
+    await articleWebApi.fetchData();
   }
 
 

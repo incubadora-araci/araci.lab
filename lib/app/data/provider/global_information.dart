@@ -32,7 +32,7 @@ class GlobalInformationApi {
 
   }
 
-  eraseUserInformation() {
-    storage.erase();
+  eraseUserInformation() async {
+    await storage.erase();
   }
 }

@@ -19,7 +19,7 @@ class MyApiClient {
     'Content-Type': 'application/json'
   };
 
-  getAll() async {
+  fetchData() async {
     try {
       print("INSIDE TRY GET ALL");
       final response = await httpClient.get(baseUrl);
@@ -28,6 +28,8 @@ class MyApiClient {
         var jsonResponse = jsonDecode(response.body);
         for (var jresp in jsonResponse){
           print("ELEMENT $jresp");
+          ArticleModel articleModel = ArticleModel();
+          articleModel.id = jresp["id"];
         }
         // jsonResponse.forEach((element) {
         //   print('$element THIS IS NEXT>>>>>>>');

@@ -12,6 +12,7 @@ import 'app/ui/theme/app_theme.dart';
 void main() {
   runApp(
       GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         title: "Araci",
         initialRoute: Routes.SPLASH, //Rota inicial
         theme: appThemeDataDark, //Tema personalizado app

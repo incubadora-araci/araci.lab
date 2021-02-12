@@ -7,7 +7,6 @@ import 'package:flutter_appauth/flutter_appauth.dart';
 class LoginBinding extends Bindings{
   @override
   void dependencies() {
-
     Get.put<FlutterAppAuth>(
       FlutterAppAuth()
     );
@@ -15,11 +14,6 @@ class LoginBinding extends Bindings{
         LoginController(
             repository: GlobalInformationRepository(globalInformationApi: GlobalInformationApi()))
     );
-    // Get.putAsync<APICredentials>(() async {
-    //   APICredentials apiCredentials = APICredentials();
-    //   await apiCredentials.loadApiCredentials("assets/uffapi.json");
-    //   return apiCredentials;
-    // });
 
   }
 }

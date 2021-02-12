@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
- class SplashPage extends GetView<SplashController> {
+ class SplashPage extends StatelessWidget {
    /// if you need you can pass the tag for
    /// Get.find<AwesomeController>(tag:"myTag");
    SplashPage({Key key}):super(key:key);
 
    @override
   Widget build(BuildContext context) {
-    // TODO: implement build
      return Scaffold(
        body: Stack(
          children: <Widget>[

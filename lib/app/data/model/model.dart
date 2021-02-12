@@ -4,19 +4,17 @@ class ArticleModel {
   String title;
   String body;
   String externalUrl;
-  String img;
-  String imgPath;
+  String imgUrl;
   String relatedIds;
 
-  ArticleModel({ this.id, this.title, this.body, this.externalUrl, this.img, this.imgPath, this.relatedIds });
+  ArticleModel({ this.id, this.title, this.body, this.externalUrl, this.imgUrl, this.relatedIds });
 
   ArticleModel.fromJson(Map<String, dynamic> json){
       this.id = json['id'];
       this.title = json['name'];
       this.body = json['body'];
       this.externalUrl = json['externalUrl'];
-      this.img = json['img'];
-      this.imgPath = json['imgPath'];
+      this.imgUrl = json['imgUrl'];
       this.relatedIds = json['relatedIds'];
   }
 
@@ -25,8 +23,7 @@ class ArticleModel {
     'title':title,
     'body':body,
     'externalUrl':externalUrl,
-    'img': img,
-    'imgPath': imgPath,
+    'imgUrl': imgUrl,
     'relatedIds':relatedIds
 
   };

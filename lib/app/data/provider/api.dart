@@ -27,23 +27,19 @@ class MyApiClient {
       if (response.statusCode == 200) {
         var jsonResponse = jsonDecode(response.body);
         for (var jresp in jsonResponse){
-          print("ELEMENT $jresp");
+          print("ELEMENT => $jresp");
           ArticleModel articleModel = ArticleModel();
           articleModel.id = jresp["id"];
+          articleModel.title = jresp["title"];
+          articleModel.body = jresp["body"];
+          articleModel.externalUrl = jresp["externalUrl"];
+          articleModel.imgUrl = jresp["imgUrl"];
+          articleModel.relatedIds = jresp["relatedIds"];
+
+          //Instead of adding to this list, add directly to DB
+          articleList.add(articleModel);
         }
-        // jsonResponse.forEach((element) {
-        //   print('$element THIS IS NEXT>>>>>>>');
-        //   ArticleModel articleModel = ArticleModel();
-        //   articleModel.id = element['id'];
-        //   articleModel.title = element['title'];
-        //   articleModel.body = element['body'];
-        //   articleModel.img = element['img'];
-        //   articleModel.imgPath = element["imgPath"];
-        //   articleModel.externalUrl = element["externalUrl"];
-        //   articleModel.relatedIds = element["relatedIds"];
-        //
-        //   articleList.add(articleModel);
-        // });
+        //add the articleList to DB
         print("ALL LIST ==>> $articleList");
         // return jsonResponse['data']
         //     .map((json) => ArticleModel.fromJson(json))

@@ -7,4 +7,5 @@ abstract class Routes{
   static const HOME = '/home';
   static const DETAILS = '/details';
   static const WEBVIEW = '/webview';
+  static const ABOUT = '/about';
 }

@@ -101,7 +101,7 @@ class DetailsController extends GetxController {
         Get.snackbar("Função em desenvolvimento","",backgroundColor: Colors.blueGrey[900]);
         break;
       case 'Sobre':
-        Get.snackbar("Função em desenvolvimento","",backgroundColor: Colors.blueGrey[900]);
+        Get.toNamed(Routes.ABOUT);
         break;
     }
   }

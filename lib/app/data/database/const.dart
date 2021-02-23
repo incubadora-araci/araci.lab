@@ -5,12 +5,12 @@ const List<String> TABLES_MODELS = [
 
   """
   CREATE TABLE Article (
-    id integer NOT NULL CONSTRAINT Node_pk PRIMARY KEY,
+    id integer NOT NULL,
     title text DEFAULT NULL,
     body text DEFAULT NULL,
     externalUrl text DEFAULT NULL,
     imgUrl text DEFAULT NULL,
-    related text DEFAULT NULL
+    relatedIds text DEFAULT NULL
   );
   """
   // """

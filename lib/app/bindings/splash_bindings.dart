@@ -1,15 +1,8 @@
-import 'package:araci/app/controller/details_controller.dart';
-import 'package:araci/app/controller/home_controller.dart';
 import 'package:araci/app/controller/splash_controller.dart';
-import 'package:araci/app/data/provider/api.dart';
 import 'package:araci/app/data/provider/databaseApi.dart';
 import 'package:araci/app/data/provider/global_information.dart';
-import 'package:araci/app/data/repository/article_repository.dart';
 import 'package:araci/app/data/repository/globalInformation_repository.dart';
-import 'package:araci/app/ui/size_config.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http;
 
 
 
@@ -17,9 +10,11 @@ class SplashBinding implements Bindings {
   @override
   void dependencies() async {
 
-    await Get.putAsync<DatabaseApi>(() async {
-      return await DatabaseApi().init();
-    });
+    // await Get.putAsync<DatabaseApi>(() async {
+    //   return await DatabaseApi().init();
+    // });
+
+    Get.put( await DatabaseApi().init(), permanent: true);
 
     Get.putAsync<APICredentials>(() async {
       APICredentials apiCredentials = APICredentials();
@@ -29,8 +24,7 @@ class SplashBinding implements Bindings {
 
     Get.put<SplashController>(
         SplashController(
-            repository: GlobalInformationRepository(globalInformationApi: GlobalInformationApi()),
-            // storage: GetStorage()
+            repository: GlobalInformationRepository(globalInformationApi: GlobalInformationApi())
         )
     );
     // Get.put<SizeConfig>(SizeConfig());

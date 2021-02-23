@@ -13,25 +13,16 @@ class SplashController extends GetxController {
 
   @override
   void onInit() async {
-    // print("BEFORE GET INIT");
     await GetStorage.init();
-    // print("AFTER GET INIT");
     Future.delayed(Duration(seconds: 2), chooseNextPage);
     super.onInit();
   }
 
   void chooseNextPage() {
-    print("IS LOGGED STATUS => ${repository.isLogged().toString()}");
+    // print("IS LOGGED STATUS => ${repository.isLogged().toString()}");
     // isLogged = storage.read("isLogged")??false;
     Get.offNamed(repository.isLogged() ? Routes.DETAILS : Routes.LOGIN);
     // Get.offNamed(Routes.DETAILS);
   }
-
-
-  ///Called right after bindings are done TODO:(Implement Get Middleware)
-  // GetPageBuilder onPageBuildStart(GetPageBuilder page) {
-  //   print('bindings are ready');
-  //   return page;
-  // }
 
 }

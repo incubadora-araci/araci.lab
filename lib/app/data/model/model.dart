@@ -1,4 +1,6 @@
-class ArticleModel {
+import 'model_table.dart';
+
+class ArticleModel extends Model {
 
   int id;
   String title;
@@ -9,6 +11,10 @@ class ArticleModel {
 
   ArticleModel({ this.id, this.title, this.body, this.externalUrl, this.imgUrl, this.relatedIds });
 
+  @override
+  String TABLE_NAME = "Article";
+
+  @override
   ArticleModel.fromJson(Map<String, dynamic> json){
       this.id = json['id'];
       this.title = json['name'];
@@ -18,7 +24,8 @@ class ArticleModel {
       this.relatedIds = json['relatedIds'];
   }
 
-  Map<String, dynamic> toJson() => {
+  @override
+  Map<String, dynamic> toMap() => {
     'id':id,
     'title':title,
     'body':body,
@@ -27,4 +34,13 @@ class ArticleModel {
     'relatedIds':relatedIds
 
   };
+
+  @override
+  List<Model> makeModels(List<Map> maps) {
+    List<ArticleModel> aData = [];
+    maps.forEach((element) {
+      aData.add(ArticleModel().fromMap(element));
+    });
+    return aData;
+  }
 }

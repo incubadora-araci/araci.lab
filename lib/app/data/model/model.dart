@@ -1,14 +1,46 @@
-class ApiModel {
+import 'model_table.dart';
+
+class ArticleModel extends Model {
 
   int id;
-  String name;
+  String title;
+  String body;
+  String externalUrl;
+  String imgUrl;
+  String relatedIds;
 
-  ApiModel({ this.id, this.name });
+  ArticleModel({ this.id, this.title, this.body, this.externalUrl, this.imgUrl, this.relatedIds });
 
-  ApiModel.fromJson(Map<String, dynamic> json){
+  @override
+  String TABLE_NAME = "Article";
+
+  @override
+  ArticleModel.fromJson(Map<String, dynamic> json){
       this.id = json['id'];
-      this.name = json['name'];
+      this.title = json['name'];
+      this.body = json['body'];
+      this.externalUrl = json['externalUrl'];
+      this.imgUrl = json['imgUrl'];
+      this.relatedIds = json['relatedIds'];
   }
 
-  Map<String, dynamic> toJson() => {'id':id, 'name':name };
+  @override
+  Map<String, dynamic> toMap() => {
+    'id':id,
+    'title':title,
+    'body':body,
+    'externalUrl':externalUrl,
+    'imgUrl': imgUrl,
+    'relatedIds':relatedIds
+
+  };
+
+  @override
+  List<Model> makeModels(List<Map> maps) {
+    List<ArticleModel> aData = [];
+    maps.forEach((element) {
+      aData.add(ArticleModel().fromMap(element));
+    });
+    return aData;
+  }
 }

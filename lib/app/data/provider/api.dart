@@ -1,90 +1,68 @@
 import 'dart:convert';
 import 'package:araci/app/data/model/model.dart';
+import 'package:araci/app/data/provider/databaseApi.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 import 'package:get_storage/get_storage.dart';
 
-const baseUrl = 'http://gerador-nomes.herokuapp.com/nomes/10';
+const baseUrl = 'https://script.google.com/macros/s/AKfycbxNHIMDuJHlfGTvWK_gsnjRX_eng917MJNbZ6W0D8DbxT0AsAWJX1Xk3A/exec';
 
 class MyApiClient {
   final http.Client httpClient;
 
   MyApiClient(
       {@required this.httpClient}
-
   );
 
-  final Map<String, String> _defaultHeaders = {
-    'Content-Type': 'application/json'
-  };
+  // final Map<String, String> _defaultHeaders = {
+  //   'Content-Type': 'application/json'
+  // };
 
-  Future<List<String>> updateVidsList() async {
-    return ["https://www.youtube.com/watch?v=xqr9gV5E2Lg","https://www.youtube.com/watch?v=KxVb9Lcvry4","https://www.youtube.com/watch?v=EMru3oqZ66U","https://www.youtube.com/watch?v=eh2GCow3NY8","https://www.youtube.com/watch?v=iLprfJV41W4"];
-  }
-
-  Future<List<ApiModel>> getAll() async {
+  fetchData() async {
+    final DatabaseApi dbApi = Get.find<DatabaseApi>();
     try {
+      print("FETCHING DATA");
       final response = await httpClient.get(baseUrl);
       if (response.statusCode == 200) {
-        Map<String, dynamic> jsonResponse = jsonDecode(response.body);
-        return jsonResponse['data']
-            .map((json) => ApiModel.fromJson(json))
-            .toList();
+        await dbApi.deleteAllRows(ArticleModel().TABLE_NAME);
+        var jsonResponse = jsonDecode(response.body);
+        for (var jresp in jsonResponse){
+          ArticleModel articleModel = ArticleModel();
+          articleModel.id = jresp["id"];
+          articleModel.title = jresp["title"]??"";
+          articleModel.body = jresp["body"]??"";
+          articleModel.externalUrl = jresp["externalUrl"]??"";
+          articleModel.imgUrl = jresp["imgUrl"]??"";
+          articleModel.relatedIds = jresp["relatedIds"].toString();
+
+          await dbApi.insert(articleModel);
+        }
+        GetStorage().writeIfNull("firstDBLoad", false);
+        print("HERE'S THE FINAL DATABASE : ${ await dbApi.getAllMapFormat("Article")}");
       } else {
-        print('Error -getAll');
+        print('Error in getAll CODE => ${response.statusCode}');
       }
-    } catch (_) {}
+    } catch (_) {
+      print("Error in try $_");
+      return null;
+    }
     return null;
   }
 
-  Future getId(id) async {
-    try {
-      final response = await httpClient.get(baseUrl);
-      if (response.statusCode == 200) {
-        Map<String, dynamic> jsonResponse = jsonDecode(response.body);
-        // TODO: implement methods!
-      } else{
-        print('Error -getId');
+  List<int> parseRelatedIds(String relatedIdsString){
+    List<int> parsedList = List();
+    if(relatedIdsString.length==1){
+      print("INSIDE LEN 1");
+      parsedList.add(int.parse(relatedIdsString));
+      return parsedList;
+    }
+    else {
+      for (String element in relatedIdsString.split(",")){
+        parsedList.add(int.parse(element));
       }
-    } catch (_) {}
-    return null;
-  }
-
-  Future add(obj) async {
-    try {
-      final response = await httpClient.post(baseUrl,
-          headers: _defaultHeaders, body: jsonEncode(obj));
-      if (response.statusCode == 200) {
-        // TODO: implement methods!
-      } else {
-        print('Error -add');
-      }
-    } catch (_) {}
-    return null;
-  }
-
-  Future edit(obj) async {
-    try {
-      final response = await httpClient.put(baseUrl,
-          headers: _defaultHeaders, body: jsonEncode(obj));
-      if (response.statusCode == 200) {
-        // TODO: implement methods!
-      } else {
-        print('Error -edit');
-      }
-    } catch (_) {}
-    return null;
-  }
-
-  Future delete(obj) async {
-    try {
-      final response = await httpClient.delete(baseUrl);
-      if (response.statusCode == 200) {
-        // TODO: implement methods!
-      } else {
-        print('Error -delete');
-      }
-    } catch (_) {}
-    return null;
+      return parsedList;
+    }
   }
 }

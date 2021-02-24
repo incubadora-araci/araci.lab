@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'app/bindings/splash_bindings.dart';
 import 'app/routes/app_pages.dart';
 import 'app/ui/theme/app_theme.dart';
-//import 'package:getx_pattern/app/routes/app_pages.dart';
-//import 'package:getx_pattern/app/translations/app_translations.dart';
-//
-//import 'app/ui/android/home/home_page.dart';
-//import 'app/ui/theme/app_theme.dart';
 
-void main() {
+void main() async {
   runApp(
       GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         title: "Araci",
         initialRoute: Routes.SPLASH, //Rota inicial
         theme: appThemeDataDark, //Tema personalizado app

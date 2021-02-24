@@ -7,13 +7,12 @@ import 'package:flutter_appauth/flutter_appauth.dart';
 class LoginBinding extends Bindings{
   @override
   void dependencies() {
+    Get.put<FlutterAppAuth>(
+      FlutterAppAuth()
+    );
     Get.put<LoginController>(
         LoginController(
             repository: GlobalInformationRepository(globalInformationApi: GlobalInformationApi()))
-    );
-
-    Get.put(
-      FlutterAppAuth()
     );
 
   }

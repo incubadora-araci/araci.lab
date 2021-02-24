@@ -15,52 +15,43 @@ class DetailsController extends GetxController {
   dynamic articleId;
   dynamic articleTitle;
   dynamic articleBody;
-  dynamic externalURL;
-  dynamic imgPath;
+  dynamic externalUrl;
+  final _imgUrl = ''.obs;
   dynamic relatedImgPath;
-  dynamic videoURL;
   List<int> relatedIds = [];
   List<Map<String,dynamic>> relatedArticlesInformation = [];
   var ytController;
   Stack<int> routingStack = Stack();
-
-  // final _obj = ''.obs;
-  // set obj(value) => _obj.value = value;
-  // get obj => _obj.value;
-  // get imgPath => _imgPath??"assets/images/regia_araci.png";
-
+  set imgUrl(value) => _imgUrl.value = value;
+  get imgUrl => _imgUrl.value;
 
   @override
   void onInit() async {
-    // await articleRepository.fetchData();
+    await articleRepository.fetchData();
     if (routingStack.isEmpty) routingStack.push(1);
     await getArticle(routingStack.top());
     print("Executando onInit details -----------------------");
-    // initYoutubeController();
     super.onInit();
-    // addArticle();
   }
 
   getRelatedArticles(List<int> ids) async {
-    // relatedArticlesInformation = [];
     for (int id in ids){
       Map<String,dynamic> article = await articleRepository.findArticleById(id);
-      relatedArticlesInformation.add({"id": id,"title":article["title"],"imgPath":article["imgPath"]});
+      relatedArticlesInformation.add({"id": id,"title":article["title"],"imgUrl":article["imgUrl"]});
     }
 
   }
   getArticle(int id) async {
     relatedArticlesInformation = [];
     Map<String,dynamic> article = await articleRepository.findArticleById(id);
-    // print("videoURL get article:::::::: ${article["videoURL"]}");
+    // print("ARTICLE INSIDE getArticle => $article");
     articleId = article["id"]??"";
     articleTitle = article["title"]??"";
     articleBody = article["body"]??"";
-    externalURL = article["externalURL"];
-    imgPath = article["imgPath"];
-    videoURL = article["videoURL"];
-    relatedIds = article["related"];
-    if (relatedIds!= null)await getRelatedArticles(relatedIds);
+    externalUrl = nullIfEmpty(article["externalUrl"]);
+    imgUrl = nullIfEmpty(article["imgUrl"]);
+    relatedIds = parseRelatedIds(article["relatedIds"]);
+    if (relatedIds.length>0)await getRelatedArticles(relatedIds);
     update();
   }
 
@@ -113,5 +104,29 @@ class DetailsController extends GetxController {
         Get.toNamed(Routes.ABOUT);
         break;
     }
+  }
+
+  List<int> parseRelatedIds(String relatedIdsString){
+    List<int> parsedList = List();
+    if(relatedIdsString.length==0){
+      return parsedList;
+    }
+    else if(relatedIdsString.length==1){
+      parsedList.add(int.parse(relatedIdsString));
+      return parsedList;
+    }
+    else {
+      for (String element in relatedIdsString.split(",")){
+        parsedList.add(int.parse(element));
+      }
+      return parsedList;
+    }
+  }
+
+  nullIfEmpty(String input){
+    if(input.length==0){
+      return null;
+    }
+    return input;
   }
 }

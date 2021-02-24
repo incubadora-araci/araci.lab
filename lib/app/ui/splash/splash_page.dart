@@ -34,6 +34,15 @@ import 'package:get/get.dart';
                padding: EdgeInsets.all(100),
              ),
            ),
+           Positioned(
+             child: Padding(
+               padding: const EdgeInsets.only(bottom:8.0),
+               child: Align(
+                   alignment: Alignment.bottomCenter,
+                   child: Image.asset("assets/images/LogoUFF.png")
+               ),
+             ),
+           ),
          ],
        ),
      );

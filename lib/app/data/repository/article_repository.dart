@@ -10,8 +10,8 @@ class ArticleRepository {
 
   ArticleRepository({@required this.databaseApi, this.articleWebApi}) : assert(databaseApi != null);
 
-  FutureOr<dynamic> findArticleById(int id){
-    return databaseApi.findArticleById(id);
+  FutureOr<dynamic> findArticleById(int id) async {
+    return await databaseApi.getArticleById(id);
   }
 
   FutureOr<dynamic> getAllArticles(){
@@ -19,7 +19,7 @@ class ArticleRepository {
   }
 
   fetchData() async {
-    print("INSIDE GET ALL ARTICLE REPO");
+    // print("INSIDE GET ALL ARTICLE REPO");
     await articleWebApi.fetchData();
   }
 

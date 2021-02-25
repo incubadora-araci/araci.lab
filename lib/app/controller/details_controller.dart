@@ -20,13 +20,14 @@ class DetailsController extends GetxController {
   dynamic relatedImgPath;
   List<int> relatedIds = [];
   List<Map<String,dynamic>> relatedArticlesInformation = [];
-  var ytController;
   Stack<int> routingStack = Stack();
+  bool isLoading;
   set imgUrl(value) => _imgUrl.value = value;
   get imgUrl => _imgUrl.value;
 
   @override
   void onInit() async {
+    isLoading = true;
     await articleRepository.fetchData();
     if (routingStack.isEmpty) routingStack.push(1);
     await getArticle(routingStack.top());
@@ -52,6 +53,8 @@ class DetailsController extends GetxController {
     imgUrl = nullIfEmpty(article["imgUrl"]);
     relatedIds = parseRelatedIds(article["relatedIds"]);
     if (relatedIds.length>0)await getRelatedArticles(relatedIds);
+    isLoading = false;
+    print("is LOADING => $isLoading");
     update();
   }
 

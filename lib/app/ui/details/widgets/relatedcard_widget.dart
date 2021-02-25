@@ -1,3 +1,4 @@
+import 'package:araci/app/ui/details/widgets/image_widget.dart';
 import 'package:flutter/material.dart';
 
 Widget relatedCard(String imageName) {
@@ -9,16 +10,17 @@ Widget relatedCard(String imageName) {
         side: BorderSide(color: Colors.black26, width: 1),
         borderRadius: BorderRadius.circular(5),
       ),
-      child: Container(
-        width: 100,
-        height: 100,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(imageName),
-            fit: BoxFit.fitWidth,
-            alignment: Alignment.center,
-          ),
-        ),
-      )
+      child: imageCard(imageName,width: 100, height: 100, fit: BoxFit.fitWidth),
+      // child: Container(
+      //   width: 100,
+      //   height: 100,
+      //   decoration: BoxDecoration(
+      //     image: DecorationImage(
+      //       image: AssetImage(imageName),
+      //       fit: BoxFit.fitWidth,
+      //       alignment: Alignment.center,
+      //     ),
+      //   ),
+      // )
   );
 }

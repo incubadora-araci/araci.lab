@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'app/routes/app_pages.dart';
 import 'app/ui/theme/app_theme.dart';
 
 void main() async {
+  HttpOverrides.global = new MyHttpOverrides();
   runApp(
       GetMaterialApp(
         debugShowCheckedModeBanner: false,
@@ -16,4 +19,13 @@ void main() async {
 //        translationsKeys: AppTranslation.translations, // Suas chaves contendo as traduções<map>
       )
   );
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+      (X509Certificate cert, String host, int port) => true;
+  }
 }

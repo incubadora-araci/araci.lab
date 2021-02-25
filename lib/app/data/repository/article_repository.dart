@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:araci/app/controller/details_controller.dart';
 import 'package:araci/app/data/provider/api.dart';
 import 'package:araci/app/data/provider/databaseApi.dart';
+import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 
 class ArticleRepository {
@@ -19,6 +21,7 @@ class ArticleRepository {
   }
 
   fetchData() async {
+    // Get.find<DetailsController>().isLoading = true;
     // print("INSIDE GET ALL ARTICLE REPO");
     await articleWebApi.fetchData();
   }

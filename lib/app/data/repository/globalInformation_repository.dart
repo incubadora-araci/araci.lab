@@ -31,6 +31,14 @@ class GlobalInformationRepository {
     await globalInformationApi.eraseUserInformation();
   }
 
+  hasSeenIntro(){
+    return globalInformationApi.getGlobalInformation("hasSeenIntro");
+  }
+
+  sawIntro(){
+    globalInformationApi.setGlobalInformation("hasSeenIntro", true);
+  }
+
 }
 
 class APICredentials {

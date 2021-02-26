@@ -10,8 +10,8 @@ import 'package:url_launcher/url_launcher.dart';
 class DetailsController extends GetxController {
 
   final ArticleRepository articleRepository;
-  final GlobalInformationRepository globalInformationRepository;
-  DetailsController({@required this.articleRepository, this.globalInformationRepository}) : assert(articleRepository != null);
+  final GlobalInformationRepository repository;
+  DetailsController({@required this.articleRepository, this.repository}) : assert(articleRepository != null);
   dynamic articleId;
   dynamic articleTitle;
   dynamic articleBody;
@@ -72,10 +72,6 @@ class DetailsController extends GetxController {
     await getArticle(routingStack.top());
   }
 
-  Future<dynamic> navigateNamed(String route,dynamic arguments) async {
-    return await Get.toNamed(route,arguments: arguments);
-  }
-
   Future<void> launchUniversalLink(String url) async {
     if (await canLaunch(url)) {
       final bool nativeAppLaunchSucceeded = await launch(
@@ -93,19 +89,24 @@ class DetailsController extends GetxController {
   }
 
   handlePopMenuClick(String value) async {
-    // Get.snackbar("Função em desenvolvimento","",backgroundColor: Colors.blueGrey[900]);
     switch (value) {
       case 'Sair':
-        await globalInformationRepository.eraseUserInformation();
+        await repository.eraseUserInformation();
         //TODO: Delete database.
         Get.offAllNamed(Routes.SPLASH);
         break;
       case 'Configurações':
-        Get.snackbar("Função em desenvolvimento","",backgroundColor: Colors.blueGrey[900]);
+        Get.snackbar("Função em desenvolvimento","",backgroundColor: Colors.lightGreen);
         break;
       case 'Sobre':
         Get.toNamed(Routes.ABOUT);
         break;
+      case 'Entrar':
+        Get.toNamed(Routes.LOGIN);
+        break;
+      // case 'Rever Introdução':
+      //   Get.offAllNamed(Routes.INTRO);
+      //   break;
     }
   }
 
@@ -131,5 +132,9 @@ class DetailsController extends GetxController {
       return null;
     }
     return input;
+  }
+
+  bool isLogged(){
+    return repository.isLogged();
   }
 }

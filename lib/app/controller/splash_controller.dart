@@ -21,8 +21,8 @@ class SplashController extends GetxController {
   void chooseNextPage() {
     // print("IS LOGGED STATUS => ${repository.isLogged().toString()}");
     // isLogged = storage.read("isLogged")??false;
-    Get.offNamed(repository.isLogged() ? Routes.DETAILS : Routes.LOGIN);
-    // Get.offNamed(Routes.DETAILS);
+    // Get.offNamed(repository.isLogged() ? Routes.DETAILS : Routes.LOGIN);
+    Get.offNamed(Routes.DETAILS);
   }
 
 }

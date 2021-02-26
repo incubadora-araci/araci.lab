@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,7 +9,9 @@ Widget imageCard(String uri,{BoxFit fit, double width, double height, AlignmentG
       height: height??200,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: uri.contains('http') ? Image.network(uri) : AssetImage(uri),
+          image: uri.contains('https') ? CachedNetworkImage(imageUrl: uri,
+            progressIndicatorBuilder: (context, url, downloadProgress) =>
+              CircularProgressIndicator(value: downloadProgress.progress), ) : AssetImage(uri),
           fit: fit??BoxFit.cover,
           alignment: alignment??Alignment.center,
         ),

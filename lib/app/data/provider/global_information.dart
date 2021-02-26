@@ -15,7 +15,7 @@ class GlobalInformationApi {
   }
 
   dynamic getGlobalInformation(String key){
-    print("information saved = ${storage.read(key)}");
+    print("information saved $key = ${storage.read(key)}");
     return storage.read(key)??false;
   }
 

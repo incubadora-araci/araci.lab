@@ -21,7 +21,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Login Page')),
+      appBar: AppBar(title: Text('Página de Login'), centerTitle: true,),
       body: GetBuilder<LoginController>(
         builder: (_){
          return  _.isBusy ?

@@ -40,7 +40,7 @@ class MyApiClient {
           await dbApi.insert(articleModel);
         }
         GetStorage().writeIfNull("firstDBLoad", false);
-        print("HERE'S THE FINAL DATABASE : ${ await dbApi.getAllMapFormat("Article")}");
+        // print("HERE'S THE FINAL DATABASE : ${ await dbApi.getAllMapFormat("Article")}");
       } else {
         print('Error in getAll CODE => ${response.statusCode}');
       }

@@ -104,9 +104,9 @@ class DetailsController extends GetxController {
       case 'Entrar':
         Get.toNamed(Routes.LOGIN);
         break;
-      // case 'Rever Introdução':
-      //   Get.offAllNamed(Routes.INTRO);
-      //   break;
+      case 'Rever Introdução':
+        Get.offAllNamed(Routes.INTRO);
+        break;
     }
   }
 

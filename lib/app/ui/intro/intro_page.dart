@@ -8,7 +8,7 @@ class IntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('My Page')),
+      // appBar: AppBar(title: Text('My Page')),
       body: GetBuilder<IntroController>(
         init: IntroController(),
         builder: (_){
@@ -22,14 +22,14 @@ class IntroPage extends StatelessWidget {
               // You can also override onSkip callback
 
             showSkipButton: true,
-            skip: const Icon(Icons.skip_next),
+            skip: const Text("Pular", style: TextStyle(fontWeight: FontWeight.w600)),
             next: const Icon(Icons.navigate_next),
-            done: const Text("Done", style: TextStyle(fontWeight: FontWeight.w600)),
+            done: const Text("Acessar App", style: TextStyle(fontWeight: FontWeight.w600)),
             dotsDecorator: DotsDecorator(
                 size: const Size.square(10.0),
                 activeSize: const Size(20.0, 10.0),
                 activeColor: appThemeData.accentColor,
-                color: Colors.black26,
+                color: Colors.white,
                 spacing: const EdgeInsets.symmetric(horizontal: 3.0),
                 activeShape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25.0)

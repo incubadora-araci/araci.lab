@@ -1,16 +1,16 @@
-import 'package:araci/app/ui/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Widget imageCard(String fileName) {
+Widget imageCard(String uri,{BoxFit fit, double width, double height, AlignmentGeometry  alignment}) {
+
   return Container(
-      width: Get.width,
-      height: 200,
+      width: width??Get.width,
+      height: height??200,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(fileName),
-          fit: BoxFit.cover,
-          alignment: Alignment.center,
+          image: uri.contains('http') ? Image.network(uri) : AssetImage(uri),
+          fit: fit??BoxFit.cover,
+          alignment: alignment??Alignment.center,
         ),
       ),
     );

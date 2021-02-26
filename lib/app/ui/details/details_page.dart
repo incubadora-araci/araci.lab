@@ -15,7 +15,6 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBars.mainAppBar(),
       body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
@@ -26,7 +25,6 @@ class DetailsPage extends StatelessWidget {
               ),
               actions: [
                 PopupMenuButton<String>(
-                  // color: Colors.blueGrey[900],
                   onSelected: Get.find<DetailsController>().handlePopMenuClick,
                   itemBuilder: (BuildContext context) {
                     return {'Sobre', 'Configurações', 'Sair'}.map((String choice) {
@@ -55,6 +53,7 @@ class DetailsPage extends StatelessWidget {
                   Text("ARACI.lab", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300),)
                   ],
                 ),
+                // background: GetX<DetailsController>(builder: (_) => Image.network(_.imgUrl),),
                 background: GetX<DetailsController>(builder: (_) => _.imgUrl!=null ? CachedNetworkImage(
                   fit: BoxFit.cover,
                   imageUrl: _.imgUrl,
@@ -71,7 +70,14 @@ class DetailsPage extends StatelessWidget {
             child: GetBuilder<DetailsController>(
 //            initState: Get.find<DetailsController>().getArticle(Get.arguments),
                 builder: (_) {
-                  return ListView(
+                  return  Get.find<DetailsController>().isLoading ?
+                  Center(child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(),
+                      Text("Carregando publicações"),
+                    ],
+                  )) : ListView(
                     children: [
                       article(_),
                       Divider(),

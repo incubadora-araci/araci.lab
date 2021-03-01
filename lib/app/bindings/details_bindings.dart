@@ -16,7 +16,7 @@ class DetailsBinding implements Bindings {
     Get.lazyPut<DetailsController>(() {
       return DetailsController(
           articleRepository: ArticleRepository(databaseApi: DatabaseApi(), articleWebApi: MyApiClient(httpClient: http.Client())),
-          globalInformationRepository: GlobalInformationRepository(globalInformationApi: GlobalInformationApi())
+          repository: GlobalInformationRepository(globalInformationApi: GlobalInformationApi())
       );
     });
   }

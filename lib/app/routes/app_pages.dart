@@ -3,6 +3,7 @@ import 'package:araci/app/bindings/login_bindings.dart';
 import 'package:araci/app/bindings/splash_bindings.dart';
 import 'package:araci/app/ui/about/about_page.dart';
 import 'package:araci/app/ui/details/details_page.dart';
+import 'package:araci/app/ui/intro/intro_page.dart';
 import 'package:araci/app/ui/login/login_page.dart';
 import 'package:araci/app/ui/reusable_widgets/webview.dart';
 import 'package:araci/app/ui/splash/splash_page.dart';
@@ -19,5 +20,6 @@ abstract class AppPages {
     GetPage(name: Routes.DETAILS, page: ()=> DetailsPage(), binding: DetailsBinding()),
     GetPage(name: Routes.WEBVIEW, page:()=> WebviewPage()),
     GetPage(name: Routes.ABOUT, page:()=> AboutPage()),
+    GetPage(name: Routes.INTRO, page:()=> IntroPage()),
   ];
 }

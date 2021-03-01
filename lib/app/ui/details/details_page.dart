@@ -27,7 +27,7 @@ class DetailsPage extends StatelessWidget {
                 PopupMenuButton<String>(
                   onSelected: Get.find<DetailsController>().handlePopMenuClick,
                   itemBuilder: (BuildContext context) {
-                    return {'Sobre', 'Configurações', 'Sair'}.map((String choice) {
+                    return {'Sobre', 'Configurações', Get.find<DetailsController>().isLogged() ? 'Sair' : 'Entrar', 'Rever Introdução'}.map((String choice) {
                       return PopupMenuItem<String>(
                         value: choice,
                         child: Text(choice),
@@ -50,7 +50,7 @@ class DetailsPage extends StatelessWidget {
                     fit: BoxFit.contain,
                     height: 32,
                   ),
-                  Text("ARACI.lab", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300),)
+                  Text("ARACI.lab", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300))
                   ],
                 ),
                 // background: GetX<DetailsController>(builder: (_) => Image.network(_.imgUrl),),

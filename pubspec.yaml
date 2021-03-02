@@ -43,7 +43,6 @@ dependencies:
   get_version: ^0.2.2
   cached_network_image: ^2.5.0
   introduction_screen: ^1.0.9
-  flutter_svg: ^0.19.3
 
 
 dev_dependencies:

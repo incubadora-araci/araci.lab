@@ -43,5 +43,16 @@
 	<false/>
 	<key>io.flutter.embedded_views_preview</key>
     <true/>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string><br.uff.araci></string>
+            </array>
+        </dict>
+    </array>
 </dict>
 </plist>

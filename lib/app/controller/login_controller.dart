@@ -157,6 +157,8 @@ class LoginController extends GetxController {
       }
     }
     catch(e) {
+      Get.defaultDialog(title: "Login Cancelado",middleText: "",textConfirm: "OK!",onConfirm: ()=>Get.back(closeOverlays: true));
+      //Get.back();
       print("THE ERROR WAS - > $e");
       isBusy = false;
       // update();

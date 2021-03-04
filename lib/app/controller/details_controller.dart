@@ -38,7 +38,7 @@ class DetailsController extends GetxController {
   getRelatedArticles(List<int> ids) async {
     for (int id in ids){
       Map<String,dynamic> article = await articleRepository.findArticleById(id);
-      relatedArticlesInformation.add({"id": id,"title":article["title"],"imgUrl":article["imgUrl"]});
+      relatedArticlesInformation.add({"id": id,"title":article["title"],"imgUrl":nullIfEmpty(article["imgUrl"])});
     }
 
   }
@@ -51,6 +51,7 @@ class DetailsController extends GetxController {
     articleBody = article["body"]??"";
     externalUrl = nullIfEmpty(article["externalUrl"]);
     imgUrl = nullIfEmpty(article["imgUrl"]);
+    print("Loaded imgURL => $imgUrl");
     relatedIds = parseRelatedIds(article["relatedIds"]);
     if (relatedIds.length>0)await getRelatedArticles(relatedIds);
     isLoading = false;
@@ -67,9 +68,11 @@ class DetailsController extends GetxController {
   }
   popRoute() async {
     print("TOP OF STACK BEFORE POP = ${routingStack.top()}");
-    if (routingStack.length>1)routingStack.pop();
+    if (routingStack.length>1){
+      routingStack.pop();
+      await getArticle(routingStack.top());
+    }
     print("TOP OF STACK AFTER POP = ${routingStack.top()}");
-    await getArticle(routingStack.top());
   }
 
   Future<void> launchUniversalLink(String url) async {

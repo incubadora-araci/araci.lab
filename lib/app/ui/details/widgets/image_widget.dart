@@ -7,14 +7,17 @@ Widget imageCard(String uri,{BoxFit fit, double width, double height, AlignmentG
   return Container(
       width: width??Get.width,
       height: height??200,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: uri.contains('https') ? CachedNetworkImage(imageUrl: uri,
-            progressIndicatorBuilder: (context, url, downloadProgress) =>
-              CircularProgressIndicator(value: downloadProgress.progress), ) : AssetImage(uri),
-          fit: fit??BoxFit.cover,
-          alignment: alignment??Alignment.center,
-        ),
-      ),
+      child: uri.contains('http') ? CachedNetworkImage(imageUrl: uri,
+        progressIndicatorBuilder: (context, url, downloadProgress) =>
+            CircularProgressIndicator(value: downloadProgress.progress), ) : Image.asset(uri),
+      // decoration: BoxDecoration(
+      //   image: DecorationImage(
+      //     image: uri.contains('http') ? CachedNetworkImage(imageUrl: uri,
+      //       progressIndicatorBuilder: (context, url, downloadProgress) =>
+      //         CircularProgressIndicator(value: downloadProgress.progress), ) : AssetImage(uri),
+      //     fit: fit??BoxFit.cover,
+      //     alignment: alignment??Alignment.center,
+      //   ),
+      // ),
     );
 }

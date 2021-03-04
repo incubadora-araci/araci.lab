@@ -1,6 +1,5 @@
-import 'package:araci/app/controller/splash_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 
  class SplashPage extends StatelessWidget {
@@ -39,7 +38,14 @@ import 'package:get/get.dart';
                padding: const EdgeInsets.only(bottom:8.0),
                child: Align(
                    alignment: Alignment.bottomCenter,
-                   child: Image.asset("assets/images/LogoUFF.png")
+                   child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                     children: [
+                      SvgPicture.asset("assets/images/PPGCINE_Logo_Vertical.svg",width: 150,height: 80,),
+                      SizedBox(width: 0,height: 20),
+                      SvgPicture.asset("assets/images/LogoUFF.svg",width: 150,height: 80,)
+                     ],
+                   )
                ),
              ),
            ),

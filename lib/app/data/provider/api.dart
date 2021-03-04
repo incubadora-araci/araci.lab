@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 import 'package:get_storage/get_storage.dart';
 
-const baseUrl = 'https://script.google.com/macros/s/AKfycbxNHIMDuJHlfGTvWK_gsnjRX_eng917MJNbZ6W0D8DbxT0AsAWJX1Xk3A/exec';
+const baseUrl = 'https://script.google.com/macros/s/AKfycbwYhO-DQpMBRIJQDxHud8zNBYX3CBc90pZX7xNHLZ52efb828cPqb2WB30YZaQZfsnlag/exec';
 
 class MyApiClient {
   final http.Client httpClient;
@@ -30,7 +30,7 @@ class MyApiClient {
         var jsonResponse = jsonDecode(response.body);
         for (var jresp in jsonResponse){
           ArticleModel articleModel = ArticleModel();
-          articleModel.id = jresp["id"];
+          articleModel.id = int.parse(jresp["id"]);
           articleModel.title = jresp["title"]??"";
           articleModel.body = jresp["body"]??"";
           articleModel.externalUrl = jresp["externalUrl"]??"";
@@ -51,18 +51,18 @@ class MyApiClient {
     return null;
   }
 
-  List<int> parseRelatedIds(String relatedIdsString){
-    List<int> parsedList = List();
-    if(relatedIdsString.length==1){
-      print("INSIDE LEN 1");
-      parsedList.add(int.parse(relatedIdsString));
-      return parsedList;
-    }
-    else {
-      for (String element in relatedIdsString.split(",")){
-        parsedList.add(int.parse(element));
-      }
-      return parsedList;
-    }
-  }
+  // List<int> parseRelatedIds(String relatedIdsString){
+  //   List<int> parsedList = List();
+  //   if(relatedIdsString.length==1){
+  //     print("INSIDE LEN 1");
+  //     parsedList.add(int.parse(relatedIdsString));
+  //     return parsedList;
+  //   }
+  //   else {
+  //     for (String element in relatedIdsString.split(",")){
+  //       parsedList.add(int.parse(element));
+  //     }
+  //     return parsedList;
+  //   }
+  // }
 }

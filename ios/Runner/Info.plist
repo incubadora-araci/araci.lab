@@ -50,7 +50,7 @@
             <string>Editor</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string><br.uff.araci></string>
+                <string>br.uff.araci</string>
             </array>
         </dict>
     </array>

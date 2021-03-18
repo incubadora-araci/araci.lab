@@ -9,4 +9,5 @@ abstract class Routes{
   static const WEBVIEW = '/webview';
   static const ABOUT = '/about';
   static const INTRO = '/intro';
+  static const SETTINGS = '/settings';
 }

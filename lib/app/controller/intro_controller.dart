@@ -33,24 +33,24 @@ class IntroController extends GetxController {
 
             ],
           ),
-          image: Center(child: Image.asset("assets/images/AraciLabLogo.png")),
+          image: Center(child: Container(child: Image.asset("assets/images/AraciLabLogo.png"), decoration: BoxDecoration(color: Color(0xFFD6D6D6).withOpacity(0.4)),)),
         ),
 
     );
 
-    listPagesViewModel.add(
-      PageViewModel(
-        title: "Confira o app Araci!",
-        bodyWidget: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(child: Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae feugiat enim. Fusce nec dui porttitor augue sodales imperdiet. Quisque commodo lorem ut rhoncus auctor. Nunc vel diam porttitor, lacinia lorem id, suscipit sapien. Curabitur sit amet dui eu lectus tempus sollicitudin ac eu quam. Maecenas molestie est molestie, tincidunt augue id, consequat risus. Cras at nibh eu quam ornare condimentum sit amet et elit. Aenean congue, diam imperdiet condimentum auctor, velit libero ullamcorper lectus, id consequat risus mauris a purus. Aliquam pharetra ultrices lacus, a rhoncus nulla. Nullam faucibus ex quis sem rhoncus, a facilisis mi sagittis. Sed vehicula massa nulla, et consequat purus tristique non. Phasellus aliquet sed tellus aliquet ullamcorper. ", overflow: TextOverflow.visible)),
-          ],
-        ),
-        image: Center(child: SvgPicture.asset("assets/images/LogoUFF.svg")),
-      ),
-
-    );
+    // listPagesViewModel.add(
+    //   PageViewModel(
+    //     title: "Confira o app Araci!",
+    //     bodyWidget: Row(
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       children: [
+    //         Expanded(child: Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae feugiat enim. Fusce nec dui porttitor augue sodales imperdiet. Quisque commodo lorem ut rhoncus auctor. Nunc vel diam porttitor, lacinia lorem id, suscipit sapien. Curabitur sit amet dui eu lectus tempus sollicitudin ac eu quam. Maecenas molestie est molestie, tincidunt augue id, consequat risus. Cras at nibh eu quam ornare condimentum sit amet et elit. Aenean congue, diam imperdiet condimentum auctor, velit libero ullamcorper lectus, id consequat risus mauris a purus. Aliquam pharetra ultrices lacus, a rhoncus nulla. Nullam faucibus ex quis sem rhoncus, a facilisis mi sagittis. Sed vehicula massa nulla, et consequat purus tristique non. Phasellus aliquet sed tellus aliquet ullamcorper. ", overflow: TextOverflow.visible)),
+    //       ],
+    //     ),
+    //     image: Center(child: SvgPicture.asset("assets/images/LogoUFF.svg")),
+    //   ),
+    //
+    // );
 
   }
 

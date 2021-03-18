@@ -8,12 +8,10 @@ import 'package:get_storage/get_storage.dart';
 class SplashController extends GetxController {
 
   final GlobalInformationRepository repository;
-  final GetStorage storage;
-  SplashController({@required this.repository, this.storage}) : assert(repository != null);
+  SplashController({@required this.repository}) : assert(repository != null);
 
   @override
   void onInit() async {
-    await GetStorage.init();
     Future.delayed(Duration(seconds: 2), chooseNextPage);
     super.onInit();
   }

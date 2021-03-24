@@ -12,8 +12,12 @@ class GlobalInformationRepository {
     return globalInformationApi.getGlobalInformation("isLogged");
   }
 
-  dynamic getUserData(String data){
-    return globalInformationApi.getGlobalInformation(data);
+  dynamic getUserData(String key){
+    return globalInformationApi.getGlobalInformation(key);
+  }
+
+  dynamic setUserData(String key,value){
+    globalInformationApi.setGlobalInformation(key, value);
   }
 
   dynamic setUserInformation(String fullName, String email, String iduff, bool isLogged) async {

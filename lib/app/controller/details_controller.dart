@@ -99,7 +99,7 @@ class DetailsController extends GetxController {
         Get.offAllNamed(Routes.SPLASH);
         break;
       case 'Configurações':
-        Get.snackbar("Função em desenvolvimento","",backgroundColor: Colors.lightGreen);
+        Get.toNamed(Routes.SETTINGS);
         break;
       case 'Sobre':
         Get.toNamed(Routes.ABOUT);

@@ -81,7 +81,7 @@ class DetailsPage extends StatelessWidget {
                     children: [
                       article(_),
                       Divider(),
-                      Container(child: Markdown(data: "# Relacionados",
+                      Container(child: Markdown(data: _.articleId == 1? "# Acesse o Conteúdo" : "# Relacionados",
                         shrinkWrap: true,
                         physics: ScrollPhysics(),), height: 70,),
                       if (_.externalUrl != null)

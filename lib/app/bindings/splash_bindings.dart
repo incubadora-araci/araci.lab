@@ -10,10 +10,6 @@ class SplashBinding implements Bindings {
   @override
   void dependencies() async {
 
-    // await Get.putAsync<DatabaseApi>(() async {
-    //   return await DatabaseApi().init();
-    // });
-
     Get.put( await DatabaseApi().init(), permanent: true);
 
     Get.putAsync<APICredentials>(() async {

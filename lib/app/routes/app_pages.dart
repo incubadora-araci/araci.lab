@@ -1,10 +1,12 @@
 import 'package:araci/app/bindings/details_bindings.dart';
 import 'package:araci/app/bindings/login_bindings.dart';
+import 'package:araci/app/bindings/settings_bindings.dart';
 import 'package:araci/app/bindings/splash_bindings.dart';
 import 'package:araci/app/ui/about/about_page.dart';
 import 'package:araci/app/ui/details/details_page.dart';
 import 'package:araci/app/ui/intro/intro_page.dart';
 import 'package:araci/app/ui/login/login_page.dart';
+import 'package:araci/app/ui/settings/settings_page.dart';
 import 'package:araci/app/ui/splash/splash_page.dart';
 import 'package:get/get.dart';
 part './app_routes.dart';
@@ -19,5 +21,6 @@ abstract class AppPages {
     GetPage(name: Routes.DETAILS, page: ()=> DetailsPage(), binding: DetailsBinding()),
     GetPage(name: Routes.ABOUT, page:()=> AboutPage()),
     GetPage(name: Routes.INTRO, page:()=> IntroPage()),
+    GetPage(name: Routes.SETTINGS, page:()=> SettingsPage(),binding: SettingsBindings()),
   ];
 }

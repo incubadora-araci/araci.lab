@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 
@@ -33,38 +34,59 @@ import 'package:flutter_svg/flutter_svg.dart';
                padding: EdgeInsets.all(100),
              ),
            ),
+           // Positioned(
+           //   child: Padding(
+           //     padding: const EdgeInsets.only(bottom:8.0),
+           //     child: Align(
+           //         alignment: Alignment.bottomLeft,
+           //         child: Row(
+           //            // mainAxisAlignment: MainAxisAlignment.end,
+           //           children: [
+           //            SvgPicture.asset("assets/images/PPGCINE_Logo_Vertical.svg",width: 40,height: 40,),
+           //            SizedBox(width: 20),
+           //            SvgPicture.asset("assets/images/LogoUFF.svg",width: 150,height: 80,),
+           //            SizedBox(width: 20),
+           //            SvgPicture.asset("assets/images/PPGCINE_Logo_Vertical.svg",width: 40,height: 40,),
+           //           ],
+           //         )
+           //     ),
+           //   ),
+           // ),
            Positioned(
-             child: Padding(
-               padding: const EdgeInsets.only(bottom:8.0),
-               child: Align(
+               child: Padding(
+                 padding: const EdgeInsets.only(bottom: 92.0),
+                 child: Align(
                    alignment: Alignment.bottomCenter,
-                   child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                     children: [
-                      SvgPicture.asset("assets/images/PPGCINE_Logo_Vertical.svg",width: 150,height: 80,),
-                      SizedBox(width: 0,height: 20),
-                      SvgPicture.asset("assets/images/LogoUFF.svg",width: 150,height: 80,)
-                     ],
-                   )
-               ),
-             ),
+                   child: SvgPicture.asset("assets/images/LogoUFF.svg",width: 150,height: 80),
+                 ),
+               )
+           ),
+           Positioned(
+               child: Padding(
+                 padding: const EdgeInsets.only(left: 18.0,bottom: 18.0),
+                 child: Align(
+                   alignment: Alignment.bottomLeft,
+                   child: SvgPicture.asset("assets/images/PPGCINE_Logo_Vertical.svg",width: 40,height: 40),
+                 ),
+               )
+           ),
+           Positioned(
+               child: Align(
+                 alignment: Alignment.bottomCenter,
+                 child: Image.asset("assets/images/logo_agir_sem_fundo.png",width: 80,height: 80)
+               )
+           ),
+           Positioned(
+               child: Padding(
+                 padding: const EdgeInsets.only(right: 4.0,bottom: 24.0),
+                 child: Align(
+                   alignment: Alignment.bottomRight,
+                   child: SvgPicture.asset("assets/images/CineVideoLogoClean.svg",width: 20,height: 20),
+                 ),
+               )
            ),
          ],
        ),
      );
   }
-   // @override
-   // Widget build(BuildContext context) {
-   //    return Scaffold(
-   //      body:AnimatedSplashScreen.withScreenFunction(
-   //          splash: "assets/images/regia_araci.png",
-   //          splashIconSize: 200,
-   //          screenFunction: controller.getLoginStatus,
-   //          splashTransition: SplashTransition.fadeTransition,
-   //          pageTransitionType: PageTransitionType.rotate,
-   //          animationDuration: Duration(seconds: 2,milliseconds: 500),
-   //          duration: 3000,
-   //      ),
-   //    );
-   // }
  }

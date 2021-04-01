@@ -10,8 +10,9 @@ class SettingsPage extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(8.0),
         children: [
-          GetX<SettingsController>(builder: (_)=> SwitchListTile(value: _.isSelected, onChanged: _.onChanged,title: Text("Usar tema escuro"))),
-          Divider()
+          GetX<SettingsController>(builder: (_)=> SwitchListTile(value: _.isSelectedTheme, onChanged: _.onChanged,title: Text("Usar tema escuro"),activeColor: Colors.lightGreen,)),
+          Divider(),
+          GetX<SettingsController>(builder: (_)=> SwitchListTile(value: _.useYTValue, onChanged: _.onChangeYTAPP,title: Text("Usar app do YouTube"),activeColor: Colors.lightGreen,subtitle: Text("Ativo: será aberto o aplicativo do YouTube para assistir os filmes. \n Inativo: Os filmes poderão ser visto dentro do Araci.lab."),))
         ],
       )
     );

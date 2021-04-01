@@ -8,6 +8,7 @@ import 'package:araci/app/ui/intro/intro_page.dart';
 import 'package:araci/app/ui/login/login_page.dart';
 import 'package:araci/app/ui/settings/settings_page.dart';
 import 'package:araci/app/ui/splash/splash_page.dart';
+import 'package:araci/app/ui/video/video_page.dart';
 import 'package:get/get.dart';
 part './app_routes.dart';
 
@@ -17,10 +18,10 @@ abstract class AppPages {
   static final pages = [
     GetPage(name: Routes.SPLASH, page: ()=> SplashPage(), binding: SplashBinding()),
     GetPage(name: Routes.LOGIN, page:()=> LoginPage(), binding: LoginBinding()),
-    // GetPage(name: Routes.HOME, page:()=> HomePage()),
     GetPage(name: Routes.DETAILS, page: ()=> DetailsPage(), binding: DetailsBinding()),
     GetPage(name: Routes.ABOUT, page:()=> AboutPage()),
     GetPage(name: Routes.INTRO, page:()=> IntroPage()),
     GetPage(name: Routes.SETTINGS, page:()=> SettingsPage(),binding: SettingsBindings()),
+    GetPage(name: Routes.VIDEO, page:()=> VideoPage()),
   ];
 }

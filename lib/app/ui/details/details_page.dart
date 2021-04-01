@@ -91,7 +91,7 @@ class DetailsPage extends StatelessWidget {
                           trailing: Icon(Icons.arrow_forward_ios),
                           onTap: () {
                             print("ON TAP!!");
-                            _.launchUniversalLink(_.externalUrl);
+                            _.handleHyperLink(_.externalUrl);
                           // Get.toNamed(Routes.WEBVIEW, arguments: {"url":_.externalURL, "title":_.articleTitle});
                           }
                         ),

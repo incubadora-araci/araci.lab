@@ -75,7 +75,34 @@ class DetailsController extends GetxController {
     print("TOP OF STACK AFTER POP = ${routingStack.top()}");
   }
 
-  Future<void> launchUniversalLink(String url) async {
+  Future<void> handleHyperLink(String url, {String linkTitle}) async {
+    if(url.contains("youtube.com")){
+      if(repository.getUserData("useyt")){
+        handleUniversalLink(url);
+      }
+      else{
+        Get.toNamed(Routes.VIDEO,arguments: {"url":url,"title":linkTitle});
+      }
+      // Get.toNamed(Routes.VIDEO,arguments: url);
+    }else{
+      handleUniversalLink(url);
+    }
+    // else if (await canLaunch(url)) {
+    //   final bool nativeAppLaunchSucceeded = await launch(
+    //     url,
+    //     forceSafariVC: false,
+    //     universalLinksOnly: true,
+    //   );
+    //   if (!nativeAppLaunchSucceeded) {
+    //     await launch(
+    //       url,
+    //       forceSafariVC: true,
+    //     );
+    //   }
+    // }
+  }
+
+  Future handleUniversalLink(String url) async {
     if (await canLaunch(url)) {
       final bool nativeAppLaunchSucceeded = await launch(
         url,
@@ -90,6 +117,7 @@ class DetailsController extends GetxController {
       }
     }
   }
+  
 
   handlePopMenuClick(String value) async {
     switch (value) {
@@ -114,7 +142,7 @@ class DetailsController extends GetxController {
   }
 
   List<int> parseRelatedIds(String relatedIdsString){
-    List<int> parsedList = List();
+    List<int> parsedList = <int>[];
     if(relatedIdsString.length==0){
       return parsedList;
     }

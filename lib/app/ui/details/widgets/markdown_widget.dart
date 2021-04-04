@@ -12,7 +12,7 @@ Widget markdownBodyWidget(String body){
   return MarkdownBody(
     data: body,
     onTapLink: (body,link,title) {
-      Get.find<DetailsController>().launchUniversalLink(link);
+      Get.find<DetailsController>().handleHyperLink(link,linkTitle: body);
       // Get.find<DetailsController>().navigateNamed(Routes.WEBVIEW, {"url":link, "title":body});
     }
     // onTapLink: (body,link,title){

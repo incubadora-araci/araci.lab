@@ -22,6 +22,7 @@ class DetailsController extends GetxController {
   List<Map<String,dynamic>> relatedArticlesInformation = [];
   Stack<int> routingStack = Stack();
   bool isLoading;
+  ScrollController scrollController = ScrollController();
   set imgUrl(value) => _imgUrl.value = value;
   get imgUrl => _imgUrl.value;
 
@@ -56,7 +57,7 @@ class DetailsController extends GetxController {
     if (relatedIds.length>0)await getRelatedArticles(relatedIds);
     isLoading = false;
     print("is LOADING => $isLoading");
-    update();
+    updateAndScrollToTop();
   }
 
   //TODO: After popping or pushing a route restart the page position to top.
@@ -167,5 +168,10 @@ class DetailsController extends GetxController {
 
   bool isLogged(){
     return repository.isLogged();
+  }
+
+  void updateAndScrollToTop() {
+    scrollController.jumpTo(0);
+    update();
   }
 }

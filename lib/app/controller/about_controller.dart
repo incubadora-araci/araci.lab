@@ -8,16 +8,10 @@ class AboutController extends GetxController {
   String platformVersion = 'Unknown';
   String projectVersion = '';
   String projectCode = '';
-  String projectAppID = '';
   String projectDbversion = '';
   bool isLoading = true;
 
-
   AboutController();
-
-  //final _obj = ''.obs;
-  //set obj(value) => this._obj.value = value;
-  //get obj => this._obj.value;
 
   @override
   void onInit() {
@@ -50,14 +44,6 @@ class AboutController extends GetxController {
       projectCode = 'Failed to get build number.';
     }
 
-    String projectAppID;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      projectAppID = await GetVersion.appID;
-    } on PlatformException {
-      projectAppID = 'Failed to get app ID.';
-    }
-
     String projectDbversion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
@@ -69,7 +55,6 @@ class AboutController extends GetxController {
     this.platformVersion = platformVersion;
     this.projectVersion = projectVersion;
     this.projectCode = projectCode;
-    this.projectAppID = projectAppID;
     this.projectDbversion = projectDbversion;
     update();
     isLoading = false;

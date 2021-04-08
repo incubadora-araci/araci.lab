@@ -42,7 +42,7 @@ class AboutPage extends StatelessWidget {
                     ),
                     new ListTile(
                       leading: new Icon(Icons.info),
-                      title: const Text('Nome da Versão'),
+                      title: const Text('Número da Versão'),
                       subtitle: new Text(_.projectVersion),
                     ),
                     new Divider(
@@ -52,15 +52,7 @@ class AboutPage extends StatelessWidget {
                       leading: new Icon(Icons.info),
                       title: const Text('Código da Versão'),
                       subtitle: new Text(_.projectCode),
-                    ),
-                    new Divider(
-                      height: 20.0,
-                    ),
-                    new ListTile(
-                      leading: new Icon(Icons.info),
-                      title: const Text('ID do App'),
-                      subtitle: new Text(_.projectAppID),
-                    ),
+                    )
                   ],
                 ),
               );

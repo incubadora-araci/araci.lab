@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
 final ThemeData appThemeData = ThemeData(
+  fontFamily: 'Raleway',
   primaryColor: Colors.white,
   buttonColor: Colors.purple[400],
   brightness: Brightness.light,
@@ -14,6 +15,7 @@ final ThemeData appThemeData = ThemeData(
 );
 
 final ThemeData appThemeDataDark = ThemeData(
+  fontFamily: 'Raleway',
   primaryColor: Colors.black,
   buttonColor: Colors.purple[400],
   brightness: Brightness.dark,

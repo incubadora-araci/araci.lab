@@ -43,7 +43,6 @@ dependencies:
   introduction_screen: ^1.0.9
   flutter_svg: ^0.19.3
   youtube_player_iframe: ^2.0.0
-  google_fonts: ^1.1.2
 
 dev_dependencies:
   flutter_test:

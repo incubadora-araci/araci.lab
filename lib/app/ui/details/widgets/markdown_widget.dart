@@ -10,6 +10,7 @@ Widget markdownTitleWidget(String title) {
 
 Widget markdownBodyWidget(String body){
   return MarkdownBody(
+    styleSheet: MarkdownStyleSheet(),
     data: body,
     onTapLink: (body,link,title) {
       Get.find<DetailsController>().handleHyperLink(link,linkTitle: body);

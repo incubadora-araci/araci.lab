@@ -65,14 +65,22 @@ flutter:
   assets:
     - assets/images/
     - assets/uffapi.json
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: assets/fonts/Raleway-Bold.ttf
+          style: normal
+        - asset: assets/fonts/Raleway-Medium.ttf
+          style: normal
+        - asset: assets/fonts/Raleway-Regular.ttf
+          style: normal
+        - asset: assets/fonts/Raleway-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Raleway-MediumItalic.ttf
+          style: italic
+        - asset: assets/fonts/Raleway-BoldItalic.ttf
+          style: italic
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a

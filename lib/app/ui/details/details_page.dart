@@ -51,7 +51,7 @@ class DetailsPage extends StatelessWidget {
                     fit: BoxFit.contain,
                     height: 32,
                   ),
-                  Text("ARACI.lab", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300))
+                  Text("ARACI.lab", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600))
                   ],
                 ),
                 // background: GetX<DetailsController>(builder: (_) => Image.network(_.imgUrl),),

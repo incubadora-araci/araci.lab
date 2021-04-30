@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:araci/app/controller/details_controller.dart';
+import 'package:araci/app/data/model/model.dart';
 import 'package:araci/app/data/provider/api.dart';
 import 'package:araci/app/data/provider/databaseApi.dart';
 import 'package:get/get.dart';
@@ -26,7 +27,12 @@ class ArticleRepository {
     await articleWebApi.fetchData();
   }
 
+  Future<List<List<Map<String,dynamic>>>> dump() async {
+    List<List<Map<String, dynamic>>> dbDump = [];
+    dbDump.add(await databaseApi.getAllMapFormat(ArticleModel().TABLE_NAME));
+    return dbDump;
+  }
 
-//TODO: implement get methods
+
 }
 

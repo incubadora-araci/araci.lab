@@ -52,7 +52,28 @@ class AboutPage extends StatelessWidget {
                       leading: new Icon(Icons.info),
                       title: const Text('Código da Versão'),
                       subtitle: new Text(_.projectCode),
-                    )
+                    ),
+                    Divider(
+                      height: 20.0,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Text(
+                          'Suporte',
+                          style: Theme.of(context).textTheme.caption,
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      child: ListTile(
+                        leading: Icon(Icons.mail, color: Colors.green[300]),
+                        title: Text("Envie seu feedback"),
+                      ),
+                      onTap: _.sendMail,
+                    ),
                   ],
                 ),
               );

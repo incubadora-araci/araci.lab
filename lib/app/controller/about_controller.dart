@@ -10,6 +10,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:get_version/get_version.dart';
 import 'package:flutter/services.dart';
 import 'package:araci/app/data/database/const.dart' as db;
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutController extends GetxController {
 
@@ -72,6 +73,18 @@ class AboutController extends GetxController {
     update();
 
   }
+
+  // Help Function Button
+
+  openHelpUrl() async {
+    const url = 'https://citsmart-uff.centralit.com.br/citsmart/pages/knowledgeBasePortal/knowledgeBasePortal.load#/knowledge/2088';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Não foi possível abrir $url';
+    }
+  }
+
 
   // Mailer
 

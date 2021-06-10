@@ -74,6 +74,16 @@ class AboutPage extends StatelessWidget {
                       ),
                       onTap: _.sendMail,
                     ),
+                    Divider(
+                      height: 20.0,
+                    ),
+                    GestureDetector(
+                      child: ListTile(
+                        leading: Icon(Icons.help_center, color: Colors.green[300]),
+                        title: Text("Manual de uso do APP"),
+                      ),
+                      onTap: _.openHelpUrl,
+                    ),
                   ],
                 ),
               );

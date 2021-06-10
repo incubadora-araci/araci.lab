@@ -88,11 +88,11 @@ class DetailsPage extends StatelessWidget {
                       if (_.externalUrl != null)
                         ListTile(
                           leading: relatedCard(_.imgUrl??"assets/images/regia_araci.png"),
-                          title: Markdown(data: "Acesse o documento", shrinkWrap: true, physics: ScrollPhysics(),),
+                          title: Markdown(data: "Acesse o link", shrinkWrap: true, physics: ScrollPhysics(),),
                           trailing: Icon(Icons.arrow_forward_ios),
                           onTap: () {
                             print("ON TAP!!");
-                            _.handleHyperLink(_.externalUrl);
+                            _.handleHyperLink(_.externalUrl,linkTitle: _.articleTitle);
                           // Get.toNamed(Routes.WEBVIEW, arguments: {"url":_.externalURL, "title":_.articleTitle});
                           }
                         ),

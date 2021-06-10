@@ -16,7 +16,7 @@ class DetailsController extends GetxController {
   dynamic articleTitle;
   dynamic articleBody;
   dynamic externalUrl;
-  final _imgUrl = ''.obs;
+  final _imgUrl = RxString(null);
   dynamic relatedImgPath;
   List<int> relatedIds = [];
   List<Map<String,dynamic>> relatedArticlesInformation = [];

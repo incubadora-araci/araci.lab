@@ -20,6 +20,8 @@ class VideoController extends GetxController {
      youtubePlayerController = YoutubePlayerController(
       initialVideoId: YoutubePlayerController.convertUrlToId("${Get.arguments["url"]}"),
       params: YoutubePlayerParams(
+        interfaceLanguage: 'pt',
+        captionLanguage: 'pt',
         showFullscreenButton: true,
         color: 'green'
       ),

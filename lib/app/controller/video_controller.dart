@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import 'package:youtube_plyr_iframe/youtube_plyr_iframe.dart';
 
 class VideoController extends GetxController {
 
@@ -20,6 +20,8 @@ class VideoController extends GetxController {
      youtubePlayerController = YoutubePlayerController(
       initialVideoId: YoutubePlayerController.convertUrlToId("${Get.arguments["url"]}"),
       params: YoutubePlayerParams(
+        interfaceLanguage: 'pt',
+        captionLanguage: 'pt',
         showFullscreenButton: true,
         color: 'green'
       ),

@@ -48,20 +48,20 @@ class GlobalInformationRepository {
 class APICredentials {
   String authUrl;
   String authToken;
-  String authUserInfo;
-  String realmLink;
+  String authenticate;
   String client;
-  String secret;
+  String secretHomolog;
+  String secretProd;
 
   Future<void> loadApiCredentials(path) async {
     String jsonString = await rootBundle.loadString(path);
     dynamic data = json.decode(jsonString);
     this.authUrl = data["auth-server-url"];
     this.authToken = data["auth-server-token"];
-    this.authUserInfo = data["auth-server-user-info"];
-    this.realmLink = data["realm-link"];
+    this.authenticate = data["auth-server-authenticate"];
     this.client = data["client"];
-    this.secret = data["secret"];
+    this.secretHomolog = data["secret-homolog"];
+    this.secretProd = data["secret-prod"];
 
   }
 }

@@ -21,13 +21,13 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Página de Login'), centerTitle: true,),
+      appBar: AppBar(title: Text('Carregando Login...'), centerTitle: true, automaticallyImplyLeading: false,),
       body: GetBuilder<LoginController>(
         builder: (_){
          return  _.isBusy ?
           Center(child: CircularProgressIndicator()) :
           Container(
-                child: Center(child: Text("ENTRE COM IDUFF!"),),
+                child: Center(child: Text("OPS, algo deu errado. Reabra o aplicativo."),),
               );
         },
       )

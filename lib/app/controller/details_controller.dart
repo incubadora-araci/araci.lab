@@ -136,6 +136,9 @@ class DetailsController extends GetxController {
       case 'Entrar':
         Get.toNamed(Routes.LOGIN);
         break;
+      case 'Equipe':
+        Get.toNamed(Routes.TEAM);
+        break;
       case 'Rever Introdução':
         Get.offAllNamed(Routes.INTRO);
         break;

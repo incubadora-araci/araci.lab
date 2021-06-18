@@ -20,15 +20,15 @@ class DetailsPage extends StatelessWidget {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
             SliverAppBar(
-              leading: IconButton(
+              leading: (Get.find<DetailsController>().routingStack.length > 1) ? IconButton(
                 icon: Icon(Icons.arrow_back_ios, color: Colors.white,),
                 onPressed: ()=> Get.find<DetailsController>().popRoute(),
-              ),
+              ): null,
               actions: [
                 PopupMenuButton<String>(
                   onSelected: Get.find<DetailsController>().handlePopMenuClick,
                   itemBuilder: (BuildContext context) {
-                    return {'Sobre', 'Configurações', Get.find<DetailsController>().isLogged() ? 'Sair' : 'Entrar', 'Rever Introdução'}.map((String choice) {
+                    return {'Sobre','Equipe', 'Configurações', Get.find<DetailsController>().isLogged() ? 'Sair' : 'Entrar', 'Rever Introdução'}.map((String choice) {
                       return PopupMenuItem<String>(
                         value: choice,
                         child: Text(choice),

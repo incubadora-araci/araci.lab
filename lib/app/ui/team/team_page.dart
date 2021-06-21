@@ -9,7 +9,8 @@ class TeamPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Equipe"), centerTitle: true, automaticallyImplyLeading: true),
+      // extendBodyBehindAppBar: true,
+      appBar: AppBar(title: Text("Equipe Araci.lab"), centerTitle: true, automaticallyImplyLeading: true),
       body: GetBuilder<TeamController>(
           init: TeamController(),
           builder: (_){

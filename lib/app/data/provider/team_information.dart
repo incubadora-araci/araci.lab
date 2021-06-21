@@ -12,20 +12,20 @@ class TeamInformation{
       'role': 'Administradora',
       'imgPath': 'assets/images/team/TerezaProfilePic.jpg'
     },
-    {
-      'name': 'Cosme Faria Corrêa',
-      'role': 'Gerente de Projetos',
-      'imgPath': null
-    },
-    {
-      'name': 'Paulo Rodrigo Lima Figueiredo',
-      'role': 'Desenvolvedor',
-      'imgPath': null
-    },
-    {
-      'name': 'Ronald Maymone Sampaio',
-      'role': 'Desenvolvedor',
-      'imgPath': null
-    }
+    // {
+    //   'name': 'Cosme Faria Corrêa',
+    //   'role': 'Gerente de Projetos',
+    //   'imgPath': null
+    // },
+    // {
+    //   'name': 'Paulo Rodrigo Lima Figueiredo',
+    //   'role': 'Desenvolvedor',
+    //   'imgPath': null
+    // },
+    // {
+    //   'name': 'Ronald Maymone Sampaio',
+    //   'role': 'Desenvolvedor',
+    //   'imgPath': null
+    // }
   ];
 }

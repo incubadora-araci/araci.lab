@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:araci/app/ui/details/widgets/relatedcard_widget.dart';
 
 class DetailsPage extends StatelessWidget {
+  final DetailsController dController = Get.find<DetailsController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,9 +21,11 @@ class DetailsPage extends StatelessWidget {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
             SliverAppBar(
-              leading: IconButton(
-                icon: Icon(Icons.arrow_back_ios, color: Colors.white,),
-                onPressed: ()=> Get.find<DetailsController>().popRoute(),
+              leading: GetX<DetailsController>(
+                builder: (_) => _.displayLeading ? IconButton(
+                  icon: Icon(Icons.arrow_back_ios, color: Colors.white,),
+                  onPressed: ()=> Get.find<DetailsController>().popRoute(),
+                ): Container(width: 0.0, height: 0.0,),
               ),
               actions: [
                 PopupMenuButton<String>(
@@ -69,7 +72,6 @@ class DetailsPage extends StatelessWidget {
           body: WillPopScope(
             onWillPop: ()=>Get.find<DetailsController>().popRoute(),
             child: GetBuilder<DetailsController>(
-//            initState: Get.find<DetailsController>().getArticle(Get.arguments),
                 builder: (_) {
                   return  Get.find<DetailsController>().isLoading ?
                   Center(child: Column(
@@ -93,7 +95,6 @@ class DetailsPage extends StatelessWidget {
                           onTap: () {
                             print("ON TAP!!");
                             _.handleHyperLink(_.externalUrl,linkTitle: _.articleTitle);
-                          // Get.toNamed(Routes.WEBVIEW, arguments: {"url":_.externalURL, "title":_.articleTitle});
                           }
                         ),
                       if (Get.find<DetailsController>().relatedIds != null)

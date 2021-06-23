@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
 import 'dart:ui' as ui;
 
@@ -28,7 +29,7 @@ Widget profileWidget(Map<String, dynamic> teamMember){
                   SizedBox(height: _height/25.0,),
                   Text(teamMember['name'], style: new TextStyle(fontWeight: FontWeight.bold, fontSize: _width/15, color: Colors.white),),
                   new Padding(padding: new EdgeInsets.only(top: _height/30, left: _width/8, right: _width/8,bottom: _height/30),
-                    child:new Text(teamMember['role'],style: new TextStyle(fontWeight: FontWeight.normal, fontSize: _width/25,color: Colors.white),textAlign: TextAlign.center,)
+                    child:new MarkdownBody(data: teamMember['role'])
                   )
                 ],
               ),

@@ -4,19 +4,19 @@ class TeamInformation{
   static const List<Map<String, dynamic>> team = [
     {
       'name':'Elianne Ivo Barroso',
-      'role': 'Função',
-      'imgPath': null
+      'role': '#### Professora Associada do Departamento de Cinema e Vídeo.\n\n#### Coordenadora da Araci Incubadora de Projetos de Cinema e Audiovisual. PPGCINE/PPGCMC da UFRJ',
+      'imgPath': 'assets/images/team/ElianneProfilePic.jpg'
     },
     {
       'name': 'Tereza Cristina N. Machado',
-      'role': 'Administradora',
+      'role': '#### Administradora',
       'imgPath': 'assets/images/team/TerezaProfilePic.jpg'
     },
-    // {
-    //   'name': 'Cosme Faria Corrêa',
-    //   'role': 'Gerente de Projetos',
-    //   'imgPath': null
-    // },
+    {
+      'name': 'Alunos',
+      'role': '#### **Banco de talentos** : Camila Garritano e Maria Eduarda D\'Elia\n\n #### **Idealização do Aplicativo** : Darcy Tenório e Maria Laura Rodrigues ',
+      'imgPath': null
+    },
     // {
     //   'name': 'Paulo Rodrigo Lima Figueiredo',
     //   'role': 'Desenvolvedor',

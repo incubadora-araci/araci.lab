@@ -16,15 +16,21 @@ class DetailsController extends GetxController {
   dynamic articleTitle;
   dynamic articleBody;
   dynamic externalUrl;
-  final _imgUrl = RxString(null);
   dynamic relatedImgPath;
   List<int> relatedIds = [];
   List<Map<String,dynamic>> relatedArticlesInformation = [];
   Stack<int> routingStack = Stack();
   bool isLoading;
   ScrollController scrollController = ScrollController();
+
+  final _imgUrl = RxString(null);
   set imgUrl(value) => _imgUrl.value = value;
   get imgUrl => _imgUrl.value;
+
+  final _displayLeading = RxBool(false);
+  get displayLeading => _displayLeading.value;
+  set displayLeading(value) => _displayLeading.value = value;
+
 
   @override
   void onInit() async {
@@ -56,7 +62,7 @@ class DetailsController extends GetxController {
     relatedIds = parseRelatedIds(article["relatedIds"]);
     if (relatedIds.length>0)await getRelatedArticles(relatedIds);
     isLoading = false;
-    print("is LOADING => $isLoading");
+    // print("is LOADING => $isLoading");
     updateAndScrollToTop();
   }
 
@@ -66,6 +72,7 @@ class DetailsController extends GetxController {
     routingStack.push(id);
     print("TOP OF STACK AFTER PUSH = ${routingStack.top()}");
     await getArticle(routingStack.top());
+    displayLeading = true;
   }
   popRoute() async {
     print("TOP OF STACK BEFORE POP = ${routingStack.top()}");
@@ -73,11 +80,14 @@ class DetailsController extends GetxController {
       routingStack.pop();
       await getArticle(routingStack.top());
     }
+    if(routingStack.length==1){
+      displayLeading = false;
+    }
     print("TOP OF STACK AFTER POP = ${routingStack.top()}");
   }
 
   Future<void> handleHyperLink(String url, {String linkTitle}) async {
-    if(url.contains("youtube.com")){
+    if(url.contains("youtu")){
       if(repository.getUserData("useyt")){
         handleUniversalLink(url);
       }

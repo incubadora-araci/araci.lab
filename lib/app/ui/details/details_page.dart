@@ -12,7 +12,6 @@ import 'package:get/get.dart';
 import 'package:araci/app/ui/details/widgets/relatedcard_widget.dart';
 
 class DetailsPage extends StatelessWidget {
-  final DetailsController dController = Get.find<DetailsController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +30,7 @@ class DetailsPage extends StatelessWidget {
                 PopupMenuButton<String>(
                   onSelected: Get.find<DetailsController>().handlePopMenuClick,
                   itemBuilder: (BuildContext context) {
-                    return {'Sobre', 'Configurações', Get.find<DetailsController>().isLogged() ? 'Sair' : 'Entrar', 'Rever Introdução'}.map((String choice) {
+                    return {'Sobre','Equipe', 'Configurações', Get.find<DetailsController>().isLogged() ? 'Sair' : 'Entrar', 'Rever Introdução'}.map((String choice) {
                       return PopupMenuItem<String>(
                         value: choice,
                         child: Text(choice),

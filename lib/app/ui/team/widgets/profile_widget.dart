@@ -25,7 +25,9 @@ Widget profileWidget(Map<String, dynamic> teamMember){
               child: Column(
                 children: [
                   SizedBox(height: _height/12,),
-                  CircleAvatar(radius:_width<_height? _width/4:_height/4,backgroundImage: AssetImage(teamMember['imgPath']??'assets/images/regia_araci.png'),),
+                  teamMember['squared']?
+                  Container(child: Image.asset(teamMember['imgPath']),width: _width/2,height: _height/4) :
+                  CircleAvatar(foregroundImage: AssetImage(teamMember['imgPath']??'assets/images/regia_araci.png'),radius:_width<_height? _width/4:_height/4,),
                   SizedBox(height: _height/25.0,),
                   Text(teamMember['name'], style: new TextStyle(fontWeight: FontWeight.bold, fontSize: _width/15, color: Colors.white),),
                   new Padding(padding: new EdgeInsets.only(top: _height/30, left: _width/8, right: _width/8,bottom: _height/30),

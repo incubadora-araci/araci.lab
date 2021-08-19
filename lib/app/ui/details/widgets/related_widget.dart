@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 Widget relatedArticles(List<Map<String, dynamic>> relatedList) {
   return Container(
     child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(), // Property to solve scroll problems***
       shrinkWrap: true,
       itemCount: relatedList.length??0,
       itemBuilder: (BuildContext context, int index) {

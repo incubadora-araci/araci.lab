@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:araci/app/controller/details_controller.dart';
 import 'package:araci/app/data/model/model.dart';
-import 'package:araci/app/data/provider/api.dart';
+import 'package:araci/app/data/provider/article_api.dart';
 import 'package:araci/app/data/provider/databaseApi.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';

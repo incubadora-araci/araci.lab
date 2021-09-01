@@ -11,4 +11,6 @@ abstract class Routes{
   static const SETTINGS = '/settings';
   static const VIDEO = '/video';
   static const TEAM = '/team';
+  static const TALENT = '/talent';
+  static const PERSON = '/person';
 }

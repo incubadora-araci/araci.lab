@@ -72,7 +72,7 @@ class DetailsPage extends StatelessWidget {
             onWillPop: ()=>Get.find<DetailsController>().popRoute(),
             child: GetBuilder<DetailsController>(
                 builder: (_) {
-                  return  Get.find<DetailsController>().isLoading ?
+                  return  _.isLoading ?
                   Center(child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -99,6 +99,10 @@ class DetailsPage extends StatelessWidget {
                       if (Get.find<DetailsController>().relatedIds != null)
                         Container(
                           child: relatedArticles(_.relatedArticlesInformation),
+                      ),
+                      ListTile(
+                        title:Text("open talent page"),
+                        onTap: ()=>Get.toNamed(Routes.TALENT),
                       )
                     ],
                   );

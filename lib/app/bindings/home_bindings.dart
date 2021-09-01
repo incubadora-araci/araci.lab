@@ -1,5 +1,5 @@
 // import 'package:araci/app/controller/home_controller.dart';
-// import 'package:araci/app/data/provider/api.dart';
+// import 'package:araci/app/data/provider/article_api.dart';
 // import 'package:araci/app/data/repository/home_repository.dart';
 // import 'package:get/get.dart';
 // import 'package:get_storage/get_storage.dart';

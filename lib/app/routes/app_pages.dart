@@ -8,6 +8,8 @@ import 'package:araci/app/ui/intro/intro_page.dart';
 import 'package:araci/app/ui/login/login_page.dart';
 import 'package:araci/app/ui/settings/settings_page.dart';
 import 'package:araci/app/ui/splash/splash_page.dart';
+import 'package:araci/app/ui/talent/person_page.dart';
+import 'package:araci/app/ui/talent/talent_page.dart';
 import 'package:araci/app/ui/team/team_page.dart';
 import 'package:araci/app/ui/video/video_page.dart';
 import 'package:get/get.dart';
@@ -25,5 +27,7 @@ abstract class AppPages {
     GetPage(name: Routes.SETTINGS, page:()=> SettingsPage(),binding: SettingsBindings()),
     GetPage(name: Routes.VIDEO, page:()=> VideoPage()),
     GetPage(name: Routes.TEAM, page:()=> TeamPage()),
+    GetPage(name: Routes.TALENT, page:()=> TalentPage()),
+    GetPage(name: Routes.PERSON, page: () => PersonPage())
   ];
 }

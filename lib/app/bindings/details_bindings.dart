@@ -1,5 +1,5 @@
 import 'package:araci/app/controller/details_controller.dart';
-import 'package:araci/app/data/provider/api.dart';
+import 'package:araci/app/data/provider/article_api.dart';
 import 'package:araci/app/data/provider/databaseApi.dart';
 import 'package:araci/app/data/provider/global_information.dart';
 import 'package:araci/app/data/repository/article_repository.dart';

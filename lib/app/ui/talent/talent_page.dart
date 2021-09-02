@@ -7,9 +7,8 @@ class TalentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Talent Page'), centerTitle: true,),
-      body: Container(
-        child: GetBuilder<TalentController>(
+      appBar: AppBar(title: Text('Talentos da UFF'), centerTitle: true,),
+      body: GetBuilder<TalentController>(
             init: TalentController(),
             builder: (_) {
               return _.isLoading ?
@@ -20,12 +19,25 @@ class TalentPage extends StatelessWidget {
                   Text("Buscando talentos"),
                 ],
               ))
-              :ListView.builder(
-                itemCount: _.talentLength,
-                itemBuilder: (context,pos) => talentCard(_.talents.nodes[pos].node),
+              :Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Expanded(child: TextField(controller: _.searchTextController,keyboardType: TextInputType.text,)),
+                      IconButton(onPressed: _.fetchFilteredTalentData, icon: Icon(Icons.search_sharp))
+                    ],
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: _.talentLength,
+                      itemBuilder: (context,pos) => talentCard(_.talents.nodes[pos].node),
+                    ),
+                  ),
+                ],
               );
             }),
-      ),
     );
   }
 }

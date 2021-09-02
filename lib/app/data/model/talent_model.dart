@@ -5,7 +5,6 @@ class TalentModel {
 
   TalentModel fromJson(Map<String, dynamic> json) {
     if (json['nodes'] != null) {
-      print("nodes dif than null");
       nodes = [];
       for (var node in json['nodes']){
         // print("will add $node");
@@ -15,8 +14,6 @@ class TalentModel {
           print("ERROR ADDING: $e");
         }
       }
-      print("AFter for");
-      print("List of nodes = $nodes");
       // json['nodes'].forEach((v) {
       //   // print("will add $v");
       //   nodes.add(Nodes.fromJson(v));
@@ -47,7 +44,6 @@ class Nodes {
   Nodes({this.node});
 
   Nodes.fromJson(Map<String, dynamic> json) {
-    print("From json nodes@@@");
     node = json['node'] != null ? Node.fromJson(json['node']) : null;
   }
 
@@ -93,8 +89,6 @@ class Node {
         this.fotografia});
 
   Node.fromJson(Map<String, dynamic> json) {
-    print("from json node");
-    // print("json with one person -> $json");
     nome = json['nome'];
     bio = json['bio'];
     departamento = json['departamento'];

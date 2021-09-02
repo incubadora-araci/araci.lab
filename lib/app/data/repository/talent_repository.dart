@@ -10,8 +10,8 @@ class TalentRepository {
     return await talentApiClient.getAll();
   }
 
-  getFiltered(){
-
+  getFiltered({String name, String bio, String dept, String email, String bond, String expertise}) async{
+    return await talentApiClient.getFiltered(name: name,bio: bio,dept: dept,email: email,bond: bond,expertise: expertise);
   }
 
   // getId(id) {

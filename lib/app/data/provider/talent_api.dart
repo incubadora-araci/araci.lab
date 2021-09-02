@@ -51,7 +51,7 @@ class TalentApiClient {
 
   Future<TalentModel> getFiltered({String name, String bio, String dept, String email, String bond, String expertise}) async {
     try {
-      final response = await httpClient.get(baseUrl+nameUri);
+      final response = await httpClient.get(baseUrl+nameUri+name??""+bioUri+bio??""+departmentUri+dept??""+emailUri+email??""+bondUri+bond??""+expertiseUri+expertise??"");
       if (response.statusCode == 200) {
         Map<String, dynamic> jsonResponse = jsonDecode(response.body);
         return TalentModel().fromJson(jsonResponse);

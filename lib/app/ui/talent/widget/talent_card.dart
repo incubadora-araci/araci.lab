@@ -1,3 +1,4 @@
+import 'package:araci/app/controller/talent_controller.dart';
 import 'package:araci/app/data/model/talent_model.dart' as TalentModel;
 import 'package:araci/app/routes/app_pages.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -12,23 +13,32 @@ Widget talentCard(TalentModel.Node personInformation){
   return Column(
     children: [
       GestureDetector(
-        onTap: () => Get.toNamed(Routes.PERSON),
+        onTap: () => Get.find<TalentController>().navigateTo(Routes.PERSON,data: personInformation),
         child: Card(
-          color: Colors.red[200].withOpacity(0.3),
+          color: Colors.red[100].withOpacity(0.3),
           borderOnForeground: true,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(40.0))),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
           elevation: 20.0,
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               CircleAvatar(
                 foregroundImage: personInformation.fotografia != "" ? NetworkImage(personInformation.fotografia["src"]) : AssetImage('assets/images/regia_araci.png'),
                 radius:_width<_height? _width/8:_height/8,),
-              Column(
-                children: [
-                  Text(personInformation.nome),
-                  SizedBox(height: _height/25,),
-                  Text(personInformation.especialidades,overflow: TextOverflow.ellipsis,)
-                ],
+              SizedBox(width: 10,),
+              Expanded(
+                child: Container(
+                  // color: Colors.black,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(personInformation.nome),
+                      SizedBox(height: _height/25,),
+                      Text(personInformation.vinculo,overflow: TextOverflow.visible,)
+                    ],
+                  ),
+                ),
               )
             ],
           ),

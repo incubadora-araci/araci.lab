@@ -1,3 +1,4 @@
+import 'package:araci/app/controller/details_controller.dart';
 import 'package:araci/app/controller/person_controller.dart';
 import 'package:araci/app/ui/talent/widget/subtitle_widget.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,11 @@ class PersonPage extends StatelessWidget {
                       title: Text('${Get.arguments.departamento}'),
                     ),
                     Divider(height: 20.0,),
+                    subTitleWidget('Especialidades', context),
+                    ListTile(
+                      title: Text('${Get.arguments.especialidades}')
+                    ),
+                    Divider(height: 20.0,),
                     subTitleWidget('Área do Conhecimento', context),
                     ListTile(
                       title: Text('${Get.arguments.areaDoConhecimento}')
@@ -55,66 +61,43 @@ class PersonPage extends StatelessWidget {
                       leading: Icon(Icons.phone),
                       title: Text('${Get.arguments.telefone}'),
                     ),
-                    // new Container(
-                    //   height: 10.0,
-                    // ),
-                    // new ListTile(
-                    //   leading: new Icon(Icons.info),
-                    //   title: const Text('Rodando em'),
-                    //   subtitle: new Text(_.platformVersion),
-                    // ),
-                    // new Divider(
-                    //   height: 20.0,
-                    // ),
-                    // new ListTile(
-                    //   leading: new Icon(Icons.info),
-                    //   title: const Text('Número da Versão'),
-                    //   subtitle: new Text(_.projectVersion),
-                    // ),
-                    // new Divider(
-                    //   height: 20.0,
-                    // ),
-                    // new ListTile(
-                    //   leading: new Icon(Icons.info),
-                    //   title: const Text('Código da Versão'),
-                    //   subtitle: new Text(_.projectCode),
-                    // ),
-                    // Divider(
-                    //   height: 20.0,
-                    // ),
-                    // Container(
-                    //   padding: const EdgeInsets.only(left: 20),
-                    //   child: Align(
-                    //     alignment: AlignmentDirectional.centerStart,
-                    //     child: Text(
-                    //       'Suporte',
-                    //       style: Theme.of(context).textTheme.caption,
-                    //       textAlign: TextAlign.start,
-                    //     ),
-                    //   ),
-                    // ),
-                    // GestureDetector(
-                    //   child: ListTile(
-                    //     leading: Icon(Icons.mail, color: Colors.green[300]),
-                    //     title: Text("Envie seu feedback"),
-                    //   ),
-                    //   onTap: _.sendMail,
-                    // ),
-                    // Divider(
-                    //   height: 20.0,
-                    // ),
-                    // GestureDetector(
-                    //   child: ListTile(
-                    //     leading: Icon(Icons.help_center, color: Colors.green[300]),
-                    //     title: Text("Manual de uso do APP"),
-                    //   ),
-                    //   onTap: _.openHelpUrl,
-                    // ),
+                    (_.isURLEmpty(Get.arguments.site)) ? Container() :
+                    porfolio(context),
+                    (_.isURLEmpty(Get.arguments.linkLattes)) ? Container () :
+                    lattes(context)
                   ],
                 ),
               );
             }),
       ),
+    );
+  }
+
+  Widget porfolio(BuildContext context){
+    return Column(
+      children: [
+        Divider(height: 20.0,),
+        subTitleWidget("Portfólio", context),
+        ListTile(
+          leading: Icon(Icons.contact_page_outlined),
+          title: Text('Acesse aqui'),
+          onTap:()=> Get.find<DetailsController>().handleUniversalLink(Get.arguments.site),
+    )
+      ],
+    );
+  }
+
+  Widget lattes(BuildContext context){
+    return Column(
+      children: [
+        Divider(height: 20.0,),
+        subTitleWidget("Link Lattes", context),
+        ListTile(
+          leading: Icon(Icons.contact_page),
+          title: Text('Currículo Lattes'),
+          onTap:()=> Get.find<DetailsController>().handleUniversalLink(Get.arguments.linkLattes),
+        )
+      ],
     );
   }
 }

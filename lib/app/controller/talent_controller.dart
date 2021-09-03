@@ -46,7 +46,7 @@ class TalentController extends GetxController {
     talentRepository.getFiltered(name: searchTextController.text??"",bio: bio,dept: dept,email: email,bond: bond,expertise: expertise).then((value) {
       talents = value;
       talentLength = talents.nodes.length;
-      print("returned to controller = $value");
+      // print("returned to controller = $value");
       isLoading = false;
       update();
     });
@@ -55,4 +55,6 @@ class TalentController extends GetxController {
   void navigateTo(String page,{dynamic data}){
     Get.toNamed(page,arguments: data);
   }
+
+
 }

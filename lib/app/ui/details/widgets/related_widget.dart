@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
 
-///TODO Change from listview to SilverList
 Widget relatedArticles(List<Map<String, dynamic>> relatedList) {
   return Container(
     child: ListView.builder(

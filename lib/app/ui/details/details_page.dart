@@ -96,12 +96,16 @@ class DetailsPage extends StatelessWidget {
                             _.handleHyperLink(_.externalUrl,linkTitle: _.articleTitle);
                           }
                         ),
-                      if (Get.find<DetailsController>().relatedIds != null)
+                      if (_.relatedIds != null)
                         Container(
                           child: relatedArticles(_.relatedArticlesInformation),
                       ),
+                      //If is Banco de talentos create Talent Page on related
+                      if(_.articleId == 12)
                       ListTile(
-                        title:Text("open talent page"),
+                        leading: Image.asset("assets/images/regia_araci.png", fit: BoxFit.cover,),
+                        title:Text("Abrir Banco de Talentos"),
+                        trailing: Icon(Icons.arrow_forward_ios),
                         onTap: ()=>Get.toNamed(Routes.TALENT),
                       )
                     ],

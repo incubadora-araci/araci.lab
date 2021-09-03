@@ -42,35 +42,36 @@ Widget talentCard(TalentModel.Node personInformation){
               )
             ],
           ),
-          // child: Stack(
-          //   children: [
-          //     // Container(
-          //     //   width: _width,
-          //     //   height: 200,
-          //     //   color: Colors.lightGreen,
-          //     // ),
-          //     Center(
-          //       child: Column(
-          //         children: [
-          //           SizedBox(height: _height/12,),
-          //           personInformation['squared']?
-          //           Container(child: Image.asset(personInformation['imgPath']),width: _width/2,height: _height/4) :
-          //           CircleAvatar(foregroundImage: AssetImage(personInformation['imgPath']??'assets/images/regia_araci.png'),radius:_width<_height? _width/4:_height/4,),
-          //           SizedBox(height: _height/25.0,),
-          //           Text(personInformation['name'], style: new TextStyle(fontWeight: FontWeight.bold, fontSize: _width/15, color: Colors.white),),
-          //           new Padding(padding: new EdgeInsets.only(top: _height/30, left: _width/8, right: _width/8,bottom: _height/30),
-          //               child:new MarkdownBody(data: personInformation['role'])
-          //           )
-          //         ],
-          //       ),
-          //     )
-          //   ],
-          // ),
         ),
       ),
       SizedBox(height: _height/20,)
     ],
   );
+}
+
+Widget notFoundWidget(){
+  return  Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          child: Icon(Icons.warning_sharp),
+        ),
+        Text("Ops..."),
+        Text("Nenhum talento encontrado."),
+      ],
+    );
 
 
+}
+
+Widget loadingWidget(){
+  return  Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+        CircularProgressIndicator(),
+        Text("Buscando talentos"),
+        ],
+      )
+    );
 }

@@ -114,18 +114,31 @@ class DetailsController extends GetxController {
   }
 
   Future handleUniversalLink(String url) async {
-    if (await canLaunch(url)) {
-      final bool nativeAppLaunchSucceeded = await launch(
-        url,
-        forceSafariVC: false,
-        universalLinksOnly: true,
-      );
-      if (!nativeAppLaunchSucceeded) {
-        await launch(
+    // if(url.length == 0){
+    //   Get.defaultDialog(
+    //     title: "Link vazio!",
+    //     middleText: "",
+    //     textConfirm: "OK",
+    //     onConfirm: Get.back
+    //   );
+    //   return;
+    // }
+    try {
+      if (await canLaunch(url)) {
+        final bool nativeAppLaunchSucceeded = await launch(
           url,
-          forceSafariVC: true,
+          forceSafariVC: false,
+          universalLinksOnly: true,
         );
+        if (!nativeAppLaunchSucceeded) {
+          await launch(
+            url,
+            forceSafariVC: true,
+          );
+        }
       }
+    } catch (e) {
+      print("ERROR launching link: $e");
     }
   }
   

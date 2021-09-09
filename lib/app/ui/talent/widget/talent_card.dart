@@ -23,7 +23,7 @@ Widget talentCard(TalentModel.Node personInformation){
             mainAxisSize: MainAxisSize.min,
             children: [
               CircleAvatar(
-                foregroundImage: personInformation.fotografia != "" ? NetworkImage(personInformation.fotografia["src"]) : AssetImage('assets/images/regia_araci.png'),
+                foregroundImage: personInformation.fotografia != "" ? NetworkImage(personInformation.fotografia) : AssetImage('assets/images/regia_araci.png'),
                 radius:_width<_height? _width/8:_height/8,),
               SizedBox(width: 10,),
               Expanded(

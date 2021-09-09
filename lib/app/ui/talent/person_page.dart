@@ -20,7 +20,7 @@ class PersonPage extends StatelessWidget {
                       padding: const EdgeInsets.all(20.0),
                       child: Get.arguments.fotografia != "" ?
                       Image.network(
-                          '${Get.arguments.fotografia["src"]}',
+                          '${Get.arguments.fotografia}',
                           height: Get.height * 0.2
                       ):
                       Image.asset('assets/images/regia_araci.png',height: Get.height * .2,)

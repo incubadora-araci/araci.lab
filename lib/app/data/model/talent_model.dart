@@ -71,6 +71,8 @@ class Node {
   String vinculo;
   String areaDoConhecimento;
   dynamic fotografia;
+  String cv;
+  String graduacao;
 
   Node(
       {this.nome,
@@ -86,7 +88,10 @@ class Node {
         this.telefone,
         this.vinculo,
         this.areaDoConhecimento,
-        this.fotografia});
+        this.fotografia,
+        this.cv,
+        this.graduacao
+      });
 
   Node.fromJson(Map<String, dynamic> json) {
     nome = json['nome'];
@@ -103,6 +108,8 @@ class Node {
     vinculo = json['vinculo'];
     areaDoConhecimento = json['area_do_conhecimento'];
     fotografia = json['fotografia'];
+    cv = json['cv'];
+    graduacao = json['graduacao'];
   }
 
   Map<String, dynamic> toJson() {
@@ -121,6 +128,8 @@ class Node {
     data['vinculo'] = this.vinculo;
     data['area_do_conhecimento'] = this.areaDoConhecimento;
     data['fotografia'] = this.fotografia;
+    data['cv'] = this.cv;
+    data['graduacao'] = this.graduacao;
     return data;
   }
 }

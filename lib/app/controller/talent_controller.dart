@@ -33,7 +33,7 @@ class TalentController extends GetxController {
       talents = value;
       talentLength = talents.nodes.length;
       // print("returned to controller = $value");
-      isLoading = false;
+      if(talents!=null)isLoading = false;
       update();
     });
 

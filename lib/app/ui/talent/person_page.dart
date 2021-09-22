@@ -52,6 +52,11 @@ class PersonPage extends StatelessWidget {
                       title: Text('${Get.arguments.areaDoConhecimento}')
                     ),
                     Divider(height: 20.0,),
+                    subTitleWidget('Graduação', context),
+                    ListTile(
+                      title: Text('${Get.arguments.graduacao}'),
+                    ),
+                    Divider(height: 20.0,),
                     subTitleWidget('Contato', context),
                     ListTile(
                       leading: Icon(Icons.mail_outline),

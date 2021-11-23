@@ -44,6 +44,7 @@ dependencies:
   flutter_svg: ^0.19.3
   flutter_email_sender: ^4.0.0
   youtube_plyr_iframe: ^2.0.6
+  backdrop: ^0.6.2
 
 dev_dependencies:
   flutter_test:

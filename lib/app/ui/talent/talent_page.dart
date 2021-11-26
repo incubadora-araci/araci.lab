@@ -16,17 +16,20 @@ class TalentPage extends GetView<TalentController> {
         appBar: BackdropAppBar(
           title: Text('Talentos da UFF'), centerTitle: true,
           actions: <Widget>[
-            GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: (){
-                print("on tap filter button");
-                controller.changeFetchState();
-                controller.fetchFilteredTalentData();
-              },
-              child: BackdropToggleButton(
-                icon: AnimatedIcons.search_ellipsis,
-              ),
+            BackdropToggleButton(
+              icon: AnimatedIcons.search_ellipsis
             )
+            // GestureDetector(
+            //   behavior: HitTestBehavior.opaque,
+            //   onTap: (){
+            //     print("on tap filter button");
+            //     controller.changeFetchState();
+            //     controller.fetchFilteredTalentData();
+            //   },
+            //   child: BackdropToggleButton(
+            //     icon: AnimatedIcons.search_ellipsis,
+            //   ),
+            // )
           ],
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios), onPressed: () => Get.back(),),
@@ -124,7 +127,11 @@ class TalentPage extends GetView<TalentController> {
                 //   ]
                 // )
               ],
-            )
+            ),
+        onBackLayerConcealed: (){
+          print("back layer concealed");
+          controller.fetchFilteredTalentData();
+        },
       );
     });
   }

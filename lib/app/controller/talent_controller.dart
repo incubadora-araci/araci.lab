@@ -45,7 +45,9 @@ class TalentController extends GetxController {
 
   fetchFilteredTalentData({String name, String bio, String dept, String email, String bond, String expertise}){
     if (shouldFetchData) {
-      print("On pressed filtered!");
+      if(nameTextController.text!=null)debugPrint("crazy as hell");
+      debugPrint("Nome: ${nameTextController.text}");
+      debugPrint("Especialidade: ${skillTextController.text}");
       isLoading = true;
       update();
       talentRepository.getFiltered(name: nameTextController.text??"",bio: skillTextController.text??"",dept: dept,email: email,bond: bond,expertise: expertise).then((value) {

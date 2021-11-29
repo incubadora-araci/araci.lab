@@ -11,8 +11,12 @@ class TalentController extends GetxController {
   TalentModel talents;
   int talentLength = 0;
   TextEditingController searchTextController = TextEditingController();
-
+  TextEditingController nameTextController = TextEditingController();
+  TextEditingController skillTextController = TextEditingController();
   bool isLoading = true;
+  bool shouldFetchData = true;
+  Map<int, String> skillMap = {0:"Roteiro", 1:"Edição de vídeo", 2:"Edição de som", 3:"Produção"};
+
   // get isLoading => _isLoading.value;
   // set isLoading(value) => _isLoading.value = value;
 
@@ -40,10 +44,12 @@ class TalentController extends GetxController {
   }
 
   fetchFilteredTalentData({String name, String bio, String dept, String email, String bond, String expertise}){
-    print("On pressed filtered!");
+    if(nameTextController.text.isNotEmpty)debugPrint("crazy as hell");
+    debugPrint("Nome: ${nameTextController.text}");
+    debugPrint("Especialidade: ${skillTextController.text}");
     isLoading = true;
     update();
-    talentRepository.getFiltered(name: searchTextController.text??"",bio: bio,dept: dept,email: email,bond: bond,expertise: expertise).then((value) {
+    talentRepository.getFiltered(name: nameTextController.text??"",bio: bio,dept: dept,email: email,bond: bond,expertise: skillTextController.text??"").then((value) {
       talents = value;
       talentLength = talents.nodes.length;
       // print("returned to controller = $value");
@@ -55,6 +61,15 @@ class TalentController extends GetxController {
   void navigateTo(String page,{dynamic data}){
     Get.toNamed(page,arguments: data);
   }
+
+  // void changeFetchState() {
+  //   shouldFetchData = !shouldFetchData;
+  // }
+
+  // onTapFilter() {
+  //   fetchFilteredTalentData();
+  //   update();
+  // }
 
 
 }

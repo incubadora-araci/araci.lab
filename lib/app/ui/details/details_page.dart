@@ -92,7 +92,7 @@ class DetailsPage extends StatelessWidget {
                           title: Markdown(data: "Acesse o link", shrinkWrap: true, physics: ScrollPhysics(),),
                           trailing: Icon(Icons.arrow_forward_ios),
                           onTap: () {
-                            print("ON TAP!!");
+                            //print("ON TAP!!");
                             _.handleHyperLink(_.externalUrl,linkTitle: _.articleTitle);
                           }
                         ),

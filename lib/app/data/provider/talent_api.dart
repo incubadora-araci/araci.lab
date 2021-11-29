@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:araci/app/data/model/talent_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 
@@ -36,15 +37,17 @@ class TalentApiClient {
   }
 
   Future<TalentModel> getFiltered({String name, String bio, String dept, String email, String bond, String expertise}) async {
+    String getUrl = "$baseUrl$nameUri${name??''}$bioUri${bio??''}$departmentUri${dept??''}$emailUri${email??''}$bondUri${bond??''}$expertiseUri${expertise??''}";
+    debugPrint("url = $getUrl");
     try {
-      final response = await httpClient.get(Uri.parse(baseUrl+nameUri+name??""+bioUri+bio??""+departmentUri+dept??""+emailUri+email??""+bondUri+bond??""+expertiseUri+expertise??""));
+      final response = await httpClient.get(Uri.parse(getUrl));
       if (response.statusCode == 200) {
         Map<String, dynamic> jsonResponse = jsonDecode(response.body);
         return TalentModel().fromJson(jsonResponse);
       } else{
-        print("Error in getFiltered call");
-        print("error code = ${response.statusCode}");
-        print("error body = ${response.body}");
+        debugPrint("Error in getFiltered call");
+        debugPrint("error code = ${response.statusCode}");
+        debugPrint("error body = ${response.body}");
       }
     } catch (_) {
       print("Error in getFiltered method: $_");

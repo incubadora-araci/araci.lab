@@ -7,4 +7,9 @@ class PersonController extends GetxController {
     print("len da url = ${url.length > 0}");
     return !(url.length > 0);
   }
+
+  List<String> processLinks(String rawLinks){
+    if (rawLinks.isNotEmpty)return rawLinks.split(',');
+    return [rawLinks];
+  }
 }

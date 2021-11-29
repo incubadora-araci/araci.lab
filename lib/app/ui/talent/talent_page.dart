@@ -19,17 +19,6 @@ class TalentPage extends GetView<TalentController> {
             BackdropToggleButton(
               icon: AnimatedIcons.search_ellipsis
             )
-            // GestureDetector(
-            //   behavior: HitTestBehavior.opaque,
-            //   onTap: (){
-            //     print("on tap filter button");
-            //     controller.changeFetchState();
-            //     controller.fetchFilteredTalentData();
-            //   },
-            //   child: BackdropToggleButton(
-            //     icon: AnimatedIcons.search_ellipsis,
-            //   ),
-            // )
           ],
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios), onPressed: () => Get.back(),),
@@ -39,25 +28,6 @@ class TalentPage extends GetView<TalentController> {
             : Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Row(
-                  //   mainAxisSize: MainAxisSize.min,
-                  //   children: [
-                  //     Expanded(child:
-                  //       Padding(
-                  //         padding: const EdgeInsets.all(8.0),
-                  //         child: TextFormField(
-                  //           cursorColor: Get.theme.accentColor,
-                  //           controller: _.searchTextController,
-                  //           decoration: InputDecoration(
-                  //               labelText: 'Pesquise por nome',
-                  //               border: OutlineInputBorder()
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     IconButton(onPressed: _.fetchFilteredTalentData, icon: Icon(Icons.search_sharp))
-                  //   ],
-                  // ),
                   controller.talentLength == 0 ? notFoundWidget() :
                   Expanded(
                     child: ListView.builder(
@@ -68,10 +38,6 @@ class TalentPage extends GetView<TalentController> {
                   ),
                 ],
               ),
-        // backLayer: BackdropNavigationBackLayer(
-        //     items: List.generate(controller.skillMap.keys.length, (index) => ListTile(title: Text(controller.skillMap[index]))),
-        //     onTap: (index)=> controller.onTapFilter(index),
-        // ),
         backLayer: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -91,8 +57,6 @@ class TalentPage extends GetView<TalentController> {
                       ),
                     ),
                     ),
-                    // IconButton(onPressed: controller.fetchFilteredTalentData,
-                    //     icon: Icon(Icons.search_sharp))
                   ],
                 ),
                 Row(
@@ -105,7 +69,7 @@ class TalentPage extends GetView<TalentController> {
                         cursorColor: Get.theme.accentColor,
                         controller: controller.skillTextController,
                         decoration: InputDecoration(
-                            labelText: 'Especialidade',
+                            labelText: 'Uma Habilidade',
                             border: OutlineInputBorder()
                         ),
                       ),
@@ -115,21 +79,10 @@ class TalentPage extends GetView<TalentController> {
                     //     icon: Icon(Icons.search_sharp))
                   ],
                 ),
-                // BackdropNavigationBackLayer(
-                //   items: [
-                //     ElevatedButton(
-                //       child: const Text("Pesquisar"),
-                //       onPressed: (){
-                //         print("on tap search button");
-                //         controller.onTapFilter();
-                //       },
-                //     )
-                //   ]
-                // )
               ],
             ),
         onBackLayerConcealed: (){
-          print("back layer concealed");
+          //print("back layer concealed");
           controller.fetchFilteredTalentData();
         },
       );

@@ -46,6 +46,10 @@ class PersonPage extends StatelessWidget {
                     ListTile(
                       title: Text('${Get.arguments.especialidades}')
                     ),
+                    if(!_.isURLEmpty(Get.arguments.linkArtigosTrabalhosProjetos))worksAndProjects(context, Get.arguments.linkArtigosTrabalhosProjetos),
+                    // ListTile(
+                    //     title: Text('${Get.arguments.linkArtigosTrabalhosProjetos}')
+                    // ),
                     Divider(height: 20.0,),
                     subTitleWidget('Área do Conhecimento', context),
                     ListTile(
@@ -102,6 +106,27 @@ class PersonPage extends StatelessWidget {
           title: Text('Currículo Lattes'),
           onTap:()=> Get.find<DetailsController>().handleUniversalLink(Get.arguments.linkLattes),
         )
+      ],
+    );
+  }
+
+  Widget worksAndProjects(BuildContext context, String rawLinks){
+    List<String> filteredLinks = Get.find<PersonController>().processLinks(rawLinks);
+    return Column(
+      children: [
+        Divider(height: 20.0,),
+        subTitleWidget('Links de trabalhos e projetos', context),
+        ListView.builder(
+          shrinkWrap: true,
+            itemCount: filteredLinks.length,
+            itemBuilder: (context,index){
+              return ListTile(
+                leading: Icon(Icons.arrow_forward_ios_outlined),
+                title: Text("Trabalho ${index+1}"),
+                onTap: ()=> Get.find<DetailsController>().handleUniversalLink(filteredLinks[index]),
+              );
+            }
+        ),
       ],
     );
   }

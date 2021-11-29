@@ -58,7 +58,7 @@ class DetailsController extends GetxController {
     articleBody = article["body"]??"";
     externalUrl = nullIfEmpty(article["externalUrl"]);
     imgUrl = nullIfEmpty(article["imgUrl"]);
-    print("Loaded imgURL => $imgUrl");
+    //print("Loaded imgURL => $imgUrl");
     relatedIds = parseRelatedIds(article["relatedIds"]);
     if (relatedIds.length>0)await getRelatedArticles(relatedIds);
     isLoading = false;
@@ -68,14 +68,14 @@ class DetailsController extends GetxController {
 
   //TODO: After popping or pushing a route restart the page position to top.
   pushRoute(int id) async{
-    print("TOP OF STACK BEFORE PUSH = ${routingStack.top()}");
+    //print("TOP OF STACK BEFORE PUSH = ${routingStack.top()}");
     routingStack.push(id);
-    print("TOP OF STACK AFTER PUSH = ${routingStack.top()}");
+    //print("TOP OF STACK AFTER PUSH = ${routingStack.top()}");
     await getArticle(routingStack.top());
     displayLeading = true;
   }
   popRoute() async {
-    print("TOP OF STACK BEFORE POP = ${routingStack.top()}");
+    //print("TOP OF STACK BEFORE POP = ${routingStack.top()}");
     if (routingStack.length>1){
       routingStack.pop();
       await getArticle(routingStack.top());
@@ -83,7 +83,7 @@ class DetailsController extends GetxController {
     if(routingStack.length==1){
       displayLeading = false;
     }
-    print("TOP OF STACK AFTER POP = ${routingStack.top()}");
+    //print("TOP OF STACK AFTER POP = ${routingStack.top()}");
   }
 
   Future<void> handleHyperLink(String url, {String linkTitle}) async {

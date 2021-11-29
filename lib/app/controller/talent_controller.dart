@@ -44,34 +44,32 @@ class TalentController extends GetxController {
   }
 
   fetchFilteredTalentData({String name, String bio, String dept, String email, String bond, String expertise}){
-    if (shouldFetchData) {
-      if(nameTextController.text!=null)debugPrint("crazy as hell");
-      debugPrint("Nome: ${nameTextController.text}");
-      debugPrint("Especialidade: ${skillTextController.text}");
-      isLoading = true;
+    if(nameTextController.text.isNotEmpty)debugPrint("crazy as hell");
+    debugPrint("Nome: ${nameTextController.text}");
+    debugPrint("Especialidade: ${skillTextController.text}");
+    isLoading = true;
+    update();
+    talentRepository.getFiltered(name: nameTextController.text??"",bio: bio,dept: dept,email: email,bond: bond,expertise: skillTextController.text??"").then((value) {
+      talents = value;
+      talentLength = talents.nodes.length;
+      // print("returned to controller = $value");
+      isLoading = false;
       update();
-      talentRepository.getFiltered(name: nameTextController.text??"",bio: skillTextController.text??"",dept: dept,email: email,bond: bond,expertise: expertise).then((value) {
-        talents = value;
-        talentLength = talents.nodes.length;
-        // print("returned to controller = $value");
-        isLoading = false;
-        update();
-      });
-    }
+    });
   }
 
   void navigateTo(String page,{dynamic data}){
     Get.toNamed(page,arguments: data);
   }
 
-  void changeFetchState() {
-    shouldFetchData = !shouldFetchData;
-  }
+  // void changeFetchState() {
+  //   shouldFetchData = !shouldFetchData;
+  // }
 
-  onTapFilter() {
-    fetchFilteredTalentData();
-    update();
-  }
+  // onTapFilter() {
+  //   fetchFilteredTalentData();
+  //   update();
+  // }
 
 
 }

@@ -45,9 +45,9 @@ class TalentApiClient {
         Map<String, dynamic> jsonResponse = jsonDecode(response.body);
         return TalentModel().fromJson(jsonResponse);
       } else{
-        print("Error in getFiltered call");
-        print("error code = ${response.statusCode}");
-        print("error body = ${response.body}");
+        debugPrint("Error in getFiltered call");
+        debugPrint("error code = ${response.statusCode}");
+        debugPrint("error body = ${response.body}");
       }
     } catch (_) {
       print("Error in getFiltered method: $_");

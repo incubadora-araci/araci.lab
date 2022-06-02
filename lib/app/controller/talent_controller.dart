@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 class TalentController extends GetxController {
 
   TalentRepository talentRepository = TalentRepository(talentApiClient: TalentApiClient(httpClient: http.Client()));
-  TalentModel talents;
+  TalentModel? talents;
   int talentLength = 0;
   TextEditingController searchTextController = TextEditingController();
   TextEditingController nameTextController = TextEditingController();
@@ -35,7 +35,7 @@ class TalentController extends GetxController {
     // print("Return from api = ${talent}");
     talentRepository.getAll().then((value) {
       talents = value;
-      talentLength = talents.nodes.length;
+      talentLength = talents!.nodes!.length;
       // print("returned to controller = $value");
       if(talents!=null)isLoading = false;
       update();
@@ -43,7 +43,7 @@ class TalentController extends GetxController {
 
   }
 
-  fetchFilteredTalentData({String name, String bio, String dept, String email, String bond, String expertise}){
+  fetchFilteredTalentData({String? name, String? bio, String? dept, String? email, String? bond, String? expertise}){
     if(nameTextController.text.isNotEmpty)debugPrint("crazy as hell");
     debugPrint("Nome: ${nameTextController.text}");
     debugPrint("Especialidade: ${skillTextController.text}");
@@ -51,7 +51,7 @@ class TalentController extends GetxController {
     update();
     talentRepository.getFiltered(name: nameTextController.text??"",bio: bio,dept: dept,email: email,bond: bond,expertise: skillTextController.text??"").then((value) {
       talents = value;
-      talentLength = talents.nodes.length;
+      talentLength = talents!.nodes!.length;
       // print("returned to controller = $value");
       isLoading = false;
       update();

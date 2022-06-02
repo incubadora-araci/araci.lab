@@ -13,7 +13,7 @@ Widget markdownBodyWidget(String body){
     styleSheet: MarkdownStyleSheet(),
     data: body,
     onTapLink: (body,link,title) {
-      Get.find<DetailsController>().handleHyperLink(link,linkTitle: body);
+      Get.find<DetailsController>().handleHyperLink(link!,linkTitle: body);
       // Get.find<DetailsController>().navigateNamed(Routes.WEBVIEW, {"url":link, "title":body});
     }
     // onTapLink: (body,link,title){

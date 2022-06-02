@@ -15,7 +15,7 @@ Widget talentCard(TalentModel.Node personInformation){
       GestureDetector(
         onTap: () => Get.find<TalentController>().navigateTo(Routes.PERSON,data: personInformation),
         child: Card(
-          color: Colors.red[100].withOpacity(0.3),
+          color: Colors.red[100]!.withOpacity(0.3),
           borderOnForeground: true,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
           elevation: 20.0,
@@ -23,7 +23,7 @@ Widget talentCard(TalentModel.Node personInformation){
             mainAxisSize: MainAxisSize.min,
             children: [
               CircleAvatar(
-                foregroundImage: personInformation.fotografia != "" ? NetworkImage(personInformation.fotografia) : AssetImage('assets/images/regia_araci.png'),
+                foregroundImage: (personInformation.fotografia != "" ? NetworkImage(personInformation.fotografia) : AssetImage('assets/images/regia_araci.png')) as ImageProvider<Object>?,
                 radius:_width<_height? _width/8:_height/8,),
               SizedBox(width: 10,),
               Expanded(
@@ -33,9 +33,9 @@ Widget talentCard(TalentModel.Node personInformation){
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(personInformation.nome),
+                      Text(personInformation.nome!),
                       SizedBox(height: _height/25,),
-                      Text(personInformation.vinculo,overflow: TextOverflow.visible,)
+                      Text(personInformation.vinculo!,overflow: TextOverflow.visible,)
                     ],
                   ),
                 ),

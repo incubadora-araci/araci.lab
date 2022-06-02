@@ -33,7 +33,7 @@ class TalentPage extends GetView<TalentController> {
                     child: ListView.builder(
                       itemCount: controller.talentLength,
                       itemBuilder: (context, pos) =>
-                          talentCard(controller.talents.nodes[pos].node),
+                          talentCard(controller.talents!.nodes![pos].node!),
                     ),
                   ),
                 ],

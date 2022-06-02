@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 class GlobalInformationRepository {
   final GlobalInformationApi globalInformationApi;
 
-  GlobalInformationRepository({@required this.globalInformationApi}) : assert(globalInformationApi != null);
+  GlobalInformationRepository({required this.globalInformationApi}) : assert(globalInformationApi != null);
 
   bool isLogged(){
     return globalInformationApi.getGlobalInformation("isLogged");
@@ -46,12 +46,12 @@ class GlobalInformationRepository {
 }
 
 class APICredentials {
-  String authUrl;
-  String authToken;
-  String authenticate;
-  String client;
-  String secretHomolog;
-  String secretProd;
+  String? authUrl;
+  String? authToken;
+  String? authenticate;
+  String? client;
+  String? secretHomolog;
+  String? secretProd;
 
   Future<void> loadApiCredentials(path) async {
     String jsonString = await rootBundle.loadString(path);

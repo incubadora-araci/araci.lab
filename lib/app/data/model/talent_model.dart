@@ -1,15 +1,15 @@
 class TalentModel {
-  List<Nodes> nodes;
+  List<Nodes>? nodes;
 
   TalentModel({this.nodes});
 
-  TalentModel fromJson(Map<String, dynamic> json) {
+  TalentModel? fromJson(Map<String, dynamic> json) {
     if (json['nodes'] != null) {
       nodes = [];
       for (var node in json['nodes']){
         // print("will add $node");
         try {
-          nodes.add(Nodes.fromJson(node));
+          nodes!.add(Nodes.fromJson(node));
         } catch (e) {
           print("ERROR ADDING: $e");
         }
@@ -27,19 +27,19 @@ class TalentModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.nodes != null) {
-      data['nodes'] = this.nodes.map((v) => v.toJson()).toList();
+      data['nodes'] = this.nodes!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 
   @override
   toString(){
-    return "${nodes[0].node.nome}";
+    return "${nodes![0].node!.nome}";
   }
 }
 
 class Nodes {
-  Node node;
+  Node? node;
 
   Nodes({this.node});
 
@@ -50,29 +50,29 @@ class Nodes {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.node != null) {
-      data['node'] = this.node.toJson();
+      data['node'] = this.node!.toJson();
     }
     return data;
   }
 }
 
 class Node {
-  String nome;
-  String bio;
-  String departamento;
-  String email;
-  String especialidades;
-  String linkArtigosTrabalhosProjetos;
-  String linkNoticias;
-  String linkLattes;
-  String projetosFuturos;
-  String site;
-  String telefone;
-  String vinculo;
-  String areaDoConhecimento;
+  String? nome;
+  String? bio;
+  String? departamento;
+  String? email;
+  String? especialidades;
+  String? linkArtigosTrabalhosProjetos;
+  String? linkNoticias;
+  String? linkLattes;
+  String? projetosFuturos;
+  String? site;
+  String? telefone;
+  String? vinculo;
+  String? areaDoConhecimento;
   dynamic fotografia;
-  String cv;
-  String graduacao;
+  String? cv;
+  String? graduacao;
 
   Node(
       {this.nome,

@@ -9,14 +9,14 @@ import 'package:meta/meta.dart';
 class LoginController extends GetxController {
 
   final GlobalInformationRepository repository;
-  LoginController({@required this.repository}) : assert(repository != null);
+  LoginController({required this.repository}) : assert(repository != null);
 
   final _isBusy = false.obs;
   set isBusy(value) => _isBusy.value = value;
   get isBusy => _isBusy.value;
 
-  String url;
-  APICredentials apiCredentials;
+  String? url;
+  late APICredentials apiCredentials;
 
   @override
   void onInit() async {
@@ -33,9 +33,9 @@ class LoginController extends GetxController {
     FlutterAppAuth _appAuth =  Get.find<FlutterAppAuth>();
     try{
       // use the discovery endpoint to find the configuration
-      final AuthorizationTokenResponse result = await _appAuth.authorizeAndExchangeCode(
+      final AuthorizationTokenResponse? result = await _appAuth.authorizeAndExchangeCode(
         AuthorizationTokenRequest(
-            apiCredentials.client,
+            apiCredentials.client!,
             "br.uff.araci:/oauthredirect",
             scopes: ['openid'],
             clientSecret:apiCredentials.secretProd,

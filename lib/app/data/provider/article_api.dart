@@ -13,7 +13,7 @@ class MyApiClient {
   final http.Client httpClient;
 
   MyApiClient(
-      {@required this.httpClient}
+      {required this.httpClient}
   );
 
   // final Map<String, String> _defaultHeaders = {
@@ -24,7 +24,7 @@ class MyApiClient {
     final DatabaseApi dbApi = Get.find<DatabaseApi>();
     try {
       print("FETCHING DATA");
-      final response = await httpClient.get(baseUrl);
+      final response = await httpClient.get(Uri.parse(baseUrl));
       if (response.statusCode == 200) {
         await dbApi.deleteAllRows(ArticleModel().TABLE_NAME);
         var jsonResponse = jsonDecode(response.body);

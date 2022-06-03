@@ -86,7 +86,7 @@ class DetailsPage extends StatelessWidget {
                       Container(child: Markdown(data: _.articleId == 1? "# Acesse o Conteúdo" : "# Relacionados",
                         shrinkWrap: true,
                         physics: ScrollPhysics(),), height: 70,),
-                      if (_.externalUrl != null)
+                      if (!_.isEmptyWithNullCheck(_.externalUrl))
                         ListTile(
                           leading: relatedCard(_.isEmptyWithNullCheck(_.imgUrl) ? "assets/images/regia_araci.png" : _.imgUrl),
                           title: Markdown(data: "Acesse o link", shrinkWrap: true, physics: ScrollPhysics(),),
@@ -96,7 +96,7 @@ class DetailsPage extends StatelessWidget {
                             _.handleHyperLink(_.externalUrl,linkTitle: _.articleTitle);
                           }
                         ),
-                      if (_.relatedIds != null)
+                      if (_.relatedIds.length > 0)
                         Container(
                           child: relatedArticles(_.relatedArticlesInformation),
                       ),

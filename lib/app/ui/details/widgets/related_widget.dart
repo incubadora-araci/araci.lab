@@ -10,13 +10,13 @@ Widget relatedArticles(List<Map<String, dynamic>> relatedList) {
     child: ListView.builder(
         physics: const NeverScrollableScrollPhysics(), // Property to solve scroll problems***
       shrinkWrap: true,
-      itemCount: relatedList.length??0,
+      itemCount: relatedList.length,
       itemBuilder: (BuildContext context, int index) {
         return ListTile(
             leading: relatedCard(Get.find<DetailsController>().isEmptyWithNullCheck(relatedList[index]["imgUrl"]) ? "assets/images/regia_araci.png" : relatedList[index]["imgUrl"]),
             title: Markdown(data: relatedList[index]["title"]??"", shrinkWrap: true, physics: ScrollPhysics(),),
             trailing: Icon(Icons.arrow_forward_ios),
-            onTap: () {print("ON TAP!!");Get.find<DetailsController>().pushRoute(relatedList[index]["id"]);}
+            onTap: () {Get.find<DetailsController>().pushRoute(relatedList[index]["id"]);}
         );
       }
     ),

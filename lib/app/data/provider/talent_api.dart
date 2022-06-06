@@ -18,9 +18,9 @@ const expertiseUri = '&especialidades=';
 class TalentApiClient {
   final http.Client httpClient;
 
-  TalentApiClient({@required this.httpClient});
+  TalentApiClient({required this.httpClient});
 
-  Future<TalentModel> getAll() async {
+  Future<TalentModel?> getAll() async {
     try {
       final response = await httpClient.get(Uri.parse(baseUrl));
       if (response.statusCode == 200) {
@@ -36,7 +36,7 @@ class TalentApiClient {
     }
   }
 
-  Future<TalentModel> getFiltered({String name, String bio, String dept, String email, String bond, String expertise}) async {
+  Future<TalentModel?> getFiltered({String? name, String? bio, String? dept, String? email, String? bond, String? expertise}) async {
     String getUrl = "$baseUrl$nameUri${name??''}$bioUri${bio??''}$departmentUri${dept??''}$emailUri${email??''}$bondUri${bond??''}$expertiseUri${expertise??''}";
     debugPrint("url = $getUrl");
     try {

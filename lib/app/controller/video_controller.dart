@@ -7,8 +7,8 @@ class VideoController extends GetxController {
   // final _obj = ''.obs;
   // set obj(value) => _obj.value = value;
   // get obj => _obj.value;
-  String link;
-  YoutubePlayerController youtubePlayerController;
+  String? link;
+  YoutubePlayerController? youtubePlayerController;
 
   @override
   void onInit() {
@@ -18,7 +18,7 @@ class VideoController extends GetxController {
 
   void startController() {
      youtubePlayerController = YoutubePlayerController(
-      initialVideoId: YoutubePlayerController.convertUrlToId("${Get.arguments["url"]}"),
+      initialVideoId: YoutubePlayerController.convertUrlToId("${Get.arguments["url"]}")!,
       params: YoutubePlayerParams(
         interfaceLanguage: 'pt',
         captionLanguage: 'pt',

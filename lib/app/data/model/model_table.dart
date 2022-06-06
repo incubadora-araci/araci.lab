@@ -5,9 +5,9 @@
 /// @version 20201123
 
 abstract class Model{
-  String TABLE_NAME;
+  String? TABLE_NAME;
 
-  Map<String, dynamic> toMap(){}
-  Model fromMap(Map<String, dynamic> map){}
+  Map<String, dynamic> toMap(){throw 'empty map';}
+  Model? fromMap(Map<String, dynamic> map){}
   List<Model> makeModels(List<Map> maps);
 }

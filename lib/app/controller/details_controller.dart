@@ -1,17 +1,17 @@
+import 'dart:async';
 import 'package:araci/app/data/repository/article_repository.dart';
 import 'package:araci/app/data/repository/globalInformation_repository.dart';
 import 'package:araci/app/routes/app_pages.dart';
 import 'package:flutter/material.dart' hide Stack;
 import 'package:get/get.dart';
-import 'package:meta/meta.dart';
 import 'package:stack/stack.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailsController extends GetxController {
 
   final ArticleRepository articleRepository;
-  final GlobalInformationRepository repository;
-  DetailsController({@required this.articleRepository, this.repository}) : assert(articleRepository != null);
+  final GlobalInformationRepository? repository;
+  DetailsController({required this.articleRepository, this.repository}) : assert(articleRepository != null);
   dynamic articleId;
   dynamic articleTitle;
   dynamic articleBody;
@@ -19,11 +19,11 @@ class DetailsController extends GetxController {
   dynamic relatedImgPath;
   List<int> relatedIds = [];
   List<Map<String,dynamic>> relatedArticlesInformation = [];
-  Stack<int> routingStack = Stack();
-  bool isLoading;
+  Stack<int?> routingStack = Stack();
+  late bool isLoading;
   ScrollController scrollController = ScrollController();
 
-  final _imgUrl = RxString(null);
+  final _imgUrl = ''.obs;
   set imgUrl(value) => _imgUrl.value = value;
   get imgUrl => _imgUrl.value;
 
@@ -44,20 +44,20 @@ class DetailsController extends GetxController {
 
   getRelatedArticles(List<int> ids) async {
     for (int id in ids){
-      Map<String,dynamic> article = await articleRepository.findArticleById(id);
-      relatedArticlesInformation.add({"id": id,"title":article["title"],"imgUrl":nullIfEmpty(article["imgUrl"])});
+      Map<String,dynamic> article = await (articleRepository.findArticleById(id));
+      relatedArticlesInformation.add({"id": id,"title":article["title"],"imgUrl":article["imgUrl"]});
     }
 
   }
-  getArticle(int id) async {
+  getArticle(int? id) async {
     relatedArticlesInformation = [];
-    Map<String,dynamic> article = await articleRepository.findArticleById(id);
-    // print("ARTICLE INSIDE getArticle => $article");
+    Map<String,dynamic> article = await (articleRepository.findArticleById(id));
+    debugPrint("ARTICLE INSIDE getArticle => ${article['imgUrl']}");
     articleId = article["id"]??"";
     articleTitle = article["title"]??"";
     articleBody = article["body"]??"";
-    externalUrl = nullIfEmpty(article["externalUrl"]);
-    imgUrl = nullIfEmpty(article["imgUrl"]);
+    externalUrl = article["externalUrl"];
+    imgUrl = article["imgUrl"];
     //print("Loaded imgURL => $imgUrl");
     relatedIds = parseRelatedIds(article["relatedIds"]);
     if (relatedIds.length>0)await getRelatedArticles(relatedIds);
@@ -66,8 +66,7 @@ class DetailsController extends GetxController {
     updateAndScrollToTop();
   }
 
-  //TODO: After popping or pushing a route restart the page position to top.
-  pushRoute(int id) async{
+  pushRoute(int? id) async{
     //print("TOP OF STACK BEFORE PUSH = ${routingStack.top()}");
     routingStack.push(id);
     //print("TOP OF STACK AFTER PUSH = ${routingStack.top()}");
@@ -86,9 +85,9 @@ class DetailsController extends GetxController {
     //print("TOP OF STACK AFTER POP = ${routingStack.top()}");
   }
 
-  Future<void> handleHyperLink(String url, {String linkTitle}) async {
+  Future<void> handleHyperLink(String url, {String? linkTitle}) async {
     if(url.contains("youtu")){
-      if(repository.getUserData("useyt")){
+      if(repository!.getUserData("useyt")){
         handleUniversalLink(url);
       }
       else{
@@ -114,29 +113,21 @@ class DetailsController extends GetxController {
   }
 
   Future handleUniversalLink(String url) async {
-    // if(url.length == 0){
-    //   Get.defaultDialog(
-    //     title: "Link vazio!",
-    //     middleText: "",
-    //     textConfirm: "OK",
-    //     onConfirm: Get.back
-    //   );
-    //   return;
-    // }
     try {
-      if (await canLaunch(url)) {
-        final bool nativeAppLaunchSucceeded = await launch(
-          url,
-          forceSafariVC: false,
-          universalLinksOnly: true,
-        );
-        if (!nativeAppLaunchSucceeded) {
-          await launch(
-            url,
-            forceSafariVC: true,
-          );
-        }
-      }
+      await launchUrl(
+          Uri.parse(url),
+          mode: await canLaunchUrl(Uri.parse(url)) ? LaunchMode.externalApplication : LaunchMode.platformDefault
+      );
+      // if (await canLaunchUrl(Uri.parse(url))) {
+      //   await launchUrl(
+      //     Uri.parse(url),
+      //     mode: LaunchMode.externalApplication,
+      //   );
+      // } else {
+      //   await launchUrl(
+      //     Uri.parse(url),
+      //   );
+      // }
     } catch (e) {
       print("ERROR launching link: $e");
     }
@@ -146,7 +137,7 @@ class DetailsController extends GetxController {
   handlePopMenuClick(String value) async {
     switch (value) {
       case 'Sair':
-        await repository.eraseUserInformation();
+        await repository!.eraseUserInformation();
         //TODO: Delete database.
         Get.offAllNamed(Routes.SPLASH);
         break;
@@ -185,15 +176,24 @@ class DetailsController extends GetxController {
     }
   }
 
-  nullIfEmpty(String input){
-    if(input.length==0){
-      return null;
+  // nullIfEmpty(String input){
+  //   if(input.length==0){
+  //     return null;
+  //   }
+  //   return input;
+  // }
+
+  bool isEmptyWithNullCheck(String? input){
+    if(input!=null){
+    debugPrint("input = $input, and is empty?: ${input.isEmpty}");
+      return input.length==0;
     }
-    return input;
+    debugPrint("The input is null");
+    return true;
   }
 
   bool isLogged(){
-    return repository.isLogged();
+    return repository!.isLogged();
   }
 
   void updateAndScrollToTop() {

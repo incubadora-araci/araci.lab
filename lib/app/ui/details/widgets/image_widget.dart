@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Widget imageCard(String uri,{BoxFit fit, double width, double height, AlignmentGeometry  alignment}) {
+Widget imageCard(String uri,{BoxFit? fit, double? width, double? height, AlignmentGeometry?  alignment}) {
 
   return Container(
       width: width??Get.width,

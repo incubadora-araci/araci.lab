@@ -8,7 +8,7 @@ import 'app/ui/theme/app_theme.dart';
 
 void main() async {
   await GetStorage.init();
-  HttpOverrides.global = new MyHttpOverrides();
+  // HttpOverrides.global = new MyHttpOverrides();
   runApp(
       GetMaterialApp(
         debugShowCheckedModeBanner: false,
@@ -23,11 +23,11 @@ void main() async {
   );
 }
 
-class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback =
-      (X509Certificate cert, String host, int port) => true;
-  }
-}
+// class MyHttpOverrides extends HttpOverrides {
+//   @override
+//   HttpClient createHttpClient(SecurityContext context) {
+//     return super.createHttpClient(context)
+//       ..badCertificateCallback =
+//       (X509Certificate cert, String host, int port) => true;
+//   }
+// }

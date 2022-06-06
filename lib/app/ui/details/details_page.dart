@@ -57,7 +57,7 @@ class DetailsPage extends StatelessWidget {
                   ],
                 ),
                 // background: GetX<DetailsController>(builder: (_) => Image.network(_.imgUrl),),
-                background: GetX<DetailsController>(builder: (_) => _.imgUrl!=null ? CachedNetworkImage(
+                background: GetX<DetailsController>(builder: (_) => !_.isEmptyWithNullCheck(_.imgUrl) ? CachedNetworkImage(
                   fit: BoxFit.cover,
                   imageUrl: _.imgUrl,
                   progressIndicatorBuilder: (context, url, downloadProgress) =>
@@ -86,9 +86,9 @@ class DetailsPage extends StatelessWidget {
                       Container(child: Markdown(data: _.articleId == 1? "# Acesse o Conteúdo" : "# Relacionados",
                         shrinkWrap: true,
                         physics: ScrollPhysics(),), height: 70,),
-                      if (_.externalUrl != null)
+                      if (!_.isEmptyWithNullCheck(_.externalUrl))
                         ListTile(
-                          leading: relatedCard(_.imgUrl??"assets/images/regia_araci.png"),
+                          leading: relatedCard(_.isEmptyWithNullCheck(_.imgUrl) ? "assets/images/regia_araci.png" : _.imgUrl),
                           title: Markdown(data: "Acesse o link", shrinkWrap: true, physics: ScrollPhysics(),),
                           trailing: Icon(Icons.arrow_forward_ios),
                           onTap: () {
@@ -96,7 +96,7 @@ class DetailsPage extends StatelessWidget {
                             _.handleHyperLink(_.externalUrl,linkTitle: _.articleTitle);
                           }
                         ),
-                      if (_.relatedIds != null)
+                      if (_.relatedIds.length > 0)
                         Container(
                           child: relatedArticles(_.relatedArticlesInformation),
                       ),

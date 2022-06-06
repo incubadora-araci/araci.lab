@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
  class SplashPage extends StatelessWidget {
    /// if you need you can pass the tag for
    /// Get.find<AwesomeController>(tag:"myTag");
-   SplashPage({Key key}):super(key:key);
+   SplashPage({Key? key}):super(key:key);
 
    @override
   Widget build(BuildContext context) {

@@ -2,17 +2,17 @@ import 'model_table.dart';
 
 class ArticleModel extends Model {
 
-  int id;
-  String title;
-  String body;
-  String externalUrl;
-  String imgUrl;
-  String relatedIds;
+  int? id;
+  String? title;
+  String? body;
+  String? externalUrl;
+  String? imgUrl;
+  String? relatedIds;
 
   ArticleModel({ this.id, this.title, this.body, this.externalUrl, this.imgUrl, this.relatedIds });
 
   @override
-  String TABLE_NAME = "Article";
+  String? TABLE_NAME = "Article";
 
   @override
   ArticleModel.fromJson(Map<String, dynamic> json){
@@ -32,14 +32,13 @@ class ArticleModel extends Model {
     'externalUrl':externalUrl,
     'imgUrl': imgUrl,
     'relatedIds':relatedIds
-
   };
 
   @override
   List<Model> makeModels(List<Map> maps) {
     List<ArticleModel> aData = [];
     maps.forEach((element) {
-      aData.add(ArticleModel().fromMap(element));
+      aData.add(ArticleModel().fromMap(element as Map<String, dynamic>) as ArticleModel);
     });
     return aData;
   }

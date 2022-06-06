@@ -6,8 +6,6 @@ import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:get_version/get_version.dart';
 import 'package:flutter/services.dart';
 import 'package:araci/app/data/database/const.dart' as db;
 import 'package:url_launcher/url_launcher.dart';
@@ -19,9 +17,9 @@ class AboutController extends GetxController {
   String projectCode = '';
   String projectDbversion = '';
   bool isLoading = true;
-  String localPath;
+  String? localPath;
   final ArticleRepository articleRepository = ArticleRepository(databaseApi: DatabaseApi());
-  File appInfoFIle;
+  late File appInfoFIle;
 
 
   AboutController();
@@ -36,7 +34,7 @@ class AboutController extends GetxController {
     String platformVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await GetVersion.platformVersion;
+      platformVersion = '-';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -44,7 +42,7 @@ class AboutController extends GetxController {
     String projectVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      projectVersion = await GetVersion.projectVersion;
+      projectVersion = '-';
     } on PlatformException {
       projectVersion = 'Failed to get project version.';
     }
@@ -52,7 +50,7 @@ class AboutController extends GetxController {
     String projectCode;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      projectCode = await GetVersion.projectCode;
+      projectCode = '-';
     } on PlatformException {
       projectCode = 'Failed to get build number.';
     }
@@ -104,8 +102,9 @@ class AboutController extends GetxController {
   }
 
   Future<String> get _getLocalPath async {
-    final directory = await getTemporaryDirectory();
-    return directory.path;
+    //final directory = await getTemporaryDirectory();
+    return 'null';
+    //return directory.path;
   }
 
   Future<bool> sendMail() async {

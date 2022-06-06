@@ -9,7 +9,7 @@ import 'package:introduction_screen/introduction_screen.dart';
 
 class IntroController extends GetxController {
 
-  List<PageViewModel> listPagesViewModel = List();
+  List<PageViewModel> listPagesViewModel = [];
   final GlobalInformationRepository repository = GlobalInformationRepository(globalInformationApi: GlobalInformationApi());
 
   @override

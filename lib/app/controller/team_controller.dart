@@ -17,7 +17,7 @@ class TeamController extends GetxController {
   }
 
   List<Map<String, dynamic>> getAllMembers(){
-    return _teamRepository.getAll();
+    return _teamRepository.getAll() as List<Map<String, dynamic>>;
   }
 
 }

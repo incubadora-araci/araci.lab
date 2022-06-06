@@ -9,8 +9,8 @@ import 'package:sqflite/sqlite_api.dart';
 import 'package:path/path.dart';
 
 class DatabaseApi {
-  String path;
-  static Database database;
+  late String path;
+  static late Database database;
   List<Map<String ,dynamic>> articleMap = [];
   // [{"id": 2,"title":"**Documentário e história**","body":"Coube ao historiador francês [Marc Ferro](https://revistas.ufpr.br/historia/article/view/2713) de incluir definitivamente o filme como um documento passível de ser uma fonte para o estudo da história. Para ele, “o filme deve ser associado ao mundo que o produz. A hipótese? Que o filme, imagem ou não da realidade, documento ou ficção, intriga autêntica ou pura invenção, é História; o postulado? Que o que não aconteceu (e por que não, também o que aconteceu), as crenças, as intenções, o imaginário do homem, são tão História quanto a História”. Com esta possibilidade, abriu-se a perspectiva não apenas de obras que davam pistas sobre o passado da humanidade, mas também obras reflexivas que revisitam momentos históricos através de imagens de arquivo, depoimentos e outros recursos audiovisuais.","videoURL":null, "imgPath":null,"imgURL":null, "externalURL":null,"related":[4]},
   //   {"id": 1,"title":"**Silvio Tendler**","body":"Silvio Tendler (Rio de Janeiro, 1950) Seus filmes mais conhecidos são [Os anos JK - Uma trajetória política](https://www.youtube.com/watch?v=Qe6RGrCE2fc) (1980) e  [Jango](https://www.youtube.com/watch?v=52lBqoB-OcQ) (1984). Ambos foram produzidos durante a abertura política no Brasil. Considerados na fronteira entre **documentário**, **história** e política, os dois títulos traçaram o retrato de dois presidentes eleitos pelo voto popular e buscaram rememorar o cenário democrático do Brasil pré-ditadura militar. Tendler tem mais de 80 trabalhos audiovisuais entre longas e curtas-metragens, séries, programas para a TV e a internet, e vídeos-instalações. Além do tom político, outras marcas da obra do diretor são o registro de **depoimentos** e o uso de material de arquivo. Seu mais recente trabalho é Nas asas da Pam Am (2020) um filme-ensaio que conta a história do próprio autor narrado na primeira pessoa.","videoURL":null, "imgPath":"","imgURL":null,"externalURL":null,"related":[2,3]},
@@ -34,7 +34,7 @@ class DatabaseApi {
         onUpgrade: (Database db, int oldVersion, int newVersion) {
           // When upgrading the db, run upgrade code
           for (oldVersion++; oldVersion <= newVersion; oldVersion++) {
-            TABLES_MODELS_UPDATES["$oldVersion"].forEach((query) {
+            TABLES_MODELS_UPDATES["$oldVersion"]!.forEach((query) {
               db.execute(query);
             });
           }
@@ -44,8 +44,8 @@ class DatabaseApi {
     return this;
   }
 
-  FutureOr<Map<String, dynamic>> findArticleById(int id) async {
-    articleMap = await getAllMapFormat(ArticleModel().TABLE_NAME);
+  FutureOr<Map<String, dynamic>?> findArticleById(int id) async {
+    articleMap = await getAllMapFormat(ArticleModel().TABLE_NAME!);
     for (Map<String, dynamic> map in articleMap) {
       if(map["id"] == id) {
         // print("Titulo dentro do databaseApi::::: ${map["title"]}");
@@ -56,17 +56,17 @@ class DatabaseApi {
   }
 
   FutureOr<List<Map<String, dynamic>>> getAllArticles() async {
-    return await getAllMapFormat(ArticleModel().TABLE_NAME);
+    return await getAllMapFormat(ArticleModel().TABLE_NAME!);
   }
 
   Future<int> insert(Model model) async {
     // print("I'm Gonna try to insert on db!");
-    return database.insert(model.TABLE_NAME, model.toMap());
+    return database.insert(model.TABLE_NAME!, model.toMap());
   }
 
   /// Update a Model;
-  Future<int> update(Model model,{int id}) async {
-    return database.update(model.TABLE_NAME, model.toMap(),where: "id=?", whereArgs: [id]);
+  Future<int> update(Model model,{int? id}) async {
+    return database.update(model.TABLE_NAME!, model.toMap(),where: "id=?", whereArgs: [id]);
   }
 
   void close() async {
@@ -81,13 +81,13 @@ class DatabaseApi {
   /// Usage:
   /// List<Model> models = database.getAll('tableName'); -> [modelx, modely, modeln, ...];
   Future<List<Model>> getAll(String fromTable, List<Model> Function(List<Map> map) makeModels,
-      {String where, List<dynamic> whereArgs}) async{
+      {String? where, List<dynamic>? whereArgs}) async{
     List<Map> maps = await database.query(fromTable,
         columns: ["*"],
         where: where,
         whereArgs: whereArgs
     );
-    List<Model> models = List();
+    List<Model> models = [];
     models = makeModels(maps);
     return models;
   }
@@ -95,8 +95,8 @@ class DatabaseApi {
   /// SELECT model FROM * WHERE filterByColumn = fromValue
   /// Usage:
   /// SomeModel model = database.getFiltered(SomeModel(), 'registration', '12345678901'); -> SomeModel;
-  Future<Model> getFiltered(Model model, String filterByColumn, dynamic fromValue) async{
-    List<Model> models = await getAll(model.TABLE_NAME, model.makeModels);
+  Future<Model?> getFiltered(Model model, String filterByColumn, dynamic fromValue) async{
+    List<Model> models = await getAll(model.TABLE_NAME!, model.makeModels);
     for(Model mdl in models){
       if(mdl.toMap()[filterByColumn] == fromValue) return mdl;
     }
@@ -109,7 +109,7 @@ class DatabaseApi {
   /// @param: [fromValues] is the value of the [fromColumns] key to search, examples [43, '123456789'] etc<br>
   /// Usage:
   /// Model someModel = database.getModel('tableName', ['table_id'], [42]); -> model;
-  Future<Model> getModel(Model model, String fromTable, List<String> fromColumns, List<dynamic> fromValues) async{
+  Future<Model?> getModel(Model model, String fromTable, List<String> fromColumns, List<dynamic> fromValues) async{
     database.query(fromTable,
         columns: ["*"],
         where: _assembleColumnString(fromColumns),
@@ -126,11 +126,11 @@ class DatabaseApi {
     return await database.query(tableName);
   }
 
-  Future<Map<String, dynamic>> getArticleById(int id) async{
-    return await database.query(ArticleModel().TABLE_NAME,columns: ["*"], where: "id=?", whereArgs: [id]).then((maps) => maps.first);
+  Future<Map<String, dynamic>> getArticleById(int? id) async{
+    return await database.query(ArticleModel().TABLE_NAME!,columns: ["*"], where: "id=?", whereArgs: [id]).then((maps) => maps.first);
   }
 
-  Future deleteAllRows(String fromTable) async{
+  Future deleteAllRows(String? fromTable) async{
     return await database.rawQuery("DELETE FROM $fromTable;");
   }
 
@@ -143,7 +143,7 @@ class DatabaseApi {
   //   return dbDump;
   // }
 
-  String _assembleColumnString(List<String> columns){
+  String? _assembleColumnString(List<String> columns){
     if(columns == null) return null;
     List<String> where = [];
     columns.forEach((key) => where.add('$key = ?'));

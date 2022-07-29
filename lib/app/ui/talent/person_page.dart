@@ -14,7 +14,7 @@ class PersonPage extends StatelessWidget {
             init: PersonController(),
             builder: (_) {
               return SingleChildScrollView(
-                child: new ListBody(
+                child: ListBody(
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.all(20.0),
@@ -55,11 +55,8 @@ class PersonPage extends StatelessWidget {
                     ListTile(
                       title: Text('${Get.arguments.areaDoConhecimento}')
                     ),
-                    Divider(height: 20.0,),
-                    subTitleWidget('Graduação', context),
-                    ListTile(
-                      title: Text('${Get.arguments.graduacao}'),
-                    ),
+                    if(Get.arguments.graduacao!="") gradPos(Get.arguments.graduacao, context, 'Graduação'),
+                    if(Get.arguments.posgraduacao!="")gradPos(Get.arguments.posgraduacao, context, 'Pós-Graduação'),
                     Divider(height: 20.0,),
                     subTitleWidget('Contato', context),
                     ListTile(
@@ -128,6 +125,18 @@ class PersonPage extends StatelessWidget {
             }
         ),
       ],
+    );
+  }
+
+  Widget gradPos(String course, BuildContext context, String subtitle){
+    return Column(
+      children: [
+        Divider(height: 20.0,),
+        subTitleWidget(subtitle, context),
+        ListTile(
+          title: Text(course),
+        )
+      ]
     );
   }
 }

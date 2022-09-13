@@ -50,16 +50,19 @@ Widget talentCard(TalentModel.Node personInformation){
 }
 
 Widget notFoundWidget(){
-  return  Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          child: Icon(Icons.warning_sharp),
-        ),
-        Text("Ops..."),
-        Text("Nenhum talento encontrado."),
-      ],
-    );
+  return  Align(
+    alignment: Alignment.center,
+    child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            child: Icon(Icons.warning_sharp),
+          ),
+          Text("Ops..."),
+          Text("Nenhum talento encontrado."),
+        ],
+      ),
+  );
 
 
 }

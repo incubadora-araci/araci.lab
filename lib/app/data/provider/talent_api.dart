@@ -5,12 +5,13 @@ import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 
 const baseUrl = 'https://talentos.uff.br/?q=cinema';
-const nameUri = '&nome=';
-const bioUri = '&bio=';
-const departmentUri = '&departamento=';
-const emailUri = '&email=';
-const bondUri = '&vinculo=';
-const expertiseUri = '&especialidades=';
+const skillUri = '/especialidades/';
+// const nameUri = '&nome=';
+// const bioUri = '&bio=';
+// const departmentUri = '&departamento=';
+// const emailUri = '&email=';
+// const bondUri = '&vinculo=';
+// const expertiseUri = '&especialidades=';
 // const cinema1 = '&graduacao=108646';
 // const cinema2 = '&graduacao=1169811';
 // const baseCinemaUrl = baseUrl+cinema1;
@@ -36,8 +37,8 @@ class TalentApiClient {
     }
   }
 
-  Future<TalentModel?> getFiltered({String? name, String? bio, String? dept, String? email, String? bond, String? expertise}) async {
-    String getUrl = "$baseUrl$nameUri${name??''}$bioUri${bio??''}$departmentUri${dept??''}$emailUri${email??''}$bondUri${bond??''}$expertiseUri${expertise??''}";
+  Future<TalentModel?> getFiltered(int skillId) async {
+    String getUrl = "$baseUrl$skillUri$skillId";
     debugPrint("url = $getUrl");
     try {
       final response = await httpClient.get(Uri.parse(getUrl));

@@ -43,7 +43,9 @@ dependencies:
   flutter_svg: ^1.1.5
   flutter_email_sender: ^5.1.0
   youtube_plyr_iframe: ^2.0.7
-  easy_search_bar: ^2.3.1
+  easy_search_bar:
+    git:
+      url: https://github.com/vctrgbrl/flutter_easy_search_bar.git
 
 dev_dependencies:
   flutter_test:
@@ -65,7 +67,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/team/
-    - assets/uffapi.json
+#    - assets/uffapi.json
 
   fonts:
     - family: Raleway

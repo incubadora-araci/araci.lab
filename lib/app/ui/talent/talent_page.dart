@@ -17,7 +17,7 @@ class TalentPage extends GetView<TalentController> {
           searchHintText: 'Digite e selecione uma especilidade',
           isFloating: true,
           searchBackgroundColor: Colors.white,
-          searchBackIconTheme: IconThemeData(color: Colors.lightGreen),
+          openOverlayOnSearch: true,
           searchCursorColor: Colors.lightGreen,
           searchTextStyle: TextStyle(color: Colors.black),
           elevation: 8.0,

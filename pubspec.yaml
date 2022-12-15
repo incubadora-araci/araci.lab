@@ -65,7 +65,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/team/
-#    - assets/uffapi.json
+    - assets/uffapi.json
 
   fonts:
     - family: Raleway

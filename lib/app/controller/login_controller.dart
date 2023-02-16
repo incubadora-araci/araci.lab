@@ -41,7 +41,8 @@ class LoginController extends GetxController {
             clientSecret:apiCredentials.secretProd,
             additionalParameters: {"grant_type": "authorization_code"},
             serviceConfiguration: AuthorizationServiceConfiguration(
-              "${apiCredentials.authUrl}", "${apiCredentials.authToken}"),
+              authorizationEndpoint: 
+              "${apiCredentials.authUrl}", tokenEndpoint: "${apiCredentials.authToken}"),
             )
       );
 

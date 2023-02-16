@@ -30,7 +30,7 @@ class MyApiClient {
         var jsonResponse = jsonDecode(response.body);
         for (var jresp in jsonResponse){
           ArticleModel articleModel = ArticleModel();
-          articleModel.id = int.parse(jresp["id"]);
+          articleModel.id = jresp["id"];
           articleModel.title = jresp["title"]??"";
           articleModel.body = jresp["body"]??"";
           articleModel.externalUrl = jresp["externalUrl"]??"";

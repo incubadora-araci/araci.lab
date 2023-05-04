@@ -8,7 +8,10 @@ import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'package:araci/app/data/database/const.dart' as db;
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 
 class AboutController extends GetxController {
 
@@ -21,6 +24,8 @@ class AboutController extends GetxController {
   final ArticleRepository articleRepository = ArticleRepository(databaseApi: DatabaseApi());
   late File appInfoFIle;
 
+  final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+
 
   AboutController();
 
@@ -31,18 +36,25 @@ class AboutController extends GetxController {
   }
 
   void initPlatformState() async {
-    String platformVersion;
+    String platformVersion = "Failed to get platform version.";
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = '-';
-    } on PlatformException {
+      if (Platform.isAndroid) {
+        AndroidDeviceInfo androidDeviceInfo = await deviceInfoPlugin.androidInfo;
+        platformVersion = androidDeviceInfo.model;
+      } else if (Platform.isIOS) {
+        IosDeviceInfo iosDeviceInfo = await deviceInfoPlugin.iosInfo;
+        platformVersion = iosDeviceInfo.model!;
+      }
+    } catch (e) {
       platformVersion = 'Failed to get platform version.';
     }
 
     String projectVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      projectVersion = '-';
+      projectVersion = packageInfo.version;
     } on PlatformException {
       projectVersion = 'Failed to get project version.';
     }
@@ -50,7 +62,7 @@ class AboutController extends GetxController {
     String projectCode;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      projectCode = '-';
+      projectCode = packageInfo.buildNumber;
     } on PlatformException {
       projectCode = 'Failed to get build number.';
     }
@@ -75,9 +87,9 @@ class AboutController extends GetxController {
   // Help Function Button
 
   openHelpUrl() async {
-    const url = 'https://citsmart-uff.centralit.com.br/citsmart/pages/knowledgeBasePortal/knowledgeBasePortal.load#/knowledge/2088';
-    if (await canLaunch(url)) {
-      await launch(url);
+    var url = Uri.parse('https://citsmart-uff.centralit.com.br/citsmart/pages/knowledgeBasePortal/knowledgeBasePortal.load#/knowledge/2088');
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
     } else {
       throw 'Não foi possível abrir $url';
     }
@@ -102,9 +114,9 @@ class AboutController extends GetxController {
   }
 
   Future<String> get _getLocalPath async {
-    //final directory = await getTemporaryDirectory();
-    return 'null';
-    //return directory.path;
+    final directory = await getTemporaryDirectory();
+    print(directory.path);
+    return directory.path;
   }
 
   Future<bool> sendMail() async {

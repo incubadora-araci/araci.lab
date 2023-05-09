@@ -27,6 +27,10 @@ class ArticleRepository {
     await articleWebApi!.fetchData();
   }
 
+  restoreBackup() async {
+    await articleWebApi!.restoreBackup();
+  }
+
   Future<List<List<Map<String,dynamic>>>> dump() async {
     List<List<Map<String, dynamic>>> dbDump = [];
     dbDump.add(await databaseApi.getAllMapFormat(ArticleModel().TABLE_NAME!));

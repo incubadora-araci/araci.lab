@@ -30,7 +30,7 @@ class DetailsPage extends StatelessWidget {
                 PopupMenuButton<String>(
                   onSelected: Get.find<DetailsController>().handlePopMenuClick,
                   itemBuilder: (BuildContext context) {
-                    return {'Sobre','Equipe', 'Configurações', Get.find<DetailsController>().isLogged() ? 'Sair' : 'Entrar', 'Rever Introdução'}.map((String choice) {
+                    return {'Sobre','Equipe', 'Configurações', Get.find<DetailsController>().isLogged() ? 'Sair' : 'Entrar', 'Backup', 'Rever Introdução'}.map((String choice) {
                       return PopupMenuItem<String>(
                         value: choice,
                         child: Text(choice),

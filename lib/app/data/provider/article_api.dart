@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 import 'package:get_storage/get_storage.dart';
 
-const baseUrl = 'https://script.google.com/macros/s/AKfycbxMKxzJJELx2pFPe9QwSpS4wsnLMqL9e034hphs--WmURBKczD_wD2U7lUXe2J9NRMBsQ/exec';
+const baseUrl = 'https://script.google.com/macros/s/AKfycbwhhFvILgtLwMpdqeVIKruXSJKB8rGcckmm_adI3n5XGjvNXXVREGOOppktSsFtFynm/exec';
 
 class MyApiClient {
   final http.Client httpClient;
@@ -46,6 +46,22 @@ class MyApiClient {
       }
     } catch (_) {
       print("Error in try $_");
+      return null;
+    }
+    return null;
+  }
+
+  restoreBackup() async {
+    try {
+      print("RESTORING BACKUP");
+      final response = await httpClient.post(Uri.parse(baseUrl));
+      if (response.statusCode == 200) {
+        print("backup restaurado");
+      } else {
+        print('Error in restoreBackup CODE => ${response.statusCode}');
+      }
+    } catch (e) {
+      print("Error: $e");
       return null;
     }
     return null;

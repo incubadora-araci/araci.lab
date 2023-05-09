@@ -153,6 +153,13 @@ class DetailsController extends GetxController {
       case 'Equipe':
         Get.toNamed(Routes.TEAM);
         break;
+      case 'Backup':
+        articleRepository.restoreBackup();
+        Get.snackbar('Backup', 'Recuperando backup...', duration: Duration(seconds: 5),
+        );
+        // Delay pŕa dar tempo de restaurar a planilha antes de recarregar página
+        Future.delayed(const Duration(seconds: 5), () {Get.offAllNamed(Routes.DETAILS);});
+        break;
       case 'Rever Introdução':
         Get.offAllNamed(Routes.INTRO);
         break;

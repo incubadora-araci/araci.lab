@@ -78,7 +78,9 @@ class LoginController extends GetxController {
     // print("refreshToken: ${result.refreshToken}");
     // print("idToken: ${result.idToken}");
     // print("tokenType: ${result.tokenType}");
-    repository.setUserInformation("none", "none", "none", true);
+
+
+    repository.setUserInformation("none", "none", "none", true, true);
     Get.toNamed(Routes.DETAILS);
   }
 

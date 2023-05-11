@@ -203,6 +203,10 @@ class DetailsController extends GetxController {
     return repository!.isLogged();
   }
 
+  bool isAdm(){
+    return repository!.isAdm();
+  }
+
   void updateAndScrollToTop() {
     scrollController.jumpTo(0);
     update();

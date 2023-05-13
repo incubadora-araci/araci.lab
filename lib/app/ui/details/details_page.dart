@@ -36,8 +36,7 @@ class DetailsPage extends StatelessWidget {
                       'Equipe',
                       'Configurações',
                       Get.find<DetailsController>().isLogged() ? 'Sair' : 'Entrar',
-                      // if (Get.find<DetailsController>().isLogged()) 'Backup',
-                      'Backup',
+                      if (Get.find<DetailsController>().isLogged() && Get.find<DetailsController>().isAdm()) 'Backup',
                       'Rever Introdução'
                     }.map((String choice) {
                       return PopupMenuItem<String>(

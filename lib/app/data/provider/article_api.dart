@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 import 'package:get_storage/get_storage.dart';
 
-const baseUrl = 'https://script.google.com/macros/s/AKfycbx7ENZ3XdS7DsSdlwIOU5w1ysOIMtBKm5km_2k3bVWbSI6K1NUtv0XQVVuf1788IB5X/exec';
+const baseUrl = 'https://script.google.com/macros/s/AKfycby_qfxOl39p-Z0CcMVL_vf6WpM8IgH_pRgM3dqNJ0atD5n8Vp2d90T4aYfcga-Pa887/exec';
 
 class MyApiClient {
   final http.Client httpClient;
@@ -24,7 +24,7 @@ class MyApiClient {
     final DatabaseApi dbApi = Get.find<DatabaseApi>();
     try {
       print("FETCHING DATA");
-      final response = await httpClient.get(Uri.parse("$baseUrl?function=fetchData"));
+      final response = await httpClient.get(Uri.parse("$baseUrl?func=fetchData"));
       if (response.statusCode == 200) {
         await dbApi.deleteAllRows(ArticleModel().TABLE_NAME);
         var jsonResponse = jsonDecode(response.body);
@@ -52,7 +52,7 @@ class MyApiClient {
   }
 
   // TODO: passe o nome como parãmetro
-  Future isAdm(String name) async {
+  Future admChecking(String name) async {
     try {
       final url = Uri.parse('$baseUrl?func=isAdm&name=$name');
       // final postBody = {"name": GetStorage().read("name")};
@@ -68,7 +68,7 @@ class MyApiClient {
   restoreBackup() async {
     try {
       print("RESTORING BACKUP");
-      final response = await httpClient.post(Uri.parse('$baseUrl?function=restoreBackup'));
+      final response = await httpClient.post(Uri.parse('$baseUrl?func=restoreBackup'));
       // TODO: passar isAdm no body
       if (response.statusCode == 200) {
         print("backup restaurado");

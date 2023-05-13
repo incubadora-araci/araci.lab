@@ -159,7 +159,6 @@ class DetailsController extends GetxController {
         break;
       case 'Backup':
         articleRepository.restoreBackup();
-        ArticleRepository(databaseApi: DatabaseApi(), articleWebApi: MyApiClient(httpClient: http.Client())).isAdm();
         Get.snackbar('Backup', 'Restaurando dados...', duration: Duration(seconds: 5));
         // Delay pŕa dar tempo de restaurar a planilha antes de recarregar página
         Future.delayed(const Duration(seconds: 5), () {Get.offAllNamed(Routes.DETAILS);});

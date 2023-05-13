@@ -32,8 +32,8 @@ class ArticleRepository {
     await articleWebApi!.restoreBackup();
   }
 
-  isAdm() async {
-    await articleWebApi!.isAdm(GetStorage().read('name'));
+  admChecking() async {
+    await articleWebApi!.admChecking(GetStorage().read('name'));
   }
 
   Future<List<List<Map<String,dynamic>>>> dump() async {

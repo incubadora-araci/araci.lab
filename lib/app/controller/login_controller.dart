@@ -80,7 +80,7 @@ class LoginController extends GetxController {
     // print("tokenType: ${result.tokenType}");
 
 
-    repository.setUserInformation("none", "none", "none", true);
+    repository.setUserInformation("none", "none", "none", true, true);
     Get.toNamed(Routes.DETAILS);
   }
 

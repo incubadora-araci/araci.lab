@@ -1,13 +1,17 @@
 import 'dart:convert';
+import 'package:araci/app/controller/details_controller.dart';
+import 'package:araci/app/controller/login_controller.dart';
 import 'package:araci/app/data/model/model.dart';
 import 'package:araci/app/data/provider/databaseApi.dart';
+import 'package:araci/app/data/provider/global_information.dart';
+import 'package:araci/app/data/repository/globalInformation_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 import 'package:get_storage/get_storage.dart';
 
-const baseUrl = 'https://script.google.com/macros/s/AKfycby_qfxOl39p-Z0CcMVL_vf6WpM8IgH_pRgM3dqNJ0atD5n8Vp2d90T4aYfcga-Pa887/exec';
+const baseUrl = 'https://script.google.com/macros/s/AKfycbzD9b68-X3RvKqlKkN4SyxeKNeklzwvfTl72_0yiHqWGy7zL3DnIU6cC_aBZhv2Cczf/exec';
 
 class MyApiClient {
   final http.Client httpClient;
@@ -51,20 +55,19 @@ class MyApiClient {
     return null;
   }
 
-  // TODO: passe o nome como parãmetro
-  Future admChecking(String name) async {
+  Future<bool> admChecking(String fullName) async {
     try {
-      final url = Uri.parse('$baseUrl?func=isAdm&name=$name');
-      // final postBody = {"name": GetStorage().read("name")};
-      // TODO: passar nome como parâmetro da requisição get
+      final url = Uri.parse('$baseUrl?func=isAdm&name=$fullName');
       final response = await httpClient.get(url);
       final jsonResponse = jsonDecode(response.body);
-      return jsonResponse.isAdm;
+      return jsonResponse["isAdm"];
     } catch (e) {
-      debugPrint("(isAdm) Error: $e");
+      debugPrint("(admChecking) Error: $e");
+      return false;
     }
   }
 
+  // TODO: listar backups disponíveis
   restoreBackup() async {
     try {
       print("RESTORING BACKUP");
@@ -77,11 +80,9 @@ class MyApiClient {
       }
     } catch (e) {
       print("(restoreBackup) Error: $e");
-      return null;
     }
-    return null;
   }
-  // TODO: listar backups disponíveis
+
 // List<int> parseRelatedIds(String relatedIdsString){
   //   List<int> parsedList = List();
   //   if(relatedIdsString.length==1){

@@ -24,12 +24,11 @@ class GlobalInformationRepository {
     globalInformationApi.setGlobalInformation(key, value);
   }
 
-  dynamic setUserInformation(String fullName, String email, String iduff, bool isLogged, bool isAdm) async {
+  dynamic setUserInformation(String fullName, String email, String iduff, bool isLogged) async {
     await globalInformationApi.setGlobalInformation("fullName", fullName);
     await globalInformationApi.setGlobalInformation("email", email);
     await globalInformationApi.setGlobalInformation("iduff", iduff);
     await globalInformationApi.setGlobalInformation("isLogged", isLogged);
-    await globalInformationApi.setGlobalInformation("isLogged", isAdm);
   }
 
   getUrl(String name){

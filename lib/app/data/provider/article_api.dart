@@ -24,7 +24,7 @@ class MyApiClient {
     final DatabaseApi dbApi = Get.find<DatabaseApi>();
     try {
       print("FETCHING DATA");
-      final response = await httpClient.get(Uri.parse(baseUrl));
+      final response = await httpClient.get(Uri.parse("$baseUrl?function=fetchData"));
       if (response.statusCode == 200) {
         await dbApi.deleteAllRows(ArticleModel().TABLE_NAME);
         var jsonResponse = jsonDecode(response.body);
@@ -51,12 +51,13 @@ class MyApiClient {
     return null;
   }
 
-  Future isAdm() async {
+  // TODO: passe o nome como parãmetro
+  Future isAdm(String name) async {
     try {
-      final url = Uri.parse('$baseUrl?function=isAdm');
-      final postBody = {"name": GetStorage().read("name")};
-      final jsonBody = jsonEncode(postBody);
-      final response = await httpClient.post(url, body: jsonBody);
+      final url = Uri.parse('$baseUrl?func=isAdm&name=$name');
+      // final postBody = {"name": GetStorage().read("name")};
+      // TODO: passar nome como parâmetro da requisição get
+      final response = await httpClient.get(url);
       final jsonResponse = jsonDecode(response.body);
       return jsonResponse.isAdm;
     } catch (e) {
@@ -80,7 +81,7 @@ class MyApiClient {
     }
     return null;
   }
-
+  // TODO: listar backups disponíveis
 // List<int> parseRelatedIds(String relatedIdsString){
   //   List<int> parsedList = List();
   //   if(relatedIdsString.length==1){

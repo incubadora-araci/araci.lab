@@ -5,6 +5,7 @@ import 'package:araci/app/data/model/model.dart';
 import 'package:araci/app/data/provider/article_api.dart';
 import 'package:araci/app/data/provider/databaseApi.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:meta/meta.dart';
 
 class ArticleRepository {
@@ -32,7 +33,7 @@ class ArticleRepository {
   }
 
   isAdm() async {
-    await articleWebApi!.isAdm();
+    await articleWebApi!.isAdm(GetStorage().read('name'));
   }
 
   Future<List<List<Map<String,dynamic>>>> dump() async {

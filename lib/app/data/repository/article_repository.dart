@@ -28,8 +28,12 @@ class ArticleRepository {
     await articleWebApi!.fetchData();
   }
 
-  restoreBackup() async {
-    await articleWebApi!.restoreBackup();
+  getBackups() async{
+    return await articleWebApi!.getBackups();
+  }
+
+  restoreBackup(String backup) async {
+    await articleWebApi!.restoreBackup(backup);
   }
 
   admChecking(String fullName) async {

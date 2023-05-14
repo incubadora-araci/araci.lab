@@ -3,6 +3,7 @@ import 'package:araci/app/bindings/login_bindings.dart';
 import 'package:araci/app/bindings/settings_bindings.dart';
 import 'package:araci/app/bindings/splash_bindings.dart';
 import 'package:araci/app/ui/about/about_page.dart';
+import 'package:araci/app/ui/backup/backup_page.dart';
 import 'package:araci/app/ui/details/details_page.dart';
 import 'package:araci/app/ui/intro/intro_page.dart';
 import 'package:araci/app/ui/login/login_page.dart';
@@ -28,6 +29,7 @@ abstract class AppPages {
     GetPage(name: Routes.VIDEO, page:()=> VideoPage()),
     GetPage(name: Routes.TEAM, page:()=> TeamPage()),
     GetPage(name: Routes.TALENT, page:()=> TalentPage()),
-    GetPage(name: Routes.PERSON, page: () => PersonPage())
+    GetPage(name: Routes.PERSON, page: () => PersonPage()),
+    GetPage(name: Routes.BACKUP, page: () => BackupPage()),
   ];
 }

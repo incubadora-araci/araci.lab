@@ -11,7 +11,7 @@ import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 import 'package:get_storage/get_storage.dart';
 
-const baseUrl = 'https://script.google.com/macros/s/AKfycbzD9b68-X3RvKqlKkN4SyxeKNeklzwvfTl72_0yiHqWGy7zL3DnIU6cC_aBZhv2Cczf/exec';
+const baseUrl = 'https://script.google.com/macros/s/AKfycbyZxJqJ394oLoQCI1mbRJxdUdP-kV96zxR7o-SZwLl-geMUx3Z1qgVj2lFDy8yyQ6i8/exec';
 
 class MyApiClient {
   final http.Client httpClient;
@@ -67,14 +67,32 @@ class MyApiClient {
     }
   }
 
-  // TODO: listar backups disponíveis
-  restoreBackup() async {
+  Future<List> getBackups() async {
+    try {
+      print("LISTING BACKUPS");
+      final response = await httpClient.get(Uri.parse('$baseUrl?func=getBackups'));
+      if (response.statusCode == 200) {
+        debugPrint("response.body: ${response.body}");
+        final backups = json.decode(response.body);
+        print("BACKUPS LISTED");
+        return backups;
+      } else {
+        print('Error in restoreBackup CODE => ${response.statusCode}');
+        return [];
+      }
+    } catch (e) {
+      print("(restoreBackup) Error: $e");
+      return [];
+    }
+  }
+
+  // TODO: passar nome do backup e isAdm no body
+  restoreBackup(backup) async {
     try {
       print("RESTORING BACKUP");
-      final response = await httpClient.post(Uri.parse('$baseUrl?func=restoreBackup'));
-      // TODO: passar isAdm no body
+      final response = await httpClient.post(Uri.parse('$baseUrl?func=restoreBackup&backup=$backup'));
       if (response.statusCode == 200) {
-        print("backup restaurado");
+        print("BACKUP RESTORED");
       } else {
         print('Error in restoreBackup CODE => ${response.statusCode}');
       }

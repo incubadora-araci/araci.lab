@@ -30,9 +30,49 @@ class BackupPage extends StatelessWidget {
                       title: Text(_.backupList[index]),
                       subtitle: Text("Clique para restaurar"),
                       onTap: () async {
-                        Get.snackbar('Backup', 'Restaurando dados...', duration: Duration(seconds: 5));
-                        await _.restoreBackup(_.backupList[index]);
-                        Get.offAllNamed(Routes.DETAILS);
+                        bool confirmed = await showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              backgroundColor: Colors.lightGreen,
+                              title: Text('Restaurar: "${_.backupList[index]}"?'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.of(context).pop(false),
+                                  style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent,),
+                                  child: Text('Cancelar', style: TextStyle(color: Colors.white)),
+                                ),
+                                TextButton(
+                                  onPressed: () => Navigator.of(context).pop(true),
+                                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blueAccent,),
+                                  child: Text('Restaurar', style: TextStyle(color: Colors.white)),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                        if (confirmed) {
+                          // Mostra um popup
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              backgroundColor: Colors.lightGreen,
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  CircularProgressIndicator(),
+                                  SizedBox(height: 10),
+                                  Text('Restaurando dados...',
+                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                          await _.restoreBackup(_.backupList[index]);
+                          Navigator.of(context).pop(); // Fecha o popup depois de resturar
+                          Get.offAllNamed(Routes.DETAILS);
+                        }
                       },
                     );
                   },

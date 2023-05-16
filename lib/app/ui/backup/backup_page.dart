@@ -7,18 +7,74 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class BackupPage extends StatelessWidget {
+class BackupPage extends GetView<BackupController> {
+  const BackupPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(title: Text('Backup'), centerTitle: true,),
+      appBar: AppBar(
+        title: Text('Backup'),
+        centerTitle: true,actions: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.lightGreen, ),
+            child: Row(
+              children: [
+                Text('Criar', style: TextStyle(color: Colors.white)),
+                Icon(Icons.add_box_rounded),
+              ],
+            ),
+            onPressed: () async {
+              bool confirmed = await showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    backgroundColor: Colors.lightGreen,
+                    title: Text('Criar Backup?'),
+                    actions: [
+                      ElevatedButton(
+                        onPressed: () => Navigator.of(context).pop(false),
+                        style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent,),
+                        child: Text('Cancelar', style: TextStyle(color: Colors.white)),
+                      ),
+                      ElevatedButton(
+                        onPressed: () => Navigator.of(context).pop(true),
+                        style: ElevatedButton.styleFrom(backgroundColor: Colors.blueAccent,),
+                        child: Text('Criar', style: TextStyle(color: Colors.white)),
+                      ),
+                    ],
+                  );
+                },
+              );
+              if (confirmed) {
+                // Mostra um popup
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    backgroundColor: Colors.lightGreen,
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CircularProgressIndicator(),
+                        SizedBox(height: 10),
+                        Text('Criando Backup...',
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+                await controller.createBackup();
+                Navigator.of(context).pop();
+                Get.offAllNamed(Routes.DETAILS);
+              }
+            },
+          ),
+        ]
+      ),
 
       body: Container(
         child: GetBuilder<BackupController>(
-            // TODO: criar backup binding
-            init: BackupController(articleRepository: ArticleRepository(databaseApi: DatabaseApi(), articleWebApi: MyApiClient(httpClient: http.Client()))),
             builder: (_){
               return _.isLoading ?
                 Center(child: CircularProgressIndicator(),) :
@@ -37,12 +93,12 @@ class BackupPage extends StatelessWidget {
                               backgroundColor: Colors.lightGreen,
                               title: Text('Restaurar: "${_.backupList[index]}"?'),
                               actions: [
-                                TextButton(
+                                ElevatedButton(
                                   onPressed: () => Navigator.of(context).pop(false),
                                   style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent,),
                                   child: Text('Cancelar', style: TextStyle(color: Colors.white)),
                                 ),
-                                TextButton(
+                                ElevatedButton(
                                   onPressed: () => Navigator.of(context).pop(true),
                                   style: ElevatedButton.styleFrom(backgroundColor: Colors.blueAccent,),
                                   child: Text('Restaurar', style: TextStyle(color: Colors.white)),

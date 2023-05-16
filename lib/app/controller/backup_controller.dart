@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 
 class BackupController extends GetxController {
 
-  final ArticleRepository articleRepository;
-  BackupController({required this.articleRepository}) : assert(articleRepository != null);
+  final ArticleRepository repository;
+  BackupController({required this.repository}) : assert(repository != null);
   bool isLoading = true;
 
   List backupList = [];
@@ -13,7 +13,7 @@ class BackupController extends GetxController {
   @override
   Future<void> onInit() async {
     try {
-      backupList = await articleRepository.getBackups();
+      backupList = await repository.getBackups();
     } catch(e) {
       debugPrint("(BackupController) error: $e");
     }
@@ -23,6 +23,10 @@ class BackupController extends GetxController {
   }
 
   restoreBackup(String backup) async {
-    await articleRepository.restoreBackup(backup);
+    await repository.restoreBackup(backup);
+  }
+
+  createBackup() async {
+    await repository.createBackup();
   }
 }

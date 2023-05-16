@@ -32,6 +32,10 @@ class ArticleRepository {
     return await articleWebApi!.getBackups();
   }
 
+  createBackup() async {
+    await articleWebApi!.createBackup();
+  }
+
   restoreBackup(String backup) async {
     await articleWebApi!.restoreBackup(backup);
   }

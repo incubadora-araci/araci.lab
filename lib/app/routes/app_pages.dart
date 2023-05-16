@@ -1,3 +1,4 @@
+import 'package:araci/app/bindings/backup_binding.dart';
 import 'package:araci/app/bindings/details_bindings.dart';
 import 'package:araci/app/bindings/login_bindings.dart';
 import 'package:araci/app/bindings/settings_bindings.dart';
@@ -30,6 +31,6 @@ abstract class AppPages {
     GetPage(name: Routes.TEAM, page:()=> TeamPage()),
     GetPage(name: Routes.TALENT, page:()=> TalentPage()),
     GetPage(name: Routes.PERSON, page: () => PersonPage()),
-    GetPage(name: Routes.BACKUP, page: () => BackupPage()),
+    GetPage(name: Routes.BACKUP, page: () => BackupPage(), binding: BackupBinding()),
   ];
 }

@@ -11,7 +11,7 @@ import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 import 'package:get_storage/get_storage.dart';
 
-const baseUrl = 'https://script.google.com/macros/s/AKfycbyZxJqJ394oLoQCI1mbRJxdUdP-kV96zxR7o-SZwLl-geMUx3Z1qgVj2lFDy8yyQ6i8/exec';
+const baseUrl = 'https://script.google.com/macros/s/AKfycbxisgAcvZ0KKANvMM9znoqjzI0TWsrXG-KtI7uhaR4yaiVCQX0x25utSKEwHyeMonRI/exec';
 
 class MyApiClient {
   final http.Client httpClient;
@@ -86,8 +86,22 @@ class MyApiClient {
     }
   }
 
+  createBackup() async {
+    try {
+      print("RESTORING BACKUP");
+      final response = await httpClient.post(Uri.parse('$baseUrl?func=createBackup'));
+      if (response.statusCode == 200) {
+        print("BACKUP CREATED");
+      } else {
+        print('Error in restoreBackup CODE => ${response.statusCode}');
+      }
+    } catch (e) {
+      print("(createBackup) Error: $e");
+    }
+  }
+
   // TODO: passar nome do backup e isAdm no body
-  restoreBackup(backup) async {
+  restoreBackup(String backup) async {
     try {
       print("RESTORING BACKUP");
       final response = await httpClient.post(Uri.parse('$baseUrl?func=restoreBackup&backup=$backup'));

@@ -11,7 +11,7 @@ import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 import 'package:get_storage/get_storage.dart';
 
-const baseUrl = 'https://script.google.com/macros/s/AKfycbxisgAcvZ0KKANvMM9znoqjzI0TWsrXG-KtI7uhaR4yaiVCQX0x25utSKEwHyeMonRI/exec';
+const baseUrl = 'https://script.google.com/macros/s/AKfycbye-8XaNMb9n2_WEFNszvgufol0lXNaQUfz_SNIWM_WFRl7gr4mNPebqRPOJV-ghwcj-w/exec';
 
 class MyApiClient {
   final http.Client httpClient;

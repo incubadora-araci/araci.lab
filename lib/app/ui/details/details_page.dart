@@ -10,6 +10,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
 import 'package:araci/app/ui/details/widgets/relatedcard_widget.dart';
+import 'package:get_storage/get_storage.dart';
 
 class DetailsPage extends StatelessWidget {
   @override
@@ -30,7 +31,14 @@ class DetailsPage extends StatelessWidget {
                 PopupMenuButton<String>(
                   onSelected: Get.find<DetailsController>().handlePopMenuClick,
                   itemBuilder: (BuildContext context) {
-                    return {'Sobre','Equipe', 'Configurações', Get.find<DetailsController>().isLogged() ? 'Sair' : 'Entrar', 'Rever Introdução'}.map((String choice) {
+                    return {
+                      'Sobre',
+                      'Equipe',
+                      'Configurações',
+                      Get.find<DetailsController>().isLogged() ? 'Sair' : 'Entrar',
+                      if (Get.find<DetailsController>().isLogged() && Get.find<DetailsController>().isAdm()) 'Backup',
+                      'Rever Introdução'
+                    }.map((String choice) {
                       return PopupMenuItem<String>(
                         value: choice,
                         child: Text(choice),

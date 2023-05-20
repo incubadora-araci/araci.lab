@@ -13,4 +13,5 @@ abstract class Routes{
   static const TEAM = '/team';
   static const TALENT = '/talent';
   static const PERSON = '/person';
+  static const BACKUP = '/backup';
 }

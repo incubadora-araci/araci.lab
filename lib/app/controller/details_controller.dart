@@ -1,11 +1,15 @@
 import 'dart:async';
+import 'package:araci/app/data/provider/article_api.dart';
+import 'package:araci/app/data/provider/databaseApi.dart';
 import 'package:araci/app/data/repository/article_repository.dart';
 import 'package:araci/app/data/repository/globalInformation_repository.dart';
 import 'package:araci/app/routes/app_pages.dart';
 import 'package:flutter/material.dart' hide Stack;
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:stack/stack.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
 
 class DetailsController extends GetxController {
 
@@ -132,7 +136,7 @@ class DetailsController extends GetxController {
       print("ERROR launching link: $e");
     }
   }
-  
+
 
   handlePopMenuClick(String value) async {
     switch (value) {
@@ -152,6 +156,9 @@ class DetailsController extends GetxController {
         break;
       case 'Equipe':
         Get.toNamed(Routes.TEAM);
+        break;
+      case 'Backup':
+        Get.toNamed(Routes.BACKUP);
         break;
       case 'Rever Introdução':
         Get.offAllNamed(Routes.INTRO);
@@ -194,6 +201,10 @@ class DetailsController extends GetxController {
 
   bool isLogged(){
     return repository!.isLogged();
+  }
+
+  bool isAdm(){
+    return repository!.isAdm();
   }
 
   void updateAndScrollToTop() {

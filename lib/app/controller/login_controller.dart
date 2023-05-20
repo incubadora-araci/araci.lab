@@ -1,9 +1,12 @@
+import 'package:araci/app/data/provider/article_api.dart';
 import 'package:araci/app/data/repository/globalInformation_repository.dart';
 import 'package:araci/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:get/get.dart';
+import 'package:jwt_decode/jwt_decode.dart';
 import 'package:meta/meta.dart';
+import 'package:http/http.dart' as http;
 
 
 class LoginController extends GetxController {
@@ -69,7 +72,7 @@ class LoginController extends GetxController {
     }
   }
 
-  void _processAuthResponse(AuthorizationTokenResponse result) {
+  Future<void> _processAuthResponse(AuthorizationTokenResponse result) async {
     // print(
     //     "authorizationAdditionalParameters: ${result.authorizationAdditionalParameters}");
     // print("accessToken: ${result.accessToken}");
@@ -78,9 +81,12 @@ class LoginController extends GetxController {
     // print("refreshToken: ${result.refreshToken}");
     // print("idToken: ${result.idToken}");
     // print("tokenType: ${result.tokenType}");
-    repository.setUserInformation("none", "none", "none", true);
+    final decodedIdToken = Jwt.parseJwt(result.idToken!);
+    final String fullName = decodedIdToken["name"];
+    bool isAdm = await Get.put(MyApiClient(httpClient: http.Client())).admChecking(fullName);
+    repository.setUserInformation(fullName, "none", "none", true, isAdm);
+
     Get.toNamed(Routes.DETAILS);
   }
-
 
 }
